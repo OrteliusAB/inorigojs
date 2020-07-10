@@ -1,0 +1,46 @@
+{
+  "name": "@ortelius/inorigojs",
+  "version": "0.1.0",
+  "description": "Inorigo API Utility",
+  "private": false,
+  "main": "./bundle/inorigo.js",
+  "types": "./src/index.d.ts",
+  "scripts": {
+    "clean": "rimraf lib && rimraf bundle",
+    "build": "npm run build:lib && npm run build:wbp",
+    "build:wbp": "webpack --config webpack.config.js",
+    "build:lib": "babel src --out-dir lib --copy-files",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OrteliusAB/inorigojs.git"
+  },
+  "keywords": [
+    "inorigo",
+    "js",
+    "services",
+    "api",
+    "entity",
+    "factory",
+    "enums",
+    "parser",
+    "knowledge",
+    "set"
+  ],
+  "author": "Ortelius AB",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  },
+  "dependencies": {
+    "core-js": "^3.2.1",
+    "axios": "^0.18.0"
+  }
+}
