@@ -1,13 +1,13 @@
 {
   "name": "@ortelius/inorigojs-documentation",
   "version": "0.0.1",
-  "description": "Another network graph",
+  "description": "An Inorigo Utility",
   "main": "index.js",
   "authors": {
     "name": "Ortelius",
     "email": "helpdesk@ortelius.com"
   },
-  "repository": "https://www.npmjs.com/package/@ortelius/ortelius-network-graph/ortelius-network-graph",
+  "repository": "https://www.npmjs.com/package/@ortelius/inorigojs",
   "scripts": {
     "start": "vuepress dev docs",
     "build": "vuepress build docs"

@@ -5,7 +5,7 @@
   <br>
   InorigoJS is the only Inorigo utility you need! Built and supported by Ortelius.
   <br>
-  <a target="_blank" href="https://orteliusab.github.io/inorigojs/docs/dist/index.html">Documentation</a>
+  <a target="_blank" href="https://orteliusab.github.io/inorigojs/docs/dist/">Documentation</a>
 </div>
 
 # Contribute
