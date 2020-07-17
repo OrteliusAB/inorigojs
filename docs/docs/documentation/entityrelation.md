@@ -7,9 +7,11 @@ When creating a relation you need to specify the type of relation (defined by wh
 The following functions are supported:
 Function | Description
 --- | ---
-setUUID(uuid)   |   Sets the UUID of the relation.
-setType(type)   |   sets the type (or rather category) of the relation.
-setRelation(relationSpecifierID, leftID, rightID, leftDefinitionType, rightDefinitionType)   |   defines the relation on the relation entity.
+setUUID(uuid)   |   Sets the UUID of the relation (default value is null).
+setType(type)   |   sets the type (or rather category) of the relation (default value is ASDEF_TO_ASDEF)
+setLeftDefinitionType(leftDefinitionType)   |   Sets the definition type of the left relation (default value is AsDefinition)
+setRightDefinitionType(rightDefinitionType)   |   Sets the definition type of the right relation (default value is AsDefinition)
+setRelation(relationSpecifierID, leftID, rightID)   |   defines the relation on the relation entity. 
 print()   |   Exports the finished JSON object.
 
 ## Implementing relations
@@ -38,8 +40,7 @@ const entityTwo = new Entity(entityTypes.ASSOCIATION_DEFINITION, entityTwoUUID)
 .print()
 
 const relation = new EntityRelation()
-.setType(relationCategories.ASDEF_TO_ASDEF)
-.setRelation(relationTypes.CLASSIFIES_IS_A_KIND_OF, entityOneUUID, entityTwoUUID, entityTypes.ASSOCIATION_DEFINITION, entityTypes.ASSOCIATION_DEFINITION)
+.setRelation(relationTypes.CLASSIFIES_IS_A_KIND_OF, entityOneUUID, entityTwoUUID)
 .print()
 
 let transaction = EntityFactory.createTransaction(false)
