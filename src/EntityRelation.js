@@ -1,24 +1,25 @@
 /**
  * Class to create a payload for relations
  */
- export default class EntityRelation {
+export default class EntityRelation {
 
     constructor(type, uuid) {
         this.state = {
-            kind: "EntityDTO",
-            dataType: type,
-            id: uuid,
-            applicableAttributes: [],
-            attributeValues: []
+            payload: {
+                kind: "EntityDTO",
+                dataType: type?type:"AsDefinitionRel",
+                id: uuid?uuid:null,
+                attributeValues: []
+            },
+            leftDefinitionType: "AsDefinition",
+            rightDefinitionType: "AsDefinition"
         }
     }
     /**
      * Sets the definition of this entity
-     * @param {type of the definition} type 
-     * @param {UUID of the definition} uuid 
      */
     setDefinition(type, uuid) {
-        this.state.definitions = [{
+        this.state.payload.definitions = [{
             kind: "EntityDTO",
             dataType: type,
             id: uuid
@@ -27,84 +28,50 @@
     }
     /**
      * Sets the UUID (Universal Unique Identifier)
-     * @param {UUID to set} uuid 
      */
     setUUID(uuid) {
-        this.state.id = uuid
+        this.state.payload.id = uuid
         return this
     }
 
     /**
-     * Sets the definition of this entity
-     * @param {type of the definition} type 
+     * Sets the definition of this entity (default value is AsDefinitionRel)
      */
     setType(type) {
-        this.state.dataType = type
+        this.state.payload.dataType = type
         return this
     }
-
+    /** 
+     * Sets the definition type of the left relation (default value is AsDefinition)
+     */
+    setLeftDefinitionType(leftDefinitionType)
+    {
+        this.state.leftDefinitionType = leftDefinitionType
+        return this
+    }
+    /** 
+     * Sets the definition type of the right relation (default value is AsDefinition)
+     */
+    setRightDefinitionType(rightDefinitionType)
+    {
+        this.state.rightDefinitionType = rightDefinitionType
+        return this
+    }
     /**
      * Sets the relations on this
-     * @param {UUID of the relation specifier} relationSpecifierID 
-     * @param {UUID of the left associated object} leftID
-     * @param {UUID of the right associated object} rightID
-     * @param {UUID of the left associated object} leftDefinitionType
-     * @param {UUID of the right associated object} rightDefinitionType
      */
-    setRelation(relationSpecifierID, leftID, rightID, leftDefinitionType, rightDefinitionType) {
-        this.state.applicableAttributes = [
+    setRelations(relationSpecifierID, leftID, rightID) {
+        this.state.payload.attributeValues = [
             {
                 key: "objectOneID",
                 name: "objectOneID",
-                dataType: leftDefinitionType ? leftDefinitionType : "AsDefinition",
-                sequence: 0,
-                multiplicity: "1",
-                disabled: false
-            },
-            {
-                key: "objectTwoID",
-                name: "objectTwoID",
-                dataType: rightDefinitionType ? rightDefinitionType : "AsDefinition",
-                sequence: 0,
-                multiplicity: "1",
-                disabled: false
-            },
-            {
-                key: "parentSeq",
-                name: "parentSeq",
-                dataType: "Integer",
-                sequence: 0,
-                multiplicity: "1",
-                disabled: false
-            },
-            {
-                key: "relationSpecifierID",
-                name: "relationSpecifierID",
-                dataType: "UnRel",
-                sequence: 0,
-                multiplicity: "1",
-                disabled: false
-            },
-            {
-                key: "seq",
-                name: "seq",
-                dataType: "Integer",
-                sequence: 0,
-                multiplicity: "1",
-                disabled: false
-            }
-        ];
-        this.state.attributeValues = [
-            {
-                key: "objectOneID",
-                name: "objectOneID",
-                dataType: leftDefinitionType ? leftDefinitionType : "AsDefinition",
+                dataType: this.state.leftDefinitionType,
                 value: leftID
             },
             {
                 key: "objectTwoID",
                 name: "objectTwoID",
-                dataType: rightDefinitionType ? rightDefinitionType : "AsDefinition",
+                dataType: this.state.rightDefinitionType,
                 value: rightID
             },
             {
@@ -133,7 +100,7 @@
      * Returns the json presentation of this object
      */
     print() {
-        return this.state
+        return this.state.payload
     }
 
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ortelius/inorigojs-documentation",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An Inorigo Utility",
   "main": "index.js",
   "authors": {
