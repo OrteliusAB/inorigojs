@@ -161,6 +161,47 @@ export default class InorigoAPI {
       getScript: (vrid) => {
         return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/script`, this.DEFAULTCONFIG)
       },
+
+      getTooltip(vrid, componentID, row, column) {
+        return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/cell/tooltip${this.buildURIParams({
+          componentID: componentID,
+          row: row,
+          column: column
+        })}`,
+          this.DEFAULTCONFIG)
+      },
+
+      evaluateExpression(vrid, expression) {
+        return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/evaluate?expression=${expression}`, this.DEFAULTCONFIG)
+      },
+
+      setRuntimeVariable(vrid, name, type, element, value) {
+        const payload = {
+          name: name,
+          type: type,
+          element: element,
+          value: value
+        }
+        return axios.post(`${this.BASE_URL_API}application/runtime/${vrid}/set/runtime/value`, payload, this.DEFAULTCONFIG)
+      },
+
+      lockSelection(vrid, where) {
+        return axios.post(`${this.BASE_URL_API}application/runtime/${vrid}/lock/selection${this.buildURIParams({
+          where: where
+        })}`,
+          {}, this.DEFAULTCONFIG)
+      },
+
+      unlockSelection(vrid, where) {
+        return axios.post(`${this.BASE_URL_API}application/runtime/${vrid}/unlock/selection${this.buildURIParams({
+          where: where
+        })}`,
+          {}, this.DEFAULTCONFIG)
+      },
+
+      focusComponent(vrid, component) {
+        return axios.post(`${this.BASE_URL_API}application/runtime/${vrid}/component/focus/${component}`, {}, this.DEFAULTCONFIG)
+      }
     }
   }
 
@@ -173,18 +214,41 @@ export default class InorigoAPI {
         return axios.post(`${this.BASE_URL_API}knowledgeset/${uuid}?metadata=true&page=1&pagesize=0`, {}, this.DEFAULTCONFIG)
       },
 
-      getResult: (uuid, isDistinct, page, pagesize, parameters, allowCache) => {
+      getResult: (uuid, isDistinct, page, pagesize, parameters) => {
         let uriParams = {
           metadata: true,
           distinct: isDistinct,
           page: page,
           pagesize: pagesize
         }
-        if (allowCache !== undefined && allowCache !== null) {
-          uriParams.allowcache = "" + allowCache
-        }
         return axios.post(`${this.BASE_URL_API}knowledgeset/${uuid}${this.buildURIParams(uriParams)}`,
           parameters !== undefined && parameters !== null ? { parameters: parameters } : {},
+          this.DEFAULTCONFIG)
+      },
+
+      searchResult: (uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns) => {
+        let uriParams = {
+          text: text,
+          fuzzy: fuzzy,
+          metadata: metaData,
+          compactleafs: compactLeafs,
+          allowCache: allowCache,
+          searchIDs: searchIDs,
+          includedColumns: includedColumns,
+          excludedColumns: excludedColumns
+        }
+        return axios.get(`${this.BASE_URL_API}knowledgeset/${uuid}/tree/search/text${this.buildURIParams(uriParams)}`,
+          this.DEFAULTCONFIG)
+      },
+
+      getCachedResult: (uuid, page, pagesize, compactPaths) => {
+        let uriParams = {
+          metadata: true,
+          compactPaths: compactPaths,
+          page: page,
+          pagesize: pagesize
+        }
+        return axios.get(`${this.BASE_URL_API}knowledgeset/${uuid}/cache/read${this.buildURIParams(uriParams)}`,
           this.DEFAULTCONFIG)
       },
 
@@ -192,12 +256,25 @@ export default class InorigoAPI {
         let uriParams = {
           metadata: metaData,
           compactleafs: compactLeafs,
-        }
-        if (allowCache !== undefined && allowCache !== null) {
-          uriParams.allowcache = "" + allowCache
+          allowCache: allowCache
         }
         return axios.post(`${this.BASE_URL_API}knowledgeset/tree/${uuid}${this.buildURIParams(uriParams)}`,
           parameters !== undefined && parameters !== null ? { parameters: parameters } : {},
+          this.DEFAULTCONFIG)
+      },
+
+      searchTreeResult: (uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns) => {
+        let uriParams = {
+          text: text,
+          fuzzy: fuzzy,
+          metadata: metaData,
+          compactleafs: compactLeafs,
+          allowCache: allowCache,
+          searchIDs: searchIDs,
+          includedColumns: includedColumns,
+          excludedColumns: excludedColumns
+        }
+        return axios.get(`${this.BASE_URL_API}knowledgeset/${uuid}/tree/search/text${this.buildURIParams(uriParams)}`,
           this.DEFAULTCONFIG)
       },
 
@@ -205,8 +282,16 @@ export default class InorigoAPI {
         return axios.get(`${this.BASE_URL_API}knowledgeset/list`, this.DEFAULTCONFIG)
       },
 
-      query: (uuid, query) => {
-        return axios.post(`${this.BASE_URL_API}knowledgeset/${uuid}/query?sql=${query}`, {}, this.DEFAULTCONFIG)
+      query: (uuid, query, metadata, context, parameters, allowCache) => {
+        let uriParams = {
+          sql: query,
+          metadata: metadata,
+          context: context,
+          allowCache: allowCache,
+        }
+        return axios.post(`${this.BASE_URL_API}knowledgeset/${uuid}/query${this.buildURIParams(uriParams)}`,
+          parameters !== undefined && parameters !== null ? { parameters: parameters } : {},
+          this.DEFAULTCONFIG)
       },
 
       countRows: (uuid, isDistinct) => {
@@ -214,7 +299,11 @@ export default class InorigoAPI {
           distinct: isDistinct
         })}`,
           {}, this.DEFAULTCONFIG)
-      }
+      },
+
+      getSchedulingStatus: () => {
+        return axios.get(`${this.BASE_URL_API}knowledgeset/scheduling/status`, this.DEFAULTCONFIG)
+      },
 
     }
   }
@@ -339,6 +428,92 @@ export default class InorigoAPI {
               resolve(simplifiedJSON)
             })
           })
+      },
+
+      getSimplifiedEntity: (entityType, uuid) => {
+        return axios.get(`${this.BASE_URL_API}entity/${entityType}/${uuid}/`, this.DEFAULTCONFIG)
+          .then(result => {
+            let simplifiedResult = result.data.attributeValues.reduce((acc, attributeValue) => {
+              acc[attributeValue.name] = attributeValue.value
+              return acc
+            }, {})
+            simplifiedResult.type = entityType
+            simplifiedResult.uuid = uuid
+            simplifiedResult.presentation = result.data.presentation
+            Promise.resolve(simplifiedResult)
+          })
+      },
+
+      getGraphDependencies(entityType, uuid, dependants = true, dependencies = true, values = true, references = true, relations = true, instances = true, presentations = true) {
+        return axios.get(`${this.BASE_URL_API}entity/${entityType}/${uuid}/dependencies/graph${this.buildURIParams({
+          dependants: dependants,
+          dependencies: dependencies,
+          values: values,
+          references: references,
+          relations: relations,
+          instances: instances,
+          presentations: presentations
+        })}`,
+          this.DEFAULTCONFIG)
+      },
+
+      getPossibleEntityReferences(entityType, uuid) {
+        return axios.get(`${this.BASE_URL_API}entity/possible/references${this.buildURIParams({
+          type: entityType,
+          id: uuid
+        })}`,
+          this.DEFAULTCONFIG)
+      },
+
+      getPossibleInstanceReferences(definitionType, uuid) {
+        return axios.get(`${this.BASE_URL_API}entity/possible/instance/references${this.buildURIParams({
+          type: definitionType,
+          id: uuid
+        })}`,
+          this.DEFAULTCONFIG)
+      },
+
+      getPresentation(entityType, uuid, povAttributeID) {
+        return axios.get(`${this.BASE_URL_API}entity/${entityType}/${uuid}/presentation${this.buildURIParams({
+          povAttributeID: povAttributeID,
+        })}`,
+          this.DEFAULTCONFIG)
+      },
+
+      getDependencyEdges(entityType, uuid, dependants = true, dependencies = true, values = true, references = true, relations = true, instances = true, presentations = true) {
+        return axios.get(`${this.BASE_URL_API}entity/${entityType}/${uuid}/dependencies/edges${this.buildURIParams({
+          dependants: dependants,
+          dependencies: dependencies,
+          values: values,
+          references: references,
+          relations: relations,
+          instances: instances,
+          presentations: presentations
+        })}`,
+          this.DEFAULTCONFIG)
+      },
+
+      getEntityIcon(entityType, uuid, size, contextID) {
+        return axios.get(`${this.BASE_URL_API}entity/${entityType}/${uuid}/icon${this.buildURIParams({
+          size: size,
+          contextID: contextID,
+        })}`,
+          this.DEFAULTCONFIG)
+      },
+
+      getEntityIconID(entityType, uuid, contextID) {
+        return axios.get(`${this.BASE_URL_API}entity/${entityType}/${uuid}/icon/id${this.buildURIParams({
+          contextID: contextID,
+        })}`,
+          this.DEFAULTCONFIG)
+      },
+
+      getValueset(uuid) {
+        return axios.get(`${this.BASE_URL_API}entity/valueset/${uuid}`, this.DEFAULTCONFIG)
+      },
+
+      getPresentations(entityArray) {
+        return axios.post(`${this.BASE_URL_API}entity/presentations/`, entityArray, this.DEFAULTCONFIG)
       }
 
     }
@@ -382,7 +557,14 @@ export default class InorigoAPI {
       returnString +
       Object.keys(tempObj)
         .map(key => {
-          return [key, tempObj[key]].map(encodeURIComponent).join("=")
+          if (Array.isArray(tempObj[key])) {
+            let uriShard = ""
+            tempObj[key].forEach(value => {
+              uriShard = `${uriShard}&${key}=${value}`
+            })
+            return encodeURIComponent(uriShard.substr(1))
+          }
+          return [key, "" + tempObj[key]].map(encodeURIComponent).join("=")
         })
         .join("&")
     )
