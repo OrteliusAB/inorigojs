@@ -52,6 +52,12 @@ countAll(vrid, where)   |   Counts all items in a given filterbox.
 countSelected(vrid, where)   |   Counts all selected items in a given filterbox.
 countExplicit(vrid, where)   |   Counts all explicitly selected items in a given filterbox.
 countImplicit(vrid, where)   |   Counts all implicitly selected items in a given filterbox.
+getTooltip(vrid, componentID, row, column)   |   Get the tooltip text for a given component.
+evaluateExpression(vrid, expression)   |   Evaluate an Inorigo expression.
+setRuntimeVariable(vrid, name, type, element, value)   |   Set a runtime variable.
+lockSelection(vrid, where)   |   Lock the selection in a given set of filterboxes.
+unlockSelection(vrid, where)   |   Unlock the selection in a given set of filterboxes.
+focusComponent(vrid, component)   |   Focus on a given component.
 
 ## Knowledgeset
 The knowledgeset API allows you to retrieve knowledgesets and meta data about knowledgesets. To access the API you need to first retrieve an instance of it from your API instance like so:
@@ -63,11 +69,15 @@ The following functions are supported:
 Function | Description
 --- | ---
 getMetaData(uuid)   |   Retrieves meta data about a given knowledgeset. 
-getResult(uuid, isDistinct, page, pagesize, parameters, allowCache)   |   Retrieves a knowledgeset in table format. 
+getResult(uuid, isDistinct, page, pagesize, parameters)   |   Retrieves a knowledgeset in table format.
+searchResult(uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns)   |   Retrieves a knowledgeset in table format where every row matches a given free text search
+getCachedResult: (uuid, page, pagesize, compactPaths)   |   Retrieves a (cached) knowledgeset in table format
 getTreeResult(uuid, metaData, compactLeafs, parameters, allowCache)   |   Retrieves a knowledgeset in tree format.
+searchTreeResult(uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns)   |   Retrieves a knowledgeset in tree format where every node matches a given free text search
 getAvailable()   |   Retrieves a list of all available knowledgesets.
-query(uuid, query)   |   Executes a SQL Server query on top of the result of a given knowledgeset and retrieves the result.
+query(uuid, query, metadata, context, parameters, allowCache)   |   Executes a SQL Server query on top of the result of a given knowledgeset and retrieves the result.
 countRows(uuid, isDistinct)   |   Retrieves the amount of rows in a knowledgeset.
+getSchedulingStatus()   |   Retrieves the scheduling status for all knowledgeset caches.
 
 ## Entity
 The entity API allows you to execute CRUD operations in Inorigo. To access the API you need to first retrieve an instance of it from your API instance like so:
@@ -80,6 +90,7 @@ Function | Description
 --- | ---
 generateUUID(count)   |  Generates new valid UUIDs that is currently unused in Inorigo.
 getEntity(entityType, uuid)   |  Retrieves information about a given entity in Inorigo.
+getSimplifiedEntity(entityType, uuid)   |  Retrieves information about a given entity in Inorigo, but in an easier to interpret format.
 getinstances(entityType, uuid, informationType, page, pagesize)   |  Retrieves a list of all instances of a given definition.
 getSimplifiedInstances(definitionUUID)   |  Retrieves all instances of a given definition, but in an easier to interpret format. Only works for Association Definitions.
 partners(entityType, uuid, relationUuid, direction, isRecursive, isLeafsOnly, informationType, page, pagesize)   |  Retrieves all related entities with a given set of parameters.
@@ -92,6 +103,15 @@ updateEntity(entityJSON)   |  Updates a given set of entities.
 createEntity(entityJSONArray)   |  Creates a given set of entities.
 deleteEntity(entityType, uuid)   |  Deletes a given set of entities.
 transaction(transactionPayload)   |  Executes a transaction in Inorigo.
+getGraphDependencies(entityType, uuid, dependants, dependencies, values, references, relations, instances, presentations)   |  Retrieves all graph dependencies of a given entity
+getPossibleEntityReferences(entityType, uuid)   |  Retrieves all possible entity references for a given entity.
+getPossibleInstanceReferences(definitionType, uuid)   |  Retrieves all possible entity references for every instance of a given definition.
+getDependencyEdges(entityType, uuid, dependants, dependencies, values, references, relations, instances, presentations)   |  Retrieves all dependency edges of a given entity.
+getEntityIcon(entityType, uuid, size, contextID)   |  Retrieves the icon of an entity.
+getEntityIconID(entityType, uuid, contextID)   |  Retrieves the ID of the icon of a given entity.
+getValueset(uuid)   |  Retrieves a valueset.
+getPresentation(entityType, uuid, povAttributeID)   |  retrieves the presentation of an entity, with an optional pov attribute ID.
+getPresentations(entityArray)   |  Retrieves multiple presentations simultaneously. The entity array should be an array of objects, where every object has an "entityType" and "uuid" attribute.
 
 ## Resource
 The resource API allows you to execute CRUD operations for resources (files) stored in Inorigo. To access the API you need to first retrieve an instance of it from your API instance like so:
