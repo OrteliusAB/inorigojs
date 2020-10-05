@@ -10,7 +10,6 @@ module.exports = {
         path: path.resolve(__dirname, "bundle"),
         libraryTarget: "umd",
         library: "inorigojs",
-        libraryExport: "default",
         globalObject: `(() => {
           if(typeof self !== "undefined") {
               return self
@@ -24,7 +23,7 @@ module.exports = {
           else {
               return Function('return this')()
           }
-        })`
+        })()`
     },
     module: {
         rules: [
