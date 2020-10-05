@@ -126,3 +126,15 @@ getResource(uuid)   |    Retrieves a resource from Inorigo
 deleteResource(uuid)   |    Deletes a resource from Inorigo
 createResource(resourceJSONArray)   |   Creates a resource in Inorigo
 updateResource(resourceJSONArray)   |   Updates a resource in Inorigo   
+
+## Legacy
+The legacy API allows you to execute operations in the Inorigo legacy web services:
+```javascript
+const legacyAPI = api.legacy()
+```
+
+The following functions are supported:
+Function | Description
+--- | ---
+executeChange(uuid, contextID, commit?, stringInputArray)   |    Executes a change in Inorigo (process unit definition -> main)
+executeMethod(uuid, contextID, commit?, stringInputArray)   |    Executes a method in Inorigo
