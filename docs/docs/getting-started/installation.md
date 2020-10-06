@@ -12,6 +12,6 @@ import InorigoJS from "@ortelius/inorigojs"
 
 ## unpkg cdn
 ```html
-<script src="ortelius/inorigojs/dist/inorigojs.js"></script>
+<script src="https://unpkg.com/@ortelius/inorigojs/bundle/inorigojs.js"></script>
 ```
 

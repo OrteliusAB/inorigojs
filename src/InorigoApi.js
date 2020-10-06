@@ -543,6 +543,30 @@ export default class InorigoAPI {
     }
   }
 
+  /* Legacy Endpoints (some of which are undocumented!) */
+
+  legacy() {
+    return {
+  
+      executeMethod: (uuid, contextID, commit, inputArray) => {
+        const inputString = inputArray.reduce((acc, item) => { 
+          acc += `&input=${item}`
+          return acc
+        }, "")
+        return axios.get(`${this.BASE_URL}services/authorized/${contextID}/execute/method/${uuid}?commit=${commit}${inputString}`, this.DEFAULTCONFIG)
+      },
+  
+      executeChange: (uuid, contextID, commit, inputArray) => {
+        const inputString = inputArray.reduce((acc, item) => { 
+          acc += `&input=${item}`
+          return acc
+        }, "")
+        return axios.get(`${this.BASE_URL}services/authorized/${contextID}/execute/change/${uuid}?commit=${commit}${inputString}`, this.DEFAULTCONFIG)
+      }
+
+    }
+  }
+
   /* Utility Functions */
 
   buildURIParams(object) {
