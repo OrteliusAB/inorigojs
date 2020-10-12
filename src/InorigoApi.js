@@ -162,7 +162,7 @@ export default class InorigoAPI {
         return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/script`, this.DEFAULTCONFIG)
       },
 
-      getTooltip(vrid, componentID, row, column) {
+      getTooltip: (vrid, componentID, row, column) => {
         return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/cell/tooltip${this.buildURIParams({
           componentID: componentID,
           row: row,
@@ -171,11 +171,11 @@ export default class InorigoAPI {
           this.DEFAULTCONFIG)
       },
 
-      evaluateExpression(vrid, expression) {
+      evaluateExpression: (vrid, expression) => {
         return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/evaluate?expression=${expression}`, this.DEFAULTCONFIG)
       },
 
-      setRuntimeVariable(vrid, name, type, element, value) {
+      setRuntimeVariable: (vrid, name, type, element, value) => {
         const payload = {
           name: name,
           type: type,
@@ -185,21 +185,21 @@ export default class InorigoAPI {
         return axios.post(`${this.BASE_URL_API}application/runtime/${vrid}/set/runtime/value`, payload, this.DEFAULTCONFIG)
       },
 
-      lockSelection(vrid, where) {
+      lockSelection: (vrid, where) => {
         return axios.post(`${this.BASE_URL_API}application/runtime/${vrid}/lock/selection${this.buildURIParams({
           where: where
         })}`,
           {}, this.DEFAULTCONFIG)
       },
 
-      unlockSelection(vrid, where) {
+      unlockSelection: (vrid, where) => {
         return axios.post(`${this.BASE_URL_API}application/runtime/${vrid}/unlock/selection${this.buildURIParams({
           where: where
         })}`,
           {}, this.DEFAULTCONFIG)
       },
 
-      focusComponent(vrid, component) {
+      focusComponent: (vrid, component) => {
         return axios.post(`${this.BASE_URL_API}application/runtime/${vrid}/component/focus/${component}`, {}, this.DEFAULTCONFIG)
       }
     }
@@ -444,7 +444,7 @@ export default class InorigoAPI {
           })
       },
 
-      getGraphDependencies(entityType, uuid, dependants = true, dependencies = true, values = true, references = true, relations = true, instances = true, presentations = true) {
+      getGraphDependencies: (entityType, uuid, dependants = true, dependencies = true, values = true, references = true, relations = true, instances = true, presentations = true) => {
         return axios.get(`${this.BASE_URL_API}entity/${entityType}/${uuid}/dependencies/graph${this.buildURIParams({
           dependants: dependants,
           dependencies: dependencies,
@@ -457,7 +457,7 @@ export default class InorigoAPI {
           this.DEFAULTCONFIG)
       },
 
-      getPossibleEntityReferences(entityType, uuid) {
+      getPossibleEntityReferences: (entityType, uuid) => {
         return axios.get(`${this.BASE_URL_API}entity/possible/references${this.buildURIParams({
           type: entityType,
           id: uuid
@@ -465,7 +465,7 @@ export default class InorigoAPI {
           this.DEFAULTCONFIG)
       },
 
-      getPossibleInstanceReferences(definitionType, uuid) {
+      getPossibleInstanceReferences: (definitionType, uuid) => {
         return axios.get(`${this.BASE_URL_API}entity/possible/instance/references${this.buildURIParams({
           type: definitionType,
           id: uuid
@@ -473,14 +473,14 @@ export default class InorigoAPI {
           this.DEFAULTCONFIG)
       },
 
-      getPresentation(entityType, uuid, povAttributeID) {
+      getPresentation: (entityType, uuid, povAttributeID) => {
         return axios.get(`${this.BASE_URL_API}entity/${entityType}/${uuid}/presentation${this.buildURIParams({
           povAttributeID: povAttributeID,
         })}`,
           this.DEFAULTCONFIG)
       },
 
-      getDependencyEdges(entityType, uuid, dependants = true, dependencies = true, values = true, references = true, relations = true, instances = true, presentations = true) {
+      getDependencyEdges: (entityType, uuid, dependants = true, dependencies = true, values = true, references = true, relations = true, instances = true, presentations = true) => {
         return axios.get(`${this.BASE_URL_API}entity/${entityType}/${uuid}/dependencies/edges${this.buildURIParams({
           dependants: dependants,
           dependencies: dependencies,
@@ -493,7 +493,7 @@ export default class InorigoAPI {
           this.DEFAULTCONFIG)
       },
 
-      getEntityIcon(entityType, uuid, size, contextID) {
+      getEntityIcon: (entityType, uuid, size, contextID) => {
         return axios.get(`${this.BASE_URL_API}entity/${entityType}/${uuid}/icon${this.buildURIParams({
           size: size,
           contextID: contextID,
@@ -501,18 +501,18 @@ export default class InorigoAPI {
           this.DEFAULTCONFIG)
       },
 
-      getEntityIconID(entityType, uuid, contextID) {
+      getEntityIconID: (entityType, uuid, contextID) => {
         return axios.get(`${this.BASE_URL_API}entity/${entityType}/${uuid}/icon/id${this.buildURIParams({
           contextID: contextID,
         })}`,
           this.DEFAULTCONFIG)
       },
 
-      getValueset(uuid) {
+      getValueset: (uuid) => {
         return axios.get(`${this.BASE_URL_API}entity/valueset/${uuid}`, this.DEFAULTCONFIG)
       },
 
-      getPresentations(entityArray) {
+      getPresentations: (entityArray) => {
         return axios.post(`${this.BASE_URL_API}entity/presentations/`, entityArray, this.DEFAULTCONFIG)
       }
 
