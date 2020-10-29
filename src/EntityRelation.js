@@ -2,13 +2,12 @@
  * Class to create a payload for relations
  */
 export default class EntityRelation {
-
     constructor(type, uuid) {
         this.state = {
             payload: {
                 kind: "EntityDTO",
-                dataType: type?type:"AsDefinitionRel",
-                id: uuid?uuid:null,
+                dataType: type ? type : "AsDefinitionRel",
+                id: uuid ? uuid : null,
                 attributeValues: []
             },
             leftDefinitionType: "AsDefinition",
@@ -19,11 +18,13 @@ export default class EntityRelation {
      * Sets the definition of this entity
      */
     setDefinition(type, uuid) {
-        this.state.payload.definitions = [{
-            kind: "EntityDTO",
-            dataType: type,
-            id: uuid
-        }]
+        this.state.payload.definitions = [
+            {
+                kind: "EntityDTO",
+                dataType: type,
+                id: uuid
+            }
+        ]
         return this
     }
     /**
@@ -41,19 +42,17 @@ export default class EntityRelation {
         this.state.payload.dataType = type
         return this
     }
-    /** 
+    /**
      * Sets the definition type of the left relation (default value is AsDefinition)
      */
-    setLeftDefinitionType(leftDefinitionType)
-    {
+    setLeftDefinitionType(leftDefinitionType) {
         this.state.leftDefinitionType = leftDefinitionType
         return this
     }
-    /** 
+    /**
      * Sets the definition type of the right relation (default value is AsDefinition)
      */
-    setRightDefinitionType(rightDefinitionType)
-    {
+    setRightDefinitionType(rightDefinitionType) {
         this.state.rightDefinitionType = rightDefinitionType
         return this
     }
@@ -92,7 +91,7 @@ export default class EntityRelation {
                 dataType: "Integer",
                 value: 1
             }
-        ];
+        ]
         return this
     }
 
@@ -102,5 +101,4 @@ export default class EntityRelation {
     print() {
         return this.state.payload
     }
-
 }

@@ -1,8 +1,7 @@
 /*
  * InorigoEnums is a class to help map up some commonly used keys found in Inorigos system objects.
-*/
+ */
 export default class InorigoEnums {
-
     relationDirections() {
         return {
             UP: "UP",
@@ -41,7 +40,7 @@ export default class InorigoEnums {
         return {
             PROCESS_DEFINITION: "ChClass",
             USER: "UnUser",
-            AUTH_RECORD: "UnUserAuth",  
+            AUTH_RECORD: "UnUserAuth",
             ASSOCIATION_DEFINITION: "AsDefinition",
             ASSOCIATION: "AsInstance",
             GENERIC_TYPE: "CoConceptType",
@@ -56,9 +55,9 @@ export default class InorigoEnums {
 
     entityInformationTypes() {
         return {
-            ATTRIBUTES: 'Attributes',
-            VALUES: 'Values',
-            PRESENTATION: 'Presentation'
+            ATTRIBUTES: "Attributes",
+            VALUES: "Values",
+            PRESENTATION: "Presentation"
         }
     }
 }

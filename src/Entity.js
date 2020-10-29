@@ -1,10 +1,9 @@
 /*
  * This class is used to generate payloads for Inorigo's entity API.
  * The class is built with function chaining in mind, where a developer can quickly build an Inorigo entity.
-*/
+ */
 
 export default class Entity {
-
     constructor(type, uuid) {
         this.state = {
             kind: "EntityDTO",
@@ -16,11 +15,13 @@ export default class Entity {
     }
 
     setDefinition(definitionType, definitionUUID) {
-        this.state.definitions = [{
-            kind: "EntityDTO",
-            dataType: definitionType,
-            id: definitionUUID
-        }]
+        this.state.definitions = [
+            {
+                kind: "EntityDTO",
+                dataType: definitionType,
+                id: definitionUUID
+            }
+        ]
         return this
     }
 
@@ -35,8 +36,9 @@ export default class Entity {
     }
 
     removeDefinition(definitionType, definitionUUID) {
-        this.state.definitions = this.state.definitions
-            .filter(definition => { return definition.dataType !== definitionType && definition.id !== definitionUUID })
+        this.state.definitions = this.state.definitions.filter(definition => {
+            return definition.dataType !== definitionType && definition.id !== definitionUUID
+        })
         if (this.state.definitions.length === 0) {
             delete this.state.definitions
         }
@@ -59,8 +61,9 @@ export default class Entity {
     }
 
     removeValue(attributeUUID) {
-        this.state.attributeValues = this.state.attributeValues
-            .filter(attributeValue => { return attributeValue.key !== attributeUUID })
+        this.state.attributeValues = this.state.attributeValues.filter(attributeValue => {
+            return attributeValue.key !== attributeUUID
+        })
         return this
     }
 
@@ -94,5 +97,4 @@ export default class Entity {
     print() {
         return this.state
     }
-
 }

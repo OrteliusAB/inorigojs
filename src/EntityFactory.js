@@ -2,10 +2,9 @@
  * The entity factory is responsible for generating transactions containing multiple entity values.
  * The entity factory was originally meant to do what Entity.js now does, and some of these functions have been kept for compatibility
  * These function will however be removed in the future, so it is recommended to stay away from them.
-*/
+ */
 
 export default class EntityFactory {
-
     /* TO BE DEPRECATED */
     createNewEntityJSON(entityType, definitionType, definitionUUID, values, initUUID) {
         let newObject = {
@@ -26,7 +25,7 @@ export default class EntityFactory {
             })
         }
 
-        if(initUUID !== undefined){
+        if (initUUID !== undefined) {
             newObject = this.setObjectUUID(newObject, initUUID)
         }
 
@@ -97,7 +96,7 @@ export default class EntityFactory {
         if (newEntityJSON.attributeValues === undefined) {
             newEntityJSON.attributeValues = []
         }
-        let newAttributeArray = newEntityJSON.attributeValues.filter((attributeValue) => attributeValue.key !== attributeUUID);
+        let newAttributeArray = newEntityJSON.attributeValues.filter(attributeValue => attributeValue.key !== attributeUUID)
         newEntityJSON.attributevalues = newAttributeArray
         return newEntityJSON
     }
@@ -107,30 +106,30 @@ export default class EntityFactory {
             ignoreWarnings: ignoreWarnings,
             operations: []
         }
-        return transaction;
+        return transaction
     }
     addCreateToTransaction(transaction, data) {
         let action = {
-            action: 'Create',
+            action: "Create",
             target: data
         }
         transaction.operations.push(action)
-        return transaction;
+        return transaction
     }
     addDeleteToTransaction(transaction, data) {
         let action = {
-            action: 'Delete',
+            action: "Delete",
             target: data
         }
         transaction.operations.push(action)
-        return transaction;
+        return transaction
     }
     addUpdateToTransaction(transaction, data) {
         let action = {
-            action: 'Update',
+            action: "Update",
             target: data
         }
         transaction.operations.push(action)
-        return transaction;
+        return transaction
     }
 }
