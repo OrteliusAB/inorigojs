@@ -1,24 +1,40 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true,
-        "jest": true
-    },
-    "extends": ["eslint:recommended", "plugin:jest/recommended"],
-    "parserOptions": {
-        "ecmaVersion": 12,
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true
-        },
-        "sourceType": "module"
-    },
-    "rules": {
-        "no-console": 1,
-        "indent": ["warn", 4],
-        "linebreak-style": ["warn", "unix"],
-        "quotes": ["warn", "double"],
-        "semi": ["warn", "never"],
-        "no-unused-vars": 1
-    }
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true,
+		"jest": true
+	},
+	"extends": ["eslint:recommended", "plugin:jest/recommended"],
+	"parserOptions": {
+		"ecmaVersion": 12,
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true
+		},
+		"sourceType": "module"
+	},
+	"rules": {
+		"no-console": 1,
+		"indent": [1, "tab", { "SwitchCase": 1 }],
+		"linebreak-style": [1, "unix"],
+		"quotes": [1, "double"],
+		"semi": [1, "never"],
+		"keyword-spacing": [1, { "before": true, "after": true }],
+		"no-unused-vars": 1,
+		"space-before-blocks": [1, "always"],
+		"no-mixed-spaces-and-tabs": [1, "smart-tabs"],
+		"no-cond-assign": 1,
+		"object-shorthand": [1, "always"],
+		"no-const-assign": 1,
+		"no-class-assign": 1,
+		"no-this-before-super": 1,
+		"no-var": 1,
+		"no-unreachable": 1,
+		"valid-typeof": 1,
+		"quote-props": [1, "as-needed"],
+		"one-var": [1, "never"],
+		"prefer-arrow-callback": 1,
+		"prefer-const": [1, { "destructuring": "all" }],
+		"arrow-spacing": 1
+	}
 }

@@ -1,3 +1,5 @@
 dist
+bundle
+docs
 node_modules
 coverage
