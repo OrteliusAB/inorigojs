@@ -34,8 +34,7 @@ export default class InorigoAPI {
 
 		if (authorization) {
 			if (authorization.username && authorization.password) {
-				this.DEFAULTCONFIG.headers.Authorization =
-					"Basic " + this.genericBtoA(authorization.username + ":" + authorization.password)
+				this.DEFAULTCONFIG.headers.Authorization = "Basic " + this.genericBtoA(authorization.username + ":" + authorization.password)
 			}
 		}
 	}
@@ -125,10 +124,7 @@ export default class InorigoAPI {
 			},
 
 			getValue: (vrid, where) => {
-				return axios.get(
-					`${this.BASE_URL_API}application/runtime/${vrid}/variable/value?key=${where}`,
-					this.DEFAULTCONFIG
-				)
+				return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/variable/value?key=${where}`, this.DEFAULTCONFIG)
 			},
 
 			selectOne: (vrid, where, what, isClearFirst) => {
@@ -144,39 +140,23 @@ export default class InorigoAPI {
 			},
 
 			selectMany: (vrid, selectionJSON) => {
-				return axios.post(
-					`${this.BASE_URL_API}application/runtime/${vrid}/select/many`,
-					selectionJSON,
-					this.DEFAULTCONFIG
-				)
+				return axios.post(`${this.BASE_URL_API}application/runtime/${vrid}/select/many`, selectionJSON, this.DEFAULTCONFIG)
 			},
 
 			countAll: (vrid, where) => {
-				return axios.get(
-					`${this.BASE_URL_API}application/runtime/${vrid}/items/count/all?where=${where}`,
-					this.DEFAULTCONFIG
-				)
+				return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/items/count/all?where=${where}`, this.DEFAULTCONFIG)
 			},
 
 			countSelected: (vrid, where) => {
-				return axios.get(
-					`${this.BASE_URL_API}application/runtime/${vrid}/items/count/selected?where=${where}`,
-					this.DEFAULTCONFIG
-				)
+				return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/items/count/selected?where=${where}`, this.DEFAULTCONFIG)
 			},
 
 			countExplicit: (vrid, where) => {
-				return axios.get(
-					`${this.BASE_URL_API}application/runtime/${vrid}/items/count/explicit?where=${where}`,
-					this.DEFAULTCONFIG
-				)
+				return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/items/count/explicit?where=${where}`, this.DEFAULTCONFIG)
 			},
 
 			countImplicit: (vrid, where) => {
-				return axios.get(
-					`${this.BASE_URL_API}application/runtime/${vrid}/items/count/implicit?where=${where}`,
-					this.DEFAULTCONFIG
-				)
+				return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/items/count/implicit?where=${where}`, this.DEFAULTCONFIG)
 			},
 
 			getScript: vrid => {
@@ -195,10 +175,7 @@ export default class InorigoAPI {
 			},
 
 			evaluateExpression: (vrid, expression) => {
-				return axios.get(
-					`${this.BASE_URL_API}application/runtime/${vrid}/evaluate?expression=${expression}`,
-					this.DEFAULTCONFIG
-				)
+				return axios.get(`${this.BASE_URL_API}application/runtime/${vrid}/evaluate?expression=${expression}`, this.DEFAULTCONFIG)
 			},
 
 			setRuntimeVariable: (vrid, name, type, element, value) => {
@@ -208,11 +185,7 @@ export default class InorigoAPI {
 					element,
 					value
 				}
-				return axios.post(
-					`${this.BASE_URL_API}application/runtime/${vrid}/set/runtime/value`,
-					payload,
-					this.DEFAULTCONFIG
-				)
+				return axios.post(`${this.BASE_URL_API}application/runtime/${vrid}/set/runtime/value`, payload, this.DEFAULTCONFIG)
 			},
 
 			lockSelection: (vrid, where) => {
@@ -236,11 +209,7 @@ export default class InorigoAPI {
 			},
 
 			focusComponent: (vrid, component) => {
-				return axios.post(
-					`${this.BASE_URL_API}application/runtime/${vrid}/component/focus/${component}`,
-					{},
-					this.DEFAULTCONFIG
-				)
+				return axios.post(`${this.BASE_URL_API}application/runtime/${vrid}/component/focus/${component}`, {}, this.DEFAULTCONFIG)
 			}
 		}
 	}
@@ -250,11 +219,7 @@ export default class InorigoAPI {
 	knowledgeset() {
 		return {
 			getMetaData: uuid => {
-				return axios.post(
-					`${this.BASE_URL_API}knowledgeset/${uuid}?metadata=true&page=1&pagesize=0`,
-					{},
-					this.DEFAULTCONFIG
-				)
+				return axios.post(`${this.BASE_URL_API}knowledgeset/${uuid}?metadata=true&page=1&pagesize=0`, {}, this.DEFAULTCONFIG)
 			},
 
 			getResult: (uuid, isDistinct, page, pagesize, parameters) => {
@@ -271,17 +236,7 @@ export default class InorigoAPI {
 				)
 			},
 
-			searchResult: (
-				uuid,
-				text,
-				fuzzy,
-				metaData,
-				compactLeafs,
-				allowCache,
-				searchIDs,
-				includedColumns,
-				excludedColumns
-			) => {
+			searchResult: (uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns) => {
 				const uriParams = {
 					text,
 					fuzzy,
@@ -292,10 +247,7 @@ export default class InorigoAPI {
 					includedColumns,
 					excludedColumns
 				}
-				return axios.get(
-					`${this.BASE_URL_API}knowledgeset/${uuid}/tree/search/text${this.buildURIParams(uriParams)}`,
-					this.DEFAULTCONFIG
-				)
+				return axios.get(`${this.BASE_URL_API}knowledgeset/${uuid}/tree/search/text${this.buildURIParams(uriParams)}`, this.DEFAULTCONFIG)
 			},
 
 			getCachedResult: (uuid, page, pagesize, compactPaths) => {
@@ -305,10 +257,7 @@ export default class InorigoAPI {
 					page,
 					pagesize
 				}
-				return axios.get(
-					`${this.BASE_URL_API}knowledgeset/${uuid}/cache/read${this.buildURIParams(uriParams)}`,
-					this.DEFAULTCONFIG
-				)
+				return axios.get(`${this.BASE_URL_API}knowledgeset/${uuid}/cache/read${this.buildURIParams(uriParams)}`, this.DEFAULTCONFIG)
 			},
 
 			getTreeResult: (uuid, metaData, compactLeafs, parameters, allowCache) => {
@@ -324,17 +273,7 @@ export default class InorigoAPI {
 				)
 			},
 
-			searchTreeResult: (
-				uuid,
-				text,
-				fuzzy,
-				metaData,
-				compactLeafs,
-				allowCache,
-				searchIDs,
-				includedColumns,
-				excludedColumns
-			) => {
+			searchTreeResult: (uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns) => {
 				const uriParams = {
 					text,
 					fuzzy,
@@ -345,10 +284,7 @@ export default class InorigoAPI {
 					includedColumns,
 					excludedColumns
 				}
-				return axios.get(
-					`${this.BASE_URL_API}knowledgeset/${uuid}/tree/search/text${this.buildURIParams(uriParams)}`,
-					this.DEFAULTCONFIG
-				)
+				return axios.get(`${this.BASE_URL_API}knowledgeset/${uuid}/tree/search/text${this.buildURIParams(uriParams)}`, this.DEFAULTCONFIG)
 			},
 
 			getAvailable: () => {
@@ -413,17 +349,7 @@ export default class InorigoAPI {
 				)
 			},
 
-			partners: (
-				entityType,
-				uuid,
-				relationUuid,
-				direction,
-				isRecursive,
-				isLeafsOnly,
-				informationType,
-				page,
-				pagesize
-			) => {
+			partners: (entityType, uuid, relationUuid, direction, isRecursive, isLeafsOnly, informationType, page, pagesize) => {
 				return axios.get(
 					`${this.BASE_URL_API}entity/${entityType}/${uuid}/partners${this.buildURIParams({
 						relation: relationUuid,
@@ -512,24 +438,22 @@ export default class InorigoAPI {
 			},
 
 			getSimplifiedInstances: definitionUUID => {
-				return axios
-					.get(`${this.BASE_URL_API}entity/AsDefinition/${definitionUUID}/instances?info=values`, this.DEFAULTCONFIG)
-					.then(result => {
-						const simplifiedJSON = result.data.entities.map(entity => {
-							const newEntity = {
-								id: entity.id,
-								type: entity.dataType
-							}
-							newEntity.values = entity.attributeValues.reduce((simplifiedOilEntity, attributeValue) => {
-								simplifiedOilEntity[attributeValue.name] = attributeValue.value
-								return simplifiedOilEntity
-							}, {})
-							return newEntity
-						})
-						return new Promise(resolve => {
-							resolve(simplifiedJSON)
-						})
+				return axios.get(`${this.BASE_URL_API}entity/AsDefinition/${definitionUUID}/instances?info=values`, this.DEFAULTCONFIG).then(result => {
+					const simplifiedJSON = result.data.entities.map(entity => {
+						const newEntity = {
+							id: entity.id,
+							type: entity.dataType
+						}
+						newEntity.values = entity.attributeValues.reduce((simplifiedOilEntity, attributeValue) => {
+							simplifiedOilEntity[attributeValue.name] = attributeValue.value
+							return simplifiedOilEntity
+						}, {})
+						return newEntity
 					})
+					return new Promise(resolve => {
+						resolve(simplifiedJSON)
+					})
+				})
 			},
 
 			getSimplifiedEntity: (entityType, uuid) => {
@@ -684,10 +608,7 @@ export default class InorigoAPI {
 					acc += `&input=${item}`
 					return acc
 				}, "")
-				return axios.get(
-					`${this.BASE_URL}services/authorized/${contextID}/execute/method/${uuid}?commit=${commit}${inputString}`,
-					this.DEFAULTCONFIG
-				)
+				return axios.get(`${this.BASE_URL}services/authorized/${contextID}/execute/method/${uuid}?commit=${commit}${inputString}`, this.DEFAULTCONFIG)
 			},
 
 			executeChange: (uuid, contextID, commit, inputArray) => {
@@ -695,10 +616,7 @@ export default class InorigoAPI {
 					acc += `&input=${item}`
 					return acc
 				}, "")
-				return axios.get(
-					`${this.BASE_URL}services/authorized/${contextID}/execute/change/${uuid}?commit=${commit}${inputString}`,
-					this.DEFAULTCONFIG
-				)
+				return axios.get(`${this.BASE_URL}services/authorized/${contextID}/execute/change/${uuid}?commit=${commit}${inputString}`, this.DEFAULTCONFIG)
 			}
 		}
 	}

@@ -91,15 +91,9 @@ export default class Parser {
 				let isFound = false
 				let hierarchySteps = 2
 				while (!isFound) {
-					if (
-						keyMap[
-							JSON.stringify(columns[lastIndex].path.slice().splice(0, columns[lastIndex].path.length - hierarchySteps))
-						] !== undefined
-					) {
+					if (keyMap[JSON.stringify(columns[lastIndex].path.slice().splice(0, columns[lastIndex].path.length - hierarchySteps))] !== undefined) {
 						isFound = true
-					} else if (
-						columns[lastIndex].path.slice().splice(0, columns[lastIndex].path.length - hierarchySteps).length === 0
-					) {
+					} else if (columns[lastIndex].path.slice().splice(0, columns[lastIndex].path.length - hierarchySteps).length === 0) {
 						isFound = true
 					} else {
 						hierarchySteps++
@@ -107,10 +101,7 @@ export default class Parser {
 				}
 				//What previous definition owns this definition?
 				//Remove the last two objects from the path and lookup the startindex of the parent object
-				const parent =
-					keyMap[
-						JSON.stringify(columns[lastIndex].path.slice().splice(0, columns[lastIndex].path.length - hierarchySteps))
-					]
+				const parent = keyMap[JSON.stringify(columns[lastIndex].path.slice().splice(0, columns[lastIndex].path.length - hierarchySteps))]
 				if (parent !== undefined) {
 					if (relationIndex[parent] === undefined) {
 						relationIndex[parent] = []
@@ -189,10 +180,9 @@ export default class Parser {
 	// *** HELPERS *** //
 
 	copyObject(o) {
-		let out
 		let v
 		let key
-		out = Array.isArray(o) ? [] : {}
+		const out = Array.isArray(o) ? [] : {}
 		for (key in o) {
 			v = o[key]
 			out[key] = typeof v === "object" && v !== null ? this.copyObject(v) : v
@@ -202,7 +192,7 @@ export default class Parser {
 
 	groupBy(xs, key) {
 		return xs.reduce((rv, x) => {
-			(rv[x[key]] = rv[x[key]] || []).push(x)
+			;(rv[x[key]] = rv[x[key]] || []).push(x)
 			return rv
 		}, {})
 	}

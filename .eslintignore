@@ -1,3 +1,4 @@
-dist
+bundle
 node_modules
 coverage
+docs

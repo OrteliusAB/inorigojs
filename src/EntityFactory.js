@@ -96,9 +96,7 @@ export default class EntityFactory {
 		if (newEntityJSON.attributeValues === undefined) {
 			newEntityJSON.attributeValues = []
 		}
-		const newAttributeArray = newEntityJSON.attributeValues.filter(
-			attributeValue => attributeValue.key !== attributeUUID
-		)
+		const newAttributeArray = newEntityJSON.attributeValues.filter(attributeValue => attributeValue.key !== attributeUUID)
 		newEntityJSON.attributevalues = newAttributeArray
 		return newEntityJSON
 	}
@@ -110,6 +108,7 @@ export default class EntityFactory {
 		}
 		return transaction
 	}
+
 	addCreateToTransaction(transaction, data) {
 		const action = {
 			action: "Create",
@@ -118,6 +117,7 @@ export default class EntityFactory {
 		transaction.operations.push(action)
 		return transaction
 	}
+
 	addDeleteToTransaction(transaction, data) {
 		const action = {
 			action: "Delete",
@@ -126,6 +126,7 @@ export default class EntityFactory {
 		transaction.operations.push(action)
 		return transaction
 	}
+
 	addUpdateToTransaction(transaction, data) {
 		const action = {
 			action: "Update",

@@ -1,21 +1,21 @@
 {
   "name": "@ortelius/inorigojs",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Inorigo API Utility",
   "private": false,
-  "main": "dist/bundle.cjs.min.js",
-  "module": "dist/bundle.esm.js",
-  "unpkg": "dist/bundle.umd.min.js",
-  "jsdelivr": "dist/bundle.umd.min.js",
-  "types": "./types/index.d.ts",
+  "main": "dist/inorigojs.cjs.full.min.js",
+  "module": "dist/inorigojs.esm.js",
+  "unpkg": "dist/inorigojs.umd.legacy.min.js",
+  "jsdelivr": "dist/inorigojs.umd.legacy.min.js",
+  "types": "./bundle/types.d.ts",
   "scripts": {
     "prebuild": "rimraf bundle && rimraf types && npm run lint:fix && npm run test && npm run build:types",
     "build": "rollup -c",
-    "prettier": "prettier \"src/**/*.js\" --write",
-    "lint": "eslint \"src/**/*.js\"",
-    "lint:fix": "npm run prettier && eslint \"src/**/*.js\" --fix",
+    "prettier": "prettier \"*/**/*.js\" --write",
+    "lint": "eslint \"*/**/*.js\"",
+    "lint:fix": "npm run prettier && eslint \"*/**/*.js\" --fix",
     "test": "jest --verbose --coverage --no-cache",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watch --verbose",
     "build:types": "tsc --declaration --emitDeclarationOnly --out ./bundle/types.js"
   },
   "repository": {
@@ -39,22 +39,21 @@
   "bugs": {
     "url": "https://github.com/OrteliusAB/inorigojs/issues"
   },
-  "homepage": "https://github.com/OrteliusAB/inorigojs",
+  "homepage": "https://OrteliusAB.github.io/inorigojs",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
     "@babel/preset-env": "^7.5.5",
-    "@babel/preset-typescript": "^7.12.1",
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^16.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^10.0.0",
-    "@types/jest": "^26.0.15",
     "babel-jest": "^26.6.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-jest": "^24.1.0",
     "husky": "^4.3.0",
     "jest": "^26.6.1",
@@ -62,11 +61,13 @@
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.32.1",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-terser": "^7.0.2",
-    "ts-jest": "^26.4.3",
     "typescript": "^4.0.5"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "core-js": "^3.7.0"
   }
 }

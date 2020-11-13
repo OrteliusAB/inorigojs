@@ -14,6 +14,7 @@ export default class EntityRelation {
 			rightDefinitionType: "AsDefinition"
 		}
 	}
+
 	/**
 	 * Sets the definition of this entity
 	 */
@@ -27,6 +28,7 @@ export default class EntityRelation {
 		]
 		return this
 	}
+
 	/**
 	 * Sets the UUID (Universal Unique Identifier)
 	 */
@@ -42,6 +44,7 @@ export default class EntityRelation {
 		this.state.payload.dataType = type
 		return this
 	}
+
 	/**
 	 * Sets the definition type of the left relation (default value is AsDefinition)
 	 */
@@ -49,6 +52,7 @@ export default class EntityRelation {
 		this.state.leftDefinitionType = leftDefinitionType
 		return this
 	}
+
 	/**
 	 * Sets the definition type of the right relation (default value is AsDefinition)
 	 */
@@ -56,6 +60,7 @@ export default class EntityRelation {
 		this.state.rightDefinitionType = rightDefinitionType
 		return this
 	}
+
 	/**
 	 * Sets the relations on this
 	 */
