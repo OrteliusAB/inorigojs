@@ -1,7 +1,11 @@
 /*
  * InorigoEnums is a class to help map up some commonly used keys found in Inorigos system objects.
  */
-export default class InorigoEnums {
+export class InorigoEnums {
+	/**
+	 * Returns a map of directions in the Inorigo web API.
+	 * @returns {object} - The map
+	 */
 	relationDirections() {
 		return {
 			UP: "UP",
@@ -10,6 +14,10 @@ export default class InorigoEnums {
 		}
 	}
 
+	/**
+	 * Returns a map of categories of relations in Inorigo and their corresponding systen names.
+	 * @returns {object} - The map
+	 */
 	relationCategories() {
 		return {
 			ASDEF_TO_PARENT: "AsDefinition",
@@ -26,6 +34,10 @@ export default class InorigoEnums {
 		}
 	}
 
+	/**
+	 * Returns a map of types of relations in Inorigo and their UUIDs.
+	 * @returns {object} - The map
+	 */
 	relationTypes() {
 		return {
 			CLASSIFIES_IS_A_KIND_OF: "2B718A48-8516-44B6-BE89-5F33C39E300B",
@@ -36,6 +48,10 @@ export default class InorigoEnums {
 		}
 	}
 
+	/**
+	 * Returns a map of types of entities in Inorigo and their system names.
+	 * @returns {object} - The map
+	 */
 	entityTypes() {
 		return {
 			PROCESS_DEFINITION: "ChClass",
@@ -53,6 +69,10 @@ export default class InorigoEnums {
 		}
 	}
 
+	/**
+	 * Returns a map of types of information types in the Inorigo web API.
+	 * @returns {object} - The map
+	 */
 	entityInformationTypes() {
 		return {
 			ATTRIBUTES: "Attributes",

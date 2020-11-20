@@ -3,11 +3,11 @@
   "version": "0.1.7",
   "description": "Inorigo API Utility",
   "private": false,
-  "main": "dist/inorigojs.cjs.full.min.js",
-  "module": "dist/inorigojs.esm.js",
-  "unpkg": "dist/inorigojs.umd.legacy.min.js",
-  "jsdelivr": "dist/inorigojs.umd.legacy.min.js",
-  "types": "./bundle/types.d.ts",
+  "main": "./bundle/inorigojs.cjs.full.min.js",
+  "module": "./bundle/inorigojs.esm.js",
+  "unpkg": "./bundle/inorigojs.umd.legacy.min.js",
+  "jsdelivr": "./bundle/inorigojs.umd.legacy.min.js",
+  "types": "./bundle/index.js",
   "scripts": {
     "prebuild": "rimraf bundle && rimraf types && npm run lint:fix && npm run test && npm run build:types",
     "build": "rollup -c",
@@ -16,7 +16,7 @@
     "lint:fix": "npm run prettier && eslint \"*/**/*.js\" --fix",
     "test": "jest --verbose --coverage --no-cache",
     "test:watch": "jest --watch --verbose",
-    "build:types": "tsc --declaration --emitDeclarationOnly --out ./bundle/types.js"
+    "build:types": "tsc --declaration --emitDeclarationOnly --outDir ./bundle/types/"
   },
   "repository": {
     "type": "git",

@@ -1,11 +1,10 @@
 /*
  * The entity factory is responsible for generating transactions containing multiple entity values.
- * The entity factory was originally meant to do what Entity.js now does, and some of these functions have been kept for compatibility
- * These function will however be removed in the future, so it is recommended to stay away from them.
+ * The entity factory was originally meant to do what Entity.js now does, and some of these functions have been kept for compatibility reasons.
  */
 
-export default class EntityFactory {
-	/* TO BE DEPRECATED */
+export class EntityFactory {
+	/* DEPRECATED */
 	createNewEntityJSON(entityType, definitionType, definitionUUID, values, initUUID) {
 		let newObject = {
 			kind: "EntityDTO",
@@ -32,7 +31,7 @@ export default class EntityFactory {
 		return newObject
 	}
 
-	/* TO BE DEPRECATED */
+	/* DEPRECATED */
 	createExistingEntityJSON(entityType, entityUUID, values) {
 		let existingObject = {
 			kind: "EntityDTO",
@@ -49,7 +48,7 @@ export default class EntityFactory {
 		return existingObject
 	}
 
-	/* TO BE DEPRECATED */
+	/* DEPRECATED */
 	addDefinition(entityJSON, definitionType, definitionUUID) {
 		const newEntityJSON = { ...entityJSON }
 		if (newEntityJSON.definitions === undefined) {
@@ -63,14 +62,14 @@ export default class EntityFactory {
 		return newEntityJSON
 	}
 
-	/* TO BE DEPRECATED */
+	/* DEPRECATED */
 	setObjectUUID(entityJSON, uuid) {
 		const newEntityJSON = { ...entityJSON }
 		newEntityJSON.id = uuid
 		return newEntityJSON
 	}
 
-	/* TO BE DEPRECATED */
+	/* DEPRECATED */
 	setAttributeValue(entityJSON, attributeUUID, value) {
 		const newEntityJSON = { ...entityJSON }
 		if (newEntityJSON.attributeValues === undefined) {
@@ -83,14 +82,14 @@ export default class EntityFactory {
 		return newEntityJSON
 	}
 
-	/* TO BE DEPRECATED */
+	/* DEPRECATED */
 	clearAllAttributeValues(entityJSON) {
 		const newEntityJSON = { ...entityJSON }
 		newEntityJSON.attributeValues = []
 		return newEntityJSON
 	}
 
-	/* TO BE DEPRECATED */
+	/* DEPRECATED */
 	clearAttributeValue(entityJSON, attributeUUID) {
 		const newEntityJSON = { ...entityJSON }
 		if (newEntityJSON.attributeValues === undefined) {
@@ -101,6 +100,11 @@ export default class EntityFactory {
 		return newEntityJSON
 	}
 
+	/**
+	 * Creates a new transaction object.
+	 * @param {boolean} ignoreWarnings - Should warnings from Inorigo be ignored?
+	 * @return {EntityFactory} - this
+	 */
 	createNewTransaction(ignoreWarnings) {
 		const transaction = {
 			ignoreWarnings,
@@ -109,6 +113,12 @@ export default class EntityFactory {
 		return transaction
 	}
 
+	/**
+	 * Adds a create operation to the transaction.
+	 * @param {string} transaction - The transaction object
+	 * @param {string} data - Entity to be added
+	 * @return {EntityFactory} - this
+	 */
 	addCreateToTransaction(transaction, data) {
 		const action = {
 			action: "Create",
@@ -118,6 +128,12 @@ export default class EntityFactory {
 		return transaction
 	}
 
+	/**
+	 * Adds a delete operation to the transaction.
+	 * @param {string} transaction - The transaction object
+	 * @param {string} data - Entity to be deleted
+	 * @return {EntityFactory} - this
+	 */
 	addDeleteToTransaction(transaction, data) {
 		const action = {
 			action: "Delete",
@@ -127,6 +143,12 @@ export default class EntityFactory {
 		return transaction
 	}
 
+	/**
+	 * Adds an update operation to the transaction.
+	 * @param {string} transaction - The transaction object
+	 * @param {string} data - Entity to be updated
+	 * @return {EntityFactory} - this
+	 */
 	addUpdateToTransaction(transaction, data) {
 		const action = {
 			action: "Update",

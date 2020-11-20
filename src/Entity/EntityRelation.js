@@ -1,7 +1,12 @@
 /**
- * Class to create a payload for relations
+ * Helper class to create relation entities
  */
-export default class EntityRelation {
+export class EntityRelation {
+	/**
+	 * The constructor can optionally take a type and a UUID. By default an Association Definition relation will be created. If this is not intended then a different type has to be set.
+	 * @param {string} type - Inorigo type
+	 * @param {string} uuid - Inorigo compatible UUID
+	 */
 	constructor(type, uuid) {
 		this.state = {
 			payload: {
@@ -16,7 +21,10 @@ export default class EntityRelation {
 	}
 
 	/**
-	 * Sets the definition of this entity
+	 * Sets the definition of the entity, overwriting any existing value(s).
+	 * @param {string} definitionType - Inorigo type
+	 * @param {string} definitionUUID - Inorigo compatible UUID
+	 * @returns {EntityRelation} - This
 	 */
 	setDefinition(type, uuid) {
 		this.state.payload.definitions = [
@@ -30,7 +38,9 @@ export default class EntityRelation {
 	}
 
 	/**
-	 * Sets the UUID (Universal Unique Identifier)
+	 * Sets the UUID of the entity.
+	 * @param {string} uuid - The uuid
+	 * @returns {EntityRelation} - This
 	 */
 	setUUID(uuid) {
 		this.state.payload.id = uuid
@@ -38,7 +48,9 @@ export default class EntityRelation {
 	}
 
 	/**
-	 * Sets the definition of this entity (default value is AsDefinitionRel)
+	 * Sets the type of the entity.
+	 * @param {string} type - The type
+	 * @returns {EntityRelation} - This
 	 */
 	setType(type) {
 		this.state.payload.dataType = type
@@ -46,7 +58,9 @@ export default class EntityRelation {
 	}
 
 	/**
-	 * Sets the definition type of the left relation (default value is AsDefinition)
+	 * Sets the type of the left entity (From direction).
+	 * @param {string} leftDefinitionType - The type
+	 * @returns {EntityRelation} - This
 	 */
 	setLeftDefinitionType(leftDefinitionType) {
 		this.state.leftDefinitionType = leftDefinitionType
@@ -54,7 +68,9 @@ export default class EntityRelation {
 	}
 
 	/**
-	 * Sets the definition type of the right relation (default value is AsDefinition)
+	 * Sets the type of the left entity (To direction).
+	 * @param {string} rightDefinitionType - The type
+	 * @returns {EntityRelation} - This
 	 */
 	setRightDefinitionType(rightDefinitionType) {
 		this.state.rightDefinitionType = rightDefinitionType
@@ -62,7 +78,11 @@ export default class EntityRelation {
 	}
 
 	/**
-	 * Sets the relations on this
+	 * Sets the relation data of the entity.
+	 * @param {string} relationSpecifierID - The UUID of the relation
+	 * @param {string} leftID - The UUID of the left entity
+	 * @param {string} rightID - The UUID of the right entity
+	 * @returns {EntityRelation} - This
 	 */
 	setRelations(relationSpecifierID, leftID, rightID) {
 		this.state.payload.attributeValues = [
@@ -101,7 +121,8 @@ export default class EntityRelation {
 	}
 
 	/**
-	 * Returns the json presentation of this object
+	 * Returns the entity JSON in an inorigo compatible format.
+	 * @returns {object} - The entity JSON
 	 */
 	print() {
 		return this.state.payload

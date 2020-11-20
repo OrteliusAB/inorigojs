@@ -1,8 +1,10 @@
 /*
  * The parser is used to transform data from Inorigo in different ways, as well as extract meta data.
+ * This class is deprecated but kept for legacy reasons.
  */
 
-export default class Parser {
+export class Parser {
+	/* DEPRECATED */
 	parseRawKSToJSON(dataSetOriginal) {
 		const dataSet = { ...dataSetOriginal }
 		const columns = dataSet.dataSets[0].metadata.columns
@@ -10,6 +12,7 @@ export default class Parser {
 		return this.parseKSToTree(columns, rows)
 	}
 
+	/* DEPRECATED */
 	groupColumns(columns) {
 		const colsArray = []
 		let groupedPaths = []
@@ -55,6 +58,7 @@ export default class Parser {
 		return groupedPaths
 	}
 
+	/* DEPRECATED */
 	parseKSToTree(column, row) {
 		const columns = this.copyObject(column)
 		const rows = this.copyObject(row)
@@ -146,6 +150,7 @@ export default class Parser {
 		return result
 	}
 
+	/* DEPRECATED */
 	buildResultSetRecursive(currentIndex, row, rowObjects, relationIndex, objectIndex) {
 		const currentObject = rowObjects[currentIndex].filter(rowObj => {
 			return rowObj.ID === row.cells[currentIndex]
@@ -178,7 +183,7 @@ export default class Parser {
 	}
 
 	// *** HELPERS *** //
-
+	/* DEPRECATED */
 	copyObject(o) {
 		let v
 		let key
@@ -190,6 +195,7 @@ export default class Parser {
 		return out
 	}
 
+	/* DEPRECATED */
 	groupBy(xs, key) {
 		return xs.reduce((rv, x) => {
 			;(rv[x[key]] = rv[x[key]] || []).push(x)
