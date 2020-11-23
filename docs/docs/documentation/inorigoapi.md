@@ -14,7 +14,7 @@ apiEndpoint   |   If your api endpoint is not located on the base URL then you c
 
 Creating an instance is as simple as this:
 ```javascript
-const api = new InorigoAPI("https://www.myinorigo.com/")
+const api = new InorigoAPI("https://www.myinorigo.com/", {})
 ```
 
 ## Cookies

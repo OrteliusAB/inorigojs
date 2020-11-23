@@ -3,7 +3,7 @@ Once you have installed and imported the InorigoJS library you can create a new 
 
 ```html
 <script>
-const API = new inorigojs.InorigoAPI("https://www.myinorigo.com/")
+const API = new inorigojs.InorigoAPI("https://www.myinorigo.com/", {})
 const KSAPI = API.knowledgeset()
 API.login("username", "password").then(() => {
     KSAPI.getTreeResult("00000000-0000-0000-0000-000000000000").then((result) => {
