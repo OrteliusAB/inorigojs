@@ -76,18 +76,18 @@ export default [
 		input: "./src/index.js",
 		output: [
 			{
-				file: `${DIST_FOLDER}/${LIBRARY_NAME}.cjs.js`,
+				file: `${DIST_FOLDER}/${LIBRARY_NAME}.cjs.min.js`,
 				format: "cjs",
 				banner: BANNER,
 				exports: "auto"
 			},
 			{
-				file: `${DIST_FOLDER}/${LIBRARY_NAME}.esm.js`,
+				file: `${DIST_FOLDER}/${LIBRARY_NAME}.esm.min.js`,
 				format: "esm",
 				banner: BANNER
 			},
 			{
-				file: `${DIST_FOLDER}/${LIBRARY_NAME}.umd.js`,
+				file: `${DIST_FOLDER}/${LIBRARY_NAME}.umd.min.js`,
 				format: "umd",
 				banner: BANNER,
 				name: LIBRARY_NAME,
@@ -96,7 +96,7 @@ export default [
 				}
 			},
 			{
-				file: `${DIST_FOLDER}/${LIBRARY_NAME}.iife.js`,
+				file: `${DIST_FOLDER}/${LIBRARY_NAME}.iife.min.js`,
 				format: "iife",
 				banner: BANNER,
 				name: LIBRARY_NAME,
