@@ -12,7 +12,9 @@ package-lock.json
 .babelrc
 .editorconfig
 .eslintignore
-.eslintrc
+.eslintrc.json
+.huskyrc
+.lintstagedrc
 .gitignore
 .prettierignore
 .prettierrc
