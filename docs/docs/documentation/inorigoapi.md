@@ -8,13 +8,13 @@ InorigoAPI takes two arguments, an Inorigo root URL as well as an options object
 The following options can be passed to InorigoAPI:
 Option | Description
 --- | ---
-rejectUnauthorized   |   If set InorigoAPI will create a custom https agent with the provided value. This is useful if you for example need to bypass security protocols during development, or when certificates are causing issues. 
+customHttpsAgent   |   If set InorigoAPI will set a custom https agent. This is useful if you for example need to bypass security protocols during development, or when certificates are causing issues. 
 authorization   |   Authorization should contain two properties: "username" and "password". If provided authorization headers will be sent with every request. 
 apiEndpoint   |   If your api endpoint is not located on the base URL then you can provide a separate, relative URL.
 
 Creating an instance is as simple as this:
 ```javascript
-const api = new InorigoAPI("https://www.myinorigo.com/")
+const api = new InorigoAPI("https://www.myinorigo.com/", {})
 ```
 
 ## Cookies
@@ -36,7 +36,7 @@ getSession()   |   Will send a session request to Inorigo.
 ## Verso Runtime
 The Verso Runtime API allows you to communicate and interact with a running Inorigo Application instance. To access the API you need to first retrieve an instance of it from your API instance like so:
 ```javascript
-const versoAPI = api.versoRuntime()
+const versoAPI = api.getVersoRuntimeAPI()
 ```
 
 The following functions are supported:
@@ -62,7 +62,7 @@ focusComponent(vrid, component)   |   Focus on a given component.
 ## Knowledgeset
 The knowledgeset API allows you to retrieve knowledgesets and meta data about knowledgesets. To access the API you need to first retrieve an instance of it from your API instance like so:
 ```javascript
-const KSAPI = api.knowledgeset()
+const KSAPI = api.getKnowledgesetAPI()
 ```
 
 The following functions are supported:
@@ -82,7 +82,7 @@ getSchedulingStatus()   |   Retrieves the scheduling status for all knowledgeset
 ## Entity
 The entity API allows you to execute CRUD operations in Inorigo. To access the API you need to first retrieve an instance of it from your API instance like so:
 ```javascript
-const entityAPI = api.entity()
+const entityAPI = api.getEntityAPI()
 ```
 
 The following functions are supported:
@@ -116,7 +116,7 @@ getPresentations(entityArray)   |  Retrieves multiple presentations simultaneous
 ## Resource
 The resource API allows you to execute CRUD operations for resources (files) stored in Inorigo. To access the API you need to first retrieve an instance of it from your API instance like so:
 ```javascript
-const resourceAPI = api.resource()
+const resourceAPI = api.getResourceAPI()
 ```
 
 The following functions are supported:
@@ -130,7 +130,7 @@ updateResource(resourceJSONArray)   |   Updates a resource in Inorigo
 ## Legacy
 The legacy API allows you to execute operations in the Inorigo legacy web services:
 ```javascript
-const legacyAPI = api.legacy()
+const legacyAPI = api.getLegacyAPI()
 ```
 
 The following functions are supported:
