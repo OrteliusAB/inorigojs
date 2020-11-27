@@ -1,9 +1,6 @@
 import resolve from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
 import babel from "@rollup/plugin-babel"
-import builtins from "rollup-plugin-node-builtins"
-import globals from "rollup-plugin-node-globals"
-import json from "@rollup/plugin-json"
 import pkg from "./package.json"
 import { terser } from "rollup-plugin-terser"
 
@@ -25,6 +22,7 @@ const BANNER = `/** @preserve @license @cc_on
  */\n`
 
 export default [
+	//Raw bundle
 	{
 		input: "./src/index.js",
 		output: [
@@ -60,10 +58,7 @@ export default [
 		],
 		external: ["axios", "corejs"],
 		plugins: [
-			json(),
-			resolve({
-				preferBuiltins: true
-			}),
+			resolve(),
 			commonjs(),
 			babel({
 				exclude: "node_modules/**",
@@ -72,6 +67,7 @@ export default [
 			})
 		]
 	},
+	//Minified Bundle
 	{
 		input: "./src/index.js",
 		output: [
@@ -107,10 +103,7 @@ export default [
 		],
 		external: ["axios", "corejs"],
 		plugins: [
-			json(),
-			resolve({
-				preferBuiltins: true
-			}),
+			resolve(),
 			commonjs(),
 			babel({
 				exclude: "node_modules/**",
@@ -130,20 +123,10 @@ export default [
 			})
 		]
 	},
+	//Full bundle
 	{
 		input: "./src/index.js",
 		output: [
-			{
-				file: `${DIST_FOLDER}/${LIBRARY_NAME}.cjs.full.min.js`,
-				format: "cjs",
-				banner: BANNER,
-				exports: "auto"
-			},
-			{
-				file: `${DIST_FOLDER}/${LIBRARY_NAME}.esm.full.min.js`,
-				format: "esm",
-				banner: BANNER
-			},
 			{
 				file: `${DIST_FOLDER}/${LIBRARY_NAME}.umd.full.min.js`,
 				format: "umd",
@@ -165,93 +148,15 @@ export default [
 		],
 		external: [],
 		plugins: [
-			json(),
 			resolve({
-				preferBuiltins: true
+				browser: true,
+				jsnext: true
 			}),
-			commonjs({
-				include: "node_modules/axios/**"
-			}),
-			globals(),
-			builtins(),
+			commonjs(),
 			babel({
 				exclude: "node_modules/**",
 				extensions: [".js"],
 				babelHelpers: "bundled"
-			}),
-			terser({
-				format: {
-					comments(node, comment) {
-						const text = comment.value
-						const type = comment.type
-						if (type == "comment2") {
-							return /@preserve|@license|@cc_on/i.test(text)
-						}
-					}
-				}
-			})
-		]
-	},
-	{
-		input: "./src/index.js",
-		output: [
-			{
-				file: `${DIST_FOLDER}/${LIBRARY_NAME}.cjs.legacy.min.js`,
-				format: "cjs",
-				banner: BANNER,
-				exports: "auto"
-			},
-			{
-				file: `${DIST_FOLDER}/${LIBRARY_NAME}.esm.legacy.min.js`,
-				format: "esm",
-				banner: BANNER
-			},
-			{
-				file: `${DIST_FOLDER}/${LIBRARY_NAME}.umd.legacy.min.js`,
-				format: "umd",
-				banner: BANNER,
-				name: LIBRARY_NAME,
-				globals: {
-					axios: "axios"
-				}
-			},
-			{
-				file: `${DIST_FOLDER}/${LIBRARY_NAME}.iife.legacy.min.js`,
-				format: "iife",
-				banner: BANNER,
-				name: LIBRARY_NAME,
-				globals: {
-					axios: "axios"
-				}
-			}
-		],
-		external: [],
-		plugins: [
-			json(),
-			resolve({
-				preferBuiltins: true
-			}),
-			commonjs(),
-			globals(),
-			builtins(),
-			babel({
-				exclude: "node_modules/**",
-				extensions: [".js"],
-				babelHelpers: "bundled",
-				presets: [
-					[
-						"@babel/env",
-						{
-							modules: false,
-							targets: {
-								browsers: "> 0.25%, ie 11, not op_mini all, not dead",
-								node: 8
-							},
-							useBuiltIns: "usage",
-							corejs: 3
-						}
-					]
-				]
 			}),
 			terser({
 				format: {
