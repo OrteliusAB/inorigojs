@@ -109,12 +109,22 @@ export class InorigoAPI {
 		return new ShortcutAPI(this)
 	}
 
+	/* DEPRECATED */
+	shortcut() {
+		return new ShortcutAPI(this)
+	}
+
 	/* Verso (Application Builder) */
 	/**
 	 * Retrieves an Application Builder API.
 	 * @return {VersoRuntimeAPI} - The API
 	 */
 	getVersoRuntimeAPI() {
+		return new VersoRuntimeAPI(this)
+	}
+
+	/* DEPRECATED */
+	verso() {
 		return new VersoRuntimeAPI(this)
 	}
 
@@ -127,12 +137,22 @@ export class InorigoAPI {
 		return new KnowledgeSetAPI(this)
 	}
 
+	/* DEPRECATED */
+	knowledgeset() {
+		return new KnowledgeSetAPI(this)
+	}
+
 	/* Entity (Data Objects) */
 	/**
 	 * Retrieves an Entity API.
 	 * @return {EntityAPI} - The API
 	 */
 	getEntityAPI() {
+		return new EntityAPI(this)
+	}
+
+	/* DEPRECATED */
+	entity() {
 		return new EntityAPI(this)
 	}
 
@@ -145,12 +165,22 @@ export class InorigoAPI {
 		return new ResourceAPI(this)
 	}
 
+	/* DEPRECATED */
+	resource() {
+		return new ResourceAPI(this)
+	}
+
 	/* Legacy Endpoints (some of which are undocumented!) */
 	/**
 	 * Retrieves a legacy API.
 	 * @return {LegacyAPI} - The API
 	 */
 	getLegacyAPI() {
+		return new LegacyAPI(this)
+	}
+
+	/* DEPRECATED */
+	legacy() {
 		return new LegacyAPI(this)
 	}
 
