@@ -137,6 +137,15 @@ export default [
 				}
 			},
 			{
+				file: `${DIST_FOLDER}/${LIBRARY_NAME}.js`,
+				format: "umd",
+				banner: BANNER,
+				name: LIBRARY_NAME,
+				globals: {
+					axios: "axios"
+				}
+			},
+			{
 				file: `${DIST_FOLDER}/${LIBRARY_NAME}.iife.full.min.js`,
 				format: "iife",
 				banner: BANNER,
