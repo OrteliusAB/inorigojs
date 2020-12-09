@@ -124,7 +124,7 @@ export class InorigoAPI {
 	}
 
 	/* DEPRECATED */
-	verso() {
+	versoRuntime() {
 		return new VersoRuntimeAPI(this)
 	}
 
