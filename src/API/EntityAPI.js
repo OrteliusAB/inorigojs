@@ -86,6 +86,58 @@ export class EntityAPI {
 	}
 
 	/**
+	 * Retrieves model partners for a given definition
+	 * @param {string} entityType - Type of entity
+	 * @param {string} uuid - ID of entity
+	 * @return {object} - Response
+	 */
+	getModelPartners(entityType, uuid) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/model/partners`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Executes a query
+	 * @param {any} query - Query to execute
+	 * @param {boolean} presentations - Should presentations be included?
+	 * @param {number} page - What page to retrieve
+	 * @param {number} pagesize - How large should the page size be?
+	 * @return {object} - Response
+	 */
+	query(query, presentations, page, pagesize) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}entity/query${this.parentAPI._buildURIParams({
+				presentations,
+				page,
+				pagesize
+			})}`,
+			query,
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
+	 * Search Find entities by name / presentation. The search is fuzzy (using the Bitap algorithm) by default and can be fine tuned by passing options via the request body. Returns a map with data type as key and a list of entities as value.
+	 * @param {object} text - Text to search for
+	 * @param {object=} options - Options
+	 * @param {string[]=} options.entityTypes - Type of entities
+	 * @param {string=} options.text - Text to search for
+	 * @param {string=} options.definitionType - Optional definition type
+	 * @param {string=} options.definitionID - Optional definition ID
+	 * @param {boolean=} options.extendedMetadata - Include extended meta data for search?
+	 * @param {boolean=} options.includeIcons - Include icons?
+	 * @param {boolean=} options.caseSensitive - Is the search case sensitive?
+	 * @param {boolean=} options.fullScan - Is the search a full scan search?
+	 * @param {boolean=} options.positionRelevant - Is the position of the match relevant?
+	 * @param {boolean=} options.contextSizeRelevant - Is the size of the searched contexts relevant?
+	 * @param {number=} options.maxErrors - What is the maximum allowed levenshtein distance?
+	 * @return {object=} options.- Response
+	 */
+	search(text, options) {
+		const payload = options ? { text, ...options } : { text }
+		return axios.post(`${this.parentAPI.BASE_URL_API}entity/search`, payload, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
 	 * Find all defining entities
 	 * @param {string} entityType - Type of origin entity
 	 * @param {string} uuid - ID of origin entity
@@ -395,6 +447,38 @@ export class EntityAPI {
 			})}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
+	}
+
+	/**
+	 * Retrieves attribute meta data, including inheritance structure
+	 * @param {string} entityType - Type of entity
+	 * @param {string} entityUUID - ID of entity
+	 * @param {string} attributeUUID - ID of attribute
+	 * @return {object} - Response
+	 */
+	getAttribute(entityType, entityUUID, attributeUUID) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}entity/${entityType}/${entityUUID}/attribute/${attributeUUID}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Retrieves user permissions for a given user
+	 * @param {string} entityType - Type of entity to get authorizations for
+	 * @param {string} entityUUID - ID of entity to get authorizations for
+	 * @param {string} userUUID - ID of user to get authorizations for
+	 * @return {object} - Response
+	 */
+	getUserAuthorization(entityType, entityUUID, userUUID) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}entity/${entityType}/${entityUUID}/authorizations/${userUUID}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Retrieves collateral dependants for a given entity
+	 * @param {string} entityType - Type of entity to get authorizations for
+	 * @param {string} entityUUID - ID of entity to get authorizations for
+	 * @return {object} - Response
+	 */
+	getCollateralDependants(entityType, entityUUID) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}entity/${entityType}/${entityUUID}/collateral/dependants`, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
