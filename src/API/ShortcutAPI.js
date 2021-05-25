@@ -18,27 +18,26 @@ export class ShortcutAPI {
 	 * @return {object} - Response
 	 */
 	getClassifiedValuesList(definitionUUID, isDeep) {
-		return new Promise(resolve => {
-			this.parentAPI
-				.entity()
-				.getSubClasses("AsDefinition", definitionUUID, isDeep)
-				.then(response => {
-					const promises = response.data.entities.map(entity => {
-						return this.parentAPI.entity().getEntity("AsDefinition", entity.id)
-					})
-					Promise.all(promises).then(result => {
-						const options = result.map(genderOption => {
-							return {
-								presentation: genderOption.data.presentation,
-								id: genderOption.data.id,
-								abstract: genderOption.data.attributeValues.filter(item => {
-									return item.name === "abstract"
-								})[0].value
-							}
-						})
-						resolve(options)
-					})
+		return this.parentAPI
+			.getEntityAPI()
+			.getSubClasses("AsDefinition", definitionUUID, isDeep)
+			.then(response => {
+				const promises = response.data.entities.map(entity => {
+					return this.parentAPI.entity().getEntity("AsDefinition", entity.id)
 				})
-		})
+				return Promise.all(promises)
+			})
+			.then(result => {
+				const values = result.map(classifiedValue => {
+					return {
+						presentation: classifiedValue.data.presentation,
+						id: classifiedValue.data.id,
+						abstract: classifiedValue.data.attributeValues.filter(item => {
+							return item.name === "abstract"
+						})[0].value
+					}
+				})
+				return values
+			})
 	}
 }
