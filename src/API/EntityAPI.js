@@ -54,7 +54,7 @@ export class EntityAPI {
 	 * @param {number} pagesize - How large should the page size be?
 	 * @return {object} - Response
 	 */
-	getinstances(entityType, uuid, informationType, page, pagesize) {
+	getInstances(entityType, uuid, informationType, page, pagesize) {
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/instances${this.parentAPI._buildURIParams({
 				info: informationType,

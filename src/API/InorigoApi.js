@@ -198,15 +198,19 @@ export class InorigoAPI {
 			returnString +
 			Object.keys(tempObj)
 				.map(key => {
-					if (Array.isArray(tempObj[key])) {
+					if (!tempObj[key]) {
+						return null
+					} else if (Array.isArray(tempObj[key])) {
 						let uriShard = ""
 						tempObj[key].forEach(value => {
 							uriShard = `${uriShard}&${key}=${value}`
 						})
-						return encodeURIComponent(uriShard.substr(1))
+						return uriShard.substr(1)
+					} else {
+						return [key, "" + tempObj[key]].join("=")
 					}
-					return [key, "" + tempObj[key]].map(encodeURIComponent).join("=")
 				})
+				.filter(param => param)
 				.join("&")
 		)
 	}
