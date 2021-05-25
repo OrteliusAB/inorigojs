@@ -112,6 +112,12 @@ getEntityIconID(entityType, uuid, contextID)   |  Retrieves the ID of the icon o
 getValueset(uuid)   |  Retrieves a valueset.
 getPresentation(entityType, uuid, povAttributeID)   |  retrieves the presentation of an entity, with an optional pov attribute ID.
 getPresentations(entityArray)   |  Retrieves multiple presentations simultaneously. The entity array should be an array of objects, where every object has an "entityType" and "uuid" attribute.
+getModelPartners(entityType, uuid)   |  Retrieves model partners for a given definition
+query(query, presentations, page, pagesize)   |  Executes a query
+search(text, options)   |  Search Find entities by name / presentation. The search is fuzzy (using the Bitap algorithm) by default and can be fine tuned by passing options via the request body. Returns a map with data type as key and a list of entities as value.
+getAttribute(entityType, entityUUID, attributeUUID)   |  Retrieves attribute meta data, including inheritance structure
+getUserAuthorization(entityType, entityUUID, userUUID)   |  Retrieves user permissions for a given user
+getCollateralDependants(entityType, entityUUID)   |  Retrieves collateral dependants for a given entity
 
 ## Resource
 The resource API allows you to execute CRUD operations for resources (files) stored in Inorigo. To access the API you need to first retrieve an instance of it from your API instance like so:
