@@ -1,5 +1,6 @@
 import axios from "axios"
 import { EntityAPI } from "./EntityAPI"
+import { DataObjectAPI } from "./DataObjectAPI"
 import { KnowledgeSetAPI } from "./KnowledgeSetAPI"
 import { LegacyAPI } from "./LegacyAPI"
 import { ResourceAPI } from "./ResourceAPI"
@@ -142,7 +143,14 @@ export class InorigoAPI {
 		return new KnowledgeSetAPI(this)
 	}
 
-	/* Entity (Data Objects) */
+	/**
+	 * Retrieves a data object API.
+	 * @return {DataObjectAPI} - The API
+	 */
+	getDataObjectAPI() {
+		return new DataObjectAPI(this)
+	}
+
 	/**
 	 * Retrieves an Entity API.
 	 * @return {EntityAPI} - The API
