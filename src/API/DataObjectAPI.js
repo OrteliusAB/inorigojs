@@ -14,11 +14,11 @@ export class DataObjectAPI {
 	}
 
 	/**
-	 * Gets several data objects by type (optional)
+	 * Lists data objects by type (optional)
 	 * @param {string} type - type of the objects to get
 	 * @return {object} - Response
 	 */
-	getDataObjects(type) {
+	listDataObjects(type) {
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}dataobject${this.parentAPI._buildURIParams({
 				type
@@ -34,6 +34,18 @@ export class DataObjectAPI {
 	 */
 	getDataObject(id) {
 		return axios.get(`${this.parentAPI.BASE_URL_API}dataobject/${id}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Gets several data objects by type (optional)
+	 * @param {string} type - type of the objects to get
+	 * @return {object} - Response
+	 */
+	async getDataObjects(type) {
+		const list = await this.listDataObjects(type)
+		const promises = list.data.dataobjects.map(dataObject => this.getDataObject(dataObject.id))
+		const results = (await Promise.all(promises)).map(dataObject => dataObject.data)
+		return results
 	}
 
 	/**
