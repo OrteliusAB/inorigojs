@@ -20,7 +20,7 @@ export class DataObjectAPI {
 	 */
 	getDataObjects(type) {
 		return axios.get(
-			`${this.parentAPI.BASE_URL_API}databject${this.parentAPI._buildURIParams({
+			`${this.parentAPI.BASE_URL_API}dataobject${this.parentAPI._buildURIParams({
 				type
 			})}`,
 			this.parentAPI.DEFAULTCONFIG
