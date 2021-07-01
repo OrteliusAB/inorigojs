@@ -43,6 +43,9 @@ export class DataObjectAPI {
 	 */
 	async getDataObjects(type) {
 		const list = await this.listDataObjects(type)
+		if (list.data.dataobjects.length === 0) {
+			return []
+		}
 		const promises = list.data.dataobjects.map(dataObject => this.getDataObject(dataObject.id))
 		const results = (await Promise.all(promises)).map(dataObject => dataObject.data)
 		return results
