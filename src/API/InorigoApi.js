@@ -6,6 +6,7 @@ import { LegacyAPI } from "./LegacyAPI"
 import { ResourceAPI } from "./ResourceAPI"
 import { ShortcutAPI } from "./ShortcutAPI"
 import { VersoRuntimeAPI } from "./VersoRuntimeAPI"
+import { CoreAPI } from "./CoreAPI"
 
 /*
  * This is the main API communication class.
@@ -190,6 +191,15 @@ export class InorigoAPI {
 	/* DEPRECATED */
 	legacy() {
 		return new LegacyAPI(this)
+	}
+
+	/**
+	 * Retrieves a Core API.
+	 * Note! The server side of this API is only available as of the Inorigo Sakura release
+     * @return {CoreAPI} - The API
+    */
+	getCoreAPI() {
+		return new CoreAPI(this)
 	}
 
 	/* Utility Functions */
