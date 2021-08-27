@@ -14,40 +14,16 @@ export class CoreAPI {
 		this.parentAPI = parentAPI
 	}
 
-	_textOutConfig(originalConfig) {
-		const conf = { ...originalConfig }
-		conf.headers["Accept"] = "text/plain"
-		return conf;
-	}
-
-	_textInConfig(originalConfig) {
-		const conf = { ...originalConfig }
-		conf.headers["Content-Type"] = "text/plain;charset=utf-8"
-		conf.headers["Accept"] = "text/plain"
-		return conf;
-	}
-
-	_textInOutConfig(originalConfig) {
-		const conf = { ...originalConfig }
-		conf.headers["Content-Type"] = "text/plain;charset=utf-8"
-		conf.headers["Accept"] = "text/plain"
-		return conf;
-	}
 
 	_attributeDefinitionParam(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
-		let param = `?attributeKey=${attributeKey}`
-		if (definitionID)
-			param += `&definitionID=${definitionID}`
-		if (definitionType)
-			param += `&definitionType=${definitionType}`
-		if (entityType)
-			param += `&entityType=${entityType}`
-		if (presentations)
-			param += "&presentations=true"
-		if (icons)
-			param += "&icons=true"
-
-		return param;
+		return this.parentAPI._buildURIParams({
+			attributeKey: attributeKey,
+			definitionID: definitionID,
+			definitionType: definitionType,
+			entityType: entityType,
+			presentations: !!presentations,
+			icons: !!icons
+		})
 	}
 
 	/**
@@ -57,7 +33,7 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	getEntityPresentation(type, uuid) {
-		return axios.get(`${this.parentAPI.BASE_URL_API}core/presentation/${type}/${uuid}`, this._textInOutConfig(this.parentAPI.DEFAULTCONFIG))
+		return axios.get(`${this.parentAPI.BASE_URL_API}core/presentation/${type}/${uuid}`, this.parentAPI._textInOutConfig())
 	}
 
 	/**
@@ -77,7 +53,8 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	runFilter(filterDefinition, presentations, icons) {
-		let param = presentations ? icons ? "?presentations=true&icons=true" : "?presentations=true" : icons ? "?icons=true" : "";
+		let param = this.parentAPI._buildURIParams({ presentations: !!presentations, icons: !!icons })
+
 		return axios.post(`${this.parentAPI.BASE_URL_API}core/filter/run${param}`, filterDefinition, this.parentAPI.DEFAULTCONFIG)
 	}
 
@@ -87,7 +64,7 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	getTranslation(text) {
-		return axios.post(`${this.parentAPI.BASE_URL_API}core/translate`, text, this._textInOutConfig(this.parentAPI.DEFAULTCONFIG))
+		return axios.post(`${this.parentAPI.BASE_URL_API}core/translate`, text, this.parentAPI._textInOutConfig())
 	}
 
 	/**
@@ -129,6 +106,6 @@ export class CoreAPI {
 	 */
 	getPossibleAttributeValuesCount(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
 
-		return axios.get(`${this.parentAPI.BASE_URL_API}core/attribute/value/count${this._attributeDefinitionParam(attributeKey, definitionID, definitionType, entityType)}`, this._textOutConfig(this.parentAPI.DEFAULTCONFIG))
+		return axios.get(`${this.parentAPI.BASE_URL_API}core/attribute/value/count${this._attributeDefinitionParam(attributeKey, definitionID, definitionType, entityType)}`, this.parentAPI._textOutConfig())
 	}
 }
