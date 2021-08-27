@@ -31,10 +31,18 @@ export class EntityAPI {
 	 * Retrieves an entity from Inorigo
 	 * @param {string} entityType - Type of entity
 	 * @param {string} uuid - ID of entity
+	 * @param {string} includePresentations - Include presentations of nested data?
+	 * @param {string} includeIcons - Include icons of nested data?
 	 * @return {object} - Response
 	 */
-	getEntity(entityType, uuid) {
-		return axios.get(`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/`, this.parentAPI.DEFAULTCONFIG)
+	getEntity(entityType, uuid, includePresentations, includeIcons) {
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}${this.parentAPI._buildURIParams({
+				presentations: includePresentations ? "true" : undefined,
+				includeIcons: includeIcons ? "true" : undefined
+			})}`,
+			this.parentAPI.DEFAULTCONFIG
+		)
 	}
 
 	/**
@@ -46,7 +54,7 @@ export class EntityAPI {
 	 * @param {number} pagesize - How large should the page size be?
 	 * @return {object} - Response
 	 */
-	getinstances(entityType, uuid, informationType, page, pagesize) {
+	getInstances(entityType, uuid, informationType, page, pagesize) {
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/instances${this.parentAPI._buildURIParams({
 				info: informationType,
@@ -100,15 +108,15 @@ export class EntityAPI {
 	 * @param {any} query - Query to execute
 	 * @param {boolean} presentations - Should presentations be included?
 	 * @param {number} page - What page to retrieve
-	 * @param {number} pagesize - How large should the page size be?
+	 * @param {number} pageSize - How large should the page size be?
 	 * @return {object} - Response
 	 */
-	query(query, presentations, page, pagesize) {
+	query(query, presentations, page, pageSize) {
 		return axios.post(
 			`${this.parentAPI.BASE_URL_API}entity/query${this.parentAPI._buildURIParams({
 				presentations,
 				page,
-				pagesize
+				pageSize
 			})}`,
 			query,
 			this.parentAPI.DEFAULTCONFIG
