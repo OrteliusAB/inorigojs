@@ -197,7 +197,7 @@ export class InorigoAPI {
 	 * Retrieves a Core API.
 	 * Note! The server side of this API is only available as of the Inorigo Sakura release
 	 * @return {CoreAPI} - The API
-	*/
+	 */
 	getCoreAPI() {
 		return new CoreAPI(this)
 	}
@@ -254,20 +254,20 @@ export class InorigoAPI {
 	_textOutConfig() {
 		const conf = { ...this.DEFAULTCONFIG }
 		conf.headers["Accept"] = "text/plain"
-		return conf;
+		return conf
 	}
 
 	_textInConfig() {
 		const conf = { ...this.DEFAULTCONFIG }
 		conf.headers["Content-Type"] = "text/plain;charset=utf-8"
 		conf.headers["Accept"] = "text/plain"
-		return conf;
+		return conf
 	}
 
 	_textInOutConfig() {
 		const conf = { ...this.DEFAULTCONFIG }
 		conf.headers["Content-Type"] = "text/plain;charset=utf-8"
 		conf.headers["Accept"] = "text/plain"
-		return conf;
+		return conf
 	}
 }

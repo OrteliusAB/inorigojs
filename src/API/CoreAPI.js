@@ -14,15 +14,14 @@ export class CoreAPI {
 		this.parentAPI = parentAPI
 	}
 
-
 	_attributeDefinitionParam(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
 		return this.parentAPI._buildURIParams({
-			attributeKey: attributeKey,
-			definitionID: definitionID,
-			definitionType: definitionType,
-			entityType: entityType,
-			presentations: !!presentations,
-			icons: !!icons
+			attributeKey,
+			definitionID,
+			definitionType,
+			entityType,
+			presentations: presentations ? true : undefined,
+			icons: icons ? true : undefined
 		})
 	}
 
@@ -53,7 +52,10 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	runFilter(filterDefinition, presentations, icons) {
-		let param = this.parentAPI._buildURIParams({ presentations: !!presentations, icons: !!icons })
+		const param = this.parentAPI._buildURIParams({
+			presentations: presentations ? true : undefined,
+			icons: icons ? true : undefined
+		})
 
 		return axios.post(`${this.parentAPI.BASE_URL_API}core/filter/run${param}`, filterDefinition, this.parentAPI.DEFAULTCONFIG)
 	}
@@ -76,8 +78,10 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	getAttributeDefinition(attributeKey, definitionID, definitionType, entityType) {
-
-		return axios.get(`${this.parentAPI.BASE_URL_API}core/attribute/definition${this._attributeDefinitionParam(attributeKey, definitionID, definitionType, entityType)}`, this.parentAPI.DEFAULTCONFIG)
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}core/attribute/definition${this._attributeDefinitionParam(attributeKey, definitionID, definitionType, entityType)}`,
+			this.parentAPI.DEFAULTCONFIG
+		)
 	}
 
 	/**
@@ -91,9 +95,19 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	getPossibleAttributeValues(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
-
-		return axios.get(`${this.parentAPI.BASE_URL_API}core/attribute/value/list${this._attributeDefinitionParam(attributeKey, definitionID, definitionType, entityType)}`, this.parentAPI.DEFAULTCONFIG)
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}core/attribute/value/list${this._attributeDefinitionParam(
+				attributeKey,
+				definitionID,
+				definitionType,
+				entityType,
+				presentations,
+				icons
+			)}`,
+			this.parentAPI.DEFAULTCONFIG
+		)
 	}
+
 	/**
 	 * Retrieves possible known values for an Inorigo attribute
 	 * @param {string} attributeKey - The attribute key (required). May be a uuid or a fixed attribute name
@@ -105,7 +119,16 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	getPossibleAttributeValuesCount(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
-
-		return axios.get(`${this.parentAPI.BASE_URL_API}core/attribute/value/count${this._attributeDefinitionParam(attributeKey, definitionID, definitionType, entityType)}`, this.parentAPI._textOutConfig())
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}core/attribute/value/count${this._attributeDefinitionParam(
+				attributeKey,
+				definitionID,
+				definitionType,
+				entityType,
+				presentations,
+				icons
+			)}`,
+			this.parentAPI._textOutConfig()
+		)
 	}
 }
