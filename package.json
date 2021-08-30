@@ -1,6 +1,6 @@
 {
   "name": "@ortelius/inorigojs",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Inorigo API Utility",
   "private": false,
   "main": "./bundle/inorigojs.cjs.min.js",
