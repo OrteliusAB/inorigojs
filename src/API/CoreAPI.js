@@ -47,8 +47,8 @@ export class CoreAPI {
 	/**
 	 * Runs a Filter in inorigo
 	 * @param {object} filterDefinition - Inorigo Filter
-	 * @param {string} presentations - Add presentations to the output
-	 * @param {string} icons - Add icon URLs to the output
+	 * @param {boolean} presentations - Add presentations to the output
+	 * @param {boolean} icons - Add icon URLs to the output
 	 * @return {object} - Response
 	 */
 	runFilter(filterDefinition, presentations, icons) {
@@ -90,8 +90,8 @@ export class CoreAPI {
 	 * @param {string} definitionID - Inorigo ID of an explicit definition where the attribute is defined or inherrited
 	 * @param {string} definitionType - Inorigo Type of a definition (applicable when the attributeKey is a fixed attribute)
 	 * @param {string} entityType - Inorigo Type of an entity (applicable when the attributeKey is a fixed attribute)
-	 * @param {string} presentations - Add presentations to the output (applicable only when the attribute refer an entity)
-	 * @param {string} icons - Add icon URLs to the output (applicable only when the attribute refer an entity)
+	 * @param {boolean} presentations - Add presentations to the output (applicable only when the attribute refer an entity)
+	 * @param {boolean} icons - Add icon URLs to the output (applicable only when the attribute refer an entity)
 	 * @return {object} - Response
 	 */
 	getPossibleAttributeValues(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
@@ -114,8 +114,8 @@ export class CoreAPI {
 	 * @param {string} definitionID - Inorigo ID of an explicit definition where the attribute is defined or inherrited
 	 * @param {string} definitionType - Inorigo Type of a definition (applicable when the attributeKey is a fixed attribute)
 	 * @param {string} entityType - Inorigo Type of an entity (applicable when the attributeKey is a fixed attribute)
-	 * @param {string} presentations - Add presentations to the output (applicable only when the attribute refer an entity)
-	 * @param {string} icons - Add icon URLs to the output (applicable only when the attribute refer an entity)
+	 * @param {boolean} presentations - Add presentations to the output (applicable only when the attribute refer an entity)
+	 * @param {boolean} icons - Add icon URLs to the output (applicable only when the attribute refer an entity)
 	 * @return {object} - Response
 	 */
 	getPossibleAttributeValuesCount(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
@@ -130,5 +130,23 @@ export class CoreAPI {
 			)}`,
 			this.parentAPI._textOutConfig()
 		)
+	}
+
+	/**
+	 * Retrieves number of entities for an Inorigo Type
+	 * @param {string} entityType - Inorigo Type of an entity (applicable when the attributeKey is a fixed attribute)
+	 * @return {object} - Response
+	 */
+	getEntityTypeCount(entityType) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}core/count/entity/${entityType}`, this.parentAPI._textOutConfig())
+	}
+
+	/**
+	 * Retrieves attributes, relations and references for a Config Request object
+	 * @param {object} request - Inorigo Config Request
+	 * @return {object} - Response
+	 */
+	getEntityConfigByRequest(request) {
+		return axios.post(`${this.parentAPI.BASE_URL_API}core/get/entity/config`, request, this.parentAPI.DEFAULTCONFIG)
 	}
 }
