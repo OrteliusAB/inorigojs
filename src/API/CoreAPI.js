@@ -32,7 +32,7 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	getEntityPresentation(type, uuid) {
-		return axios.get(`${this.parentAPI.BASE_URL_API}core/presentation/${type}/${uuid}`, this.parentAPI._textInOutConfig())
+		return axios.get(`${this.parentAPI.BASE_URL_API}core/presentation/${type}/${uuid}`, this.parentAPI._textInOutConfig()).then(answer => answer.data)
 	}
 
 	/**
@@ -41,7 +41,7 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	getFilter(uuid) {
-		return axios.get(`${this.parentAPI.BASE_URL_API}core/filter/definition/${uuid}`, this.parentAPI.DEFAULTCONFIG)
+		return axios.get(`${this.parentAPI.BASE_URL_API}core/filter/definition/${uuid}`, this.parentAPI.DEFAULTCONFIG).then(res => JSON.parse(res.data))
 	}
 
 	/**
@@ -57,7 +57,9 @@ export class CoreAPI {
 			icons: icons ? true : undefined
 		})
 
-		return axios.post(`${this.parentAPI.BASE_URL_API}core/filter/run${param}`, filterDefinition, this.parentAPI.DEFAULTCONFIG)
+		return axios
+			.post(`${this.parentAPI.BASE_URL_API}core/filter/run${param}`, filterDefinition, this.parentAPI.DEFAULTCONFIG)
+			.then(res => JSON.parse(res.data))
 	}
 
 	/**
@@ -66,7 +68,7 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	getTranslation(text) {
-		return axios.post(`${this.parentAPI.BASE_URL_API}core/translate`, text, this.parentAPI._textInOutConfig())
+		return axios.post(`${this.parentAPI.BASE_URL_API}core/translate`, text, this.parentAPI._textInOutConfig()).then(res => res.data)
 	}
 
 	/**
@@ -78,10 +80,17 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	getAttributeDefinition(attributeKey, definitionID, definitionType, entityType) {
-		return axios.get(
-			`${this.parentAPI.BASE_URL_API}core/attribute/definition${this._attributeDefinitionParam(attributeKey, definitionID, definitionType, entityType)}`,
-			this.parentAPI.DEFAULTCONFIG
-		)
+		return axios
+			.get(
+				`${this.parentAPI.BASE_URL_API}core/attribute/definition${this._attributeDefinitionParam(
+					attributeKey,
+					definitionID,
+					definitionType,
+					entityType
+				)}`,
+				this.parentAPI.DEFAULTCONFIG
+			)
+			.then(res => JSON.parse(res.data))
 	}
 
 	/**
@@ -95,17 +104,19 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	getPossibleAttributeValues(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
-		return axios.get(
-			`${this.parentAPI.BASE_URL_API}core/attribute/value/list${this._attributeDefinitionParam(
-				attributeKey,
-				definitionID,
-				definitionType,
-				entityType,
-				presentations,
-				icons
-			)}`,
-			this.parentAPI.DEFAULTCONFIG
-		)
+		return axios
+			.get(
+				`${this.parentAPI.BASE_URL_API}core/attribute/value/list${this._attributeDefinitionParam(
+					attributeKey,
+					definitionID,
+					definitionType,
+					entityType,
+					presentations,
+					icons
+				)}`,
+				this.parentAPI.DEFAULTCONFIG
+			)
+			.then(res => JSON.parse(res.data))
 	}
 
 	/**
@@ -119,16 +130,29 @@ export class CoreAPI {
 	 * @return {object} - Response
 	 */
 	getPossibleAttributeValuesCount(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
-		return axios.get(
-			`${this.parentAPI.BASE_URL_API}core/attribute/value/count${this._attributeDefinitionParam(
-				attributeKey,
-				definitionID,
-				definitionType,
-				entityType,
-				presentations,
-				icons
-			)}`,
-			this.parentAPI._textOutConfig()
-		)
+		return axios
+			.get(
+				`${this.parentAPI.BASE_URL_API}core/attribute/value/count${this._attributeDefinitionParam(
+					attributeKey,
+					definitionID,
+					definitionType,
+					entityType,
+					presentations,
+					icons
+				)}`,
+				this.parentAPI._textOutConfig()
+			)
+			.then(res => Number.parseInt(res.data))
+	}
+
+	/**
+	 * Retrieves number of entities for an Inorigo Type
+	 * @param {string} entityType - Inorigo Type of an entity (applicable when the attributeKey is a fixed attribute)
+	 * @return {object} - Response
+	 */
+	getEntityTypeCount(entityType) {
+		return axios
+			.get(`${this.parentAPI.BASE_URL_API}core/count/entity/${entityType}`, this.parentAPI._textOutConfig())
+			.then(res => Number.parseInt(res.data))
 	}
 }
