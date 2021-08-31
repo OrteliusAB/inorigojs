@@ -140,4 +140,13 @@ export class CoreAPI {
 	getEntityTypeCount(entityType) {
 		return axios.get(`${this.parentAPI.BASE_URL_API}core/count/entity/${entityType}`, this.parentAPI._textOutConfig())
 	}
+
+	/**
+	 * Retrieves attributes, relations and references for a Config Request object
+	 * @param {object} request - Inorigo Config Request
+	 * @return {object} - Response
+	 */
+	getEntityConfigByRequest(request) {
+		return axios.post(`${this.parentAPI.BASE_URL_API}core/get/entity/config`, request, this.parentAPI.DEFAULTCONFIG)
+	}
 }
