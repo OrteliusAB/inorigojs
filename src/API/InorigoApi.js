@@ -253,12 +253,14 @@ export class InorigoAPI {
 
 	_textOutConfig() {
 		const conf = { ...this.DEFAULTCONFIG }
+		conf.headers = { ...this.DEFAULTCONFIG.headers }
 		conf.headers["Accept"] = "text/plain"
 		return conf
 	}
 
 	_textInConfig() {
 		const conf = { ...this.DEFAULTCONFIG }
+		conf.headers = { ...this.DEFAULTCONFIG.headers }
 		conf.headers["Content-Type"] = "text/plain;charset=utf-8"
 		conf.headers["Accept"] = "text/plain"
 		return conf
@@ -266,6 +268,7 @@ export class InorigoAPI {
 
 	_textInOutConfig() {
 		const conf = { ...this.DEFAULTCONFIG }
+		conf.headers = { ...this.DEFAULTCONFIG.headers }
 		conf.headers["Content-Type"] = "text/plain;charset=utf-8"
 		conf.headers["Accept"] = "text/plain"
 		return conf

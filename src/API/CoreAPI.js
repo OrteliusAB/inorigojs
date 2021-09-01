@@ -149,4 +149,13 @@ export class CoreAPI {
 	getEntityConfigByRequest(request) {
 		return axios.post(`${this.parentAPI.BASE_URL_API}core/get/entity/config`, request, this.parentAPI.DEFAULTCONFIG)
 	}
+
+	/**
+	 * Retrieves Tree structure for attributes, relations and references for a Config Request object
+	 * @param {object} request - Inorigo Config Request
+	 * @return {object} - Response
+	 */
+	getEntityConfigTreeByRequest(request) {
+		return axios.post(`${this.parentAPI.BASE_URL_API}core/get/entity/config/tree`, request, this.parentAPI.DEFAULTCONFIG)
+	}
 }
