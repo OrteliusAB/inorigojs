@@ -142,6 +142,19 @@ export class CoreAPI {
 	}
 
 	/**
+	 * Retrieves the name of a relation specifier in the specified direction
+	 * @param {string} relationSpecifierID - Inorigo ID of a Relation Specifier
+	 * @param {string} direction Downwards / Upwards / Both
+	 * @return {object} - Response
+	 */
+	getRelationSpecifierName(relationSpecifierID, direction) {
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}core/relation/specifier/name${this.parentAPI._buildURIParams({ relationSpecifierID, direction })}`,
+			this.parentAPI._textOutConfig()
+		)
+	}
+
+	/**
 	 * Retrieves attributes, relations and references for a Config Request object
 	 * @param {object} request - Inorigo Config Request
 	 * @return {object} - Response
