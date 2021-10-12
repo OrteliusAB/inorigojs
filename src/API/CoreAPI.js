@@ -12,6 +12,21 @@ export class CoreAPI {
 	 */
 	constructor(parentAPI) {
 		this.parentAPI = parentAPI
+
+		this.uuidRegExp = new RegExp("([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}")
+	}
+
+	isGlobalID(any) {
+		return any && any.uuid && any.type
+	}
+
+	sameGlobalID(one, two) {
+		return (!one && !two) || (this.isGlobalID(one) && this.isGlobalID(two) && one.uuid == two.uuid)
+	}
+
+	isUUID(any) {
+		const test = any && typeof any === "string" && any.match(this.uuidRegExp)
+		return !!test
 	}
 
 	_attributeDefinitionParam(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
@@ -170,5 +185,122 @@ export class CoreAPI {
 	 */
 	getEntityConfigTreeByRequest(request) {
 		return axios.post(`${this.parentAPI.BASE_URL_API}core/get/entity/config/tree`, request, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Retrives a list of possible values for a criterion
+	 * @param {object} criterion - Inorigo Qualified Criterion
+	 * @param {string} filter - Filter string
+	 * @param {boolean} presentations - Add presentations to the output
+	 * @param {boolean} icons - Add icon URLs to the output
+	 * @param {number} page - Optional page
+	 * @param {number} pageSize - Optional page size
+	 * @return {object} - Response
+	 */
+	getCriterionOptions(criterion, filter, presentations, icons, page, pageSize) {
+		const data = {
+			criterion,
+			filter,
+			presentations: !!presentations,
+			icons: !!icons,
+			page: page ? page : -1,
+			pageSize: pageSize ? pageSize : -1
+		}
+
+		return axios.post(`${this.parentAPI.BASE_URL_API}core/criterion/options/list`, data, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Retrives the number of possible values for a criterion
+	 * @param {object} criterion - Inorigo Qualified Criterion
+	 * @return {object} - Response
+	 */
+	getCriterionOptionsCount(criterion) {
+		const data = {
+			criterion
+		}
+
+		return axios.post(`${this.parentAPI.BASE_URL_API}core/criterion/options/count`, data, this.parentAPI._textOutConfig())
+	}
+
+	/**
+	 * Retrives the Icon URL for a given entity
+	 * @param {object} type - Inorigo Entity Type
+	 * @param {object} uuid - Inorigo Unique identifier
+	 * @return {object} - Response
+	 */
+	getEntityIconUrl(type, uuid) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}core/icon/url/${type}/${uuid}`, this.parentAPI._textOutConfig())
+	}
+
+	/**
+	 * Retrives the Icon URL for a given entity type
+	 * @param {string} type - Inorigo Entity Type
+	 * @param {number} size - Optional Size param
+	 * @return {string} - URL
+	 */
+	getTypeIconUrl(type, size) {
+		if (size) {
+			return `${this.parentAPI.BASE_URL_API}core/type/icon/${type}?size=${size}`
+		} else {
+			return `${this.parentAPI.BASE_URL_API}core/type/icon/${type}`
+		}
+	}
+
+	/**
+	 * Retrives the Icon URL for a given category
+	 * @param {string} category - "Relation" / "RelationUp" /"RelationDown" / "Relations" / "Attribute" / "Attributes" / "Reference" / "References" / "Definition" / "Definitions"
+	 * @param {number} size - Optional Size param
+	 * @return {string} - URL
+	 */
+	getCategoryIconUrl(category, size) {
+		if (size) {
+			return `${this.parentAPI.BASE_URL_API}core/type/icon/${category}?size=${size}`
+		} else {
+			return `${this.parentAPI.BASE_URL_API}core/type/icon/${category}`
+		}
+	}
+
+	/**
+	 * Retrives the known data types from Inorigo
+	 * @param {boolean} primitives - Optional flag to include primitive data types
+	 * @return {object} - Response
+	 */
+	getInorigoDataTypes(primitives = false) {
+		const p = !!primitives
+		return axios.get(`${this.parentAPI.BASE_URL_API}core/datatypes?primitives=${p}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Retrives the known Expression Functions from Inorigo
+	 * @return {object} - Response
+	 */
+	getExpressionFunctions() {
+		return axios.get(`${this.parentAPI.BASE_URL_API}core/expression/functions`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Retrieves the reference name for an Inorigo attribute
+	 * @param {string} attributeKey - The attribute key (required uuid).
+	 * @param {string} definitionID - Inorigo ID of an explicit definition where the attribute is defined or inherrited
+	 * @return {object} - Response
+	 */
+	getAttributeReferenceName(attributeKey, definitionID, detailed = false) {
+		if (this.isUUID(definitionID)) {
+			return axios.get(
+				`${this.parentAPI.BASE_URL_API}core/attribute/reference/name/${attributeKey}?detailed=${!!detailed}&definitionID=${definitionID}`,
+				this.parentAPI._textOutConfig()
+			)
+		} else if (this.isGlobalID(definitionID)) {
+			return axios.get(
+				`${this.parentAPI.BASE_URL_API}core/attribute/reference/name/${attributeKey}?detailed=${!!detailed}&definitionID=${definitionID.uuid}`,
+				this.parentAPI._textOutConfig()
+			)
+		} else {
+			return axios.get(
+				`${this.parentAPI.BASE_URL_API}core/attribute/reference/name/${attributeKey}?detailed=${!!detailed}`,
+				this.parentAPI._textOutConfig()
+			)
+		}
 	}
 }
