@@ -1,4 +1,5 @@
 import axios from "axios"
+import * as GlobalID from "../Utils/GlobalID"
 
 /*
  * Core API class.
@@ -12,21 +13,6 @@ export class CoreAPI {
 	 */
 	constructor(parentAPI) {
 		this.parentAPI = parentAPI
-
-		this.uuidRegExp = new RegExp("([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}")
-	}
-
-	isGlobalID(any) {
-		return any && any.uuid && any.type
-	}
-
-	sameGlobalID(one, two) {
-		return (!one && !two) || (this.isGlobalID(one) && this.isGlobalID(two) && one.uuid == two.uuid)
-	}
-
-	isUUID(any) {
-		const test = any && typeof any === "string" && any.match(this.uuidRegExp)
-		return !!test
 	}
 
 	_attributeDefinitionParam(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
@@ -249,7 +235,7 @@ export class CoreAPI {
 
 	/**
 	 * Retrives the Icon URL for a given category
-	 * @param {string} category - "Relation" / "RelationUp" /"RelationDown" / "Relations" / "Attribute" / "Attributes" / "Reference" / "References" / "Definition" / "Definitions"
+	 * @param {string} category - Relation|RelationUp|RelationDown|Relations|Attribute|Attributes|Reference|References|Definition|Definitions
 	 * @param {number} size - Optional Size param
 	 * @return {string} - URL
 	 */
@@ -283,15 +269,16 @@ export class CoreAPI {
 	 * Retrieves the reference name for an Inorigo attribute
 	 * @param {string} attributeKey - The attribute key (required uuid).
 	 * @param {string} definitionID - Inorigo ID of an explicit definition where the attribute is defined or inherrited
+	 * @param {boolean} detailed - Flag to trigger a more detailed name to be returned, including the definition name.
 	 * @return {object} - Response
 	 */
 	getAttributeReferenceName(attributeKey, definitionID, detailed = false) {
-		if (this.isUUID(definitionID)) {
+		if (GlobalID.isUUID(definitionID)) {
 			return axios.get(
 				`${this.parentAPI.BASE_URL_API}core/attribute/reference/name/${attributeKey}?detailed=${!!detailed}&definitionID=${definitionID}`,
 				this.parentAPI._textOutConfig()
 			)
-		} else if (this.isGlobalID(definitionID)) {
+		} else if (GlobalID.isGlobalID(definitionID)) {
 			return axios.get(
 				`${this.parentAPI.BASE_URL_API}core/attribute/reference/name/${attributeKey}?detailed=${!!detailed}&definitionID=${definitionID.uuid}`,
 				this.parentAPI._textOutConfig()
