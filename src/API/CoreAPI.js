@@ -235,7 +235,7 @@ export class CoreAPI {
 
 	/**
 	 * Retrives the Icon URL for a given category
-	 * @param {"Relation""|""RelationUp""|""RelationDown"|"Relations"|"Attribute"|"Attributes"|"Reference"|"References"|"Definition"|"Definitions"} category - Icon category
+	 * @param {"Relation"|"RelationUp"|"RelationDown"|"Relations"|"Attribute"|"Attributes"|"Reference"|"References"|"Definition"|"Definitions"} category - Icon category
 	 * @param {number} size - Optional Size param
 	 * @return {string} - URL
 	 */
