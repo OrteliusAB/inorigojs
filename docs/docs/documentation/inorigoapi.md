@@ -144,3 +144,34 @@ Function | Description
 --- | ---
 executeChange(uuid, contextID, commit?, stringInputArray)   |    Executes a change in Inorigo (process unit definition -> main)
 executeMethod(uuid, contextID, commit?, stringInputArray)   |    Executes a method in Inorigo
+
+
+## Core
+The Core API allows you to execute operations in the Inorigo core web services:
+```javascript
+const coreAPI = api.getCoreAPI()
+```
+
+The following functions are supported:
+Function | Description
+--- | ---
+
+getEntityPresentation(type, uuid)   |    Retrieves the entity presentation from inorigo
+getFilter(uuid)   |    Retrieves a Filter definition from inorigo
+runFilter(filterDefinition, presentations?, icons?)   |    Runs a Filter in inorigo
+getTranslation(text)   |    Retrieves a Translation from inorigo
+getAttributeDefinition(attributeKey, definitionID, definitionType, entityType)   |    Retrieves an Attribute Definition from inorigo
+getPossibleAttributeValues(attributeKey, definitionID, definitionType, entityType, presentations, icons)   |    Retrieves possible known values for an Inorigo attribute
+getPossibleAttributeValuesCount(attributeKey, definitionID, definitionType, entityType, presentations, icons)   |    Retrieves possible known values for an Inorigo attribute
+getEntityTypeCount(entityType)   |    Retrieves number of entities for an Inorigo Type
+getRelationSpecifierName(relationSpecifierID, direction)   |    Retrieves the name of a relation specifier in the specified direction
+getEntityConfigByRequest(request)   |    Retrieves attributes, relations and references for a Config Request object
+getEntityConfigTreeByRequest(request)   |    Retrieves Tree structure for attributes, relations and references for a Config Request object
+getCriterionOptions(criterion, filter, presentations, icons, page, pageSize)   |    Retrives a list of possible values for a criterion
+getCriterionOptionsCount(criterion)   |    Retrives the number of possible values for a criterion
+getEntityIconUrl(type, uuid)   |    Retrives the Icon URL for a given entity
+getTypeIconUrl(type, size)   |    Retrives the Icon URL for a given entity type
+getCategoryIconUrl(category, size)   |    Retrives the Icon URL for a given category
+getInorigoDataTypes(primitives = false)   |    Retrives the known data types from Inorigo
+getExpressionFunctions()   |    Retrives the known Expression Functions from Inorigo
+getAttributeReferenceName(attributeKey, definitionID, detailed = false)   |    Retrieves the reference name for an Inorigo attribute
