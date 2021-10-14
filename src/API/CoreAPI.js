@@ -145,7 +145,7 @@ export class CoreAPI {
 	/**
 	 * Retrieves the name of a relation specifier in the specified direction
 	 * @param {string} relationSpecifierID - Inorigo ID of a Relation Specifier
-	 * @param {string} direction Downwards / Upwards / Both
+	 * @param {"Downwards" | "Upwards" | "Both"} direction - Direction of relation
 	 * @return {object} - Response
 	 */
 	getRelationSpecifierName(relationSpecifierID, direction) {
@@ -235,7 +235,7 @@ export class CoreAPI {
 
 	/**
 	 * Retrives the Icon URL for a given category
-	 * @param {string} category - Relation|RelationUp|RelationDown|Relations|Attribute|Attributes|Reference|References|Definition|Definitions
+	 * @param {"Relation""|""RelationUp""|""RelationDown"|"Relations"|"Attribute"|"Attributes"|"Reference"|"References"|"Definition"|"Definitions"} category - Icon category
 	 * @param {number} size - Optional Size param
 	 * @return {string} - URL
 	 */
