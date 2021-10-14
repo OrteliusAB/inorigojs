@@ -155,7 +155,6 @@ const coreAPI = api.getCoreAPI()
 The following functions are supported:
 Function | Description
 --- | ---
-
 getEntityPresentation(type, uuid)   |    Retrieves the entity presentation from inorigo
 getFilter(uuid)   |    Retrieves a Filter definition from inorigo
 runFilter(filterDefinition, presentations?, icons?)   |    Runs a Filter in inorigo
