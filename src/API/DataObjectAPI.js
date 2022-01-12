@@ -96,9 +96,11 @@ export class DataObjectAPI {
 			fromTime,
 			toTime
 		}
-		if (id) {
-			payload.id = id
-		}
+		Object.keys(payload).forEach(key => {
+			if (payload[key] === undefined) {
+				delete payload[key]
+			}
+		})
 		return axios.post(`${this.parentAPI.BASE_URL_API}dataobject`, payload, this.parentAPI.DEFAULTCONFIG)
 	}
 
@@ -130,9 +132,11 @@ export class DataObjectAPI {
 			fromTime,
 			toTime
 		}
-		if (id) {
-			payload.id = id
-		}
+		Object.keys(payload).forEach(key => {
+			if (payload[key] === undefined) {
+				delete payload[key]
+			}
+		})
 		return axios.post(`${this.parentAPI.BASE_URL_API}dataobject/variant`, payload, this.parentAPI.DEFAULTCONFIG)
 	}
 
@@ -164,6 +168,11 @@ export class DataObjectAPI {
 			fromTime,
 			toTime
 		}
+		Object.keys(payload).forEach(key => {
+			if (payload[key] === undefined) {
+				delete payload[key]
+			}
+		})
 		return axios.put(`${this.parentAPI.BASE_URL_API}dataobject/${id}`, payload, this.parentAPI.DEFAULTCONFIG)
 	}
 
