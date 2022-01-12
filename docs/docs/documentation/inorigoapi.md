@@ -145,7 +145,26 @@ Function | Description
 executeChange(uuid, contextID, commit?, stringInputArray)   |    Executes a change in Inorigo (process unit definition -> main)
 executeMethod(uuid, contextID, commit?, stringInputArray)   |    Executes a method in Inorigo
 
+## Data Object
+The data object API allows for storage of arbitrary data objects in Inorigo. Useful for storing things like configuration for external applications:
+```javascript
+const legacyAPI = api.getDataObjectAPI()
+```
 
+The following functions are supported:
+Function | Description
+--- | ---
+listDataObjects(type)   |   Lists data objects by type (optional)
+getDataObject(id)   |   Gets a data object by ID
+async getDataObjects(type)   |   Gets several data objects by type (optional)
+getDataVariant(id)   |   Gets a data variant by ID
+listDataVariants()   |   Lists all data variants in inorigo
+createDataObject(id, type, name, mimeType, data, iconUrl, presentation, dataType, fromTime, toTime)   |   Creates a data object
+registerDataVariant(id, type, name, mimeType, remark, iconUrl, presentation, dataType, fromTime, toTime)   |   Registers a data variant
+updateDataObject(id, type, name, mimeType, data, iconUrl, presentation, dataType, fromTime, toTime)   |   Updates a data object
+deleteDataObject(id)   |   Delete data object
+deleteDataVariant(id)   |   Delete data variant
+    
 ## Core
 The Core API allows you to execute operations in the Inorigo core web services:
 ```javascript

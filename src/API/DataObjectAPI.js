@@ -52,25 +52,88 @@ export class DataObjectAPI {
 	}
 
 	/**
+	 * Gets a data variant by ID
+	 * @param {string} id - ID of data variant to get
+	 * @return {object} - Response
+	 */
+	getDataVariant(id) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}dataobject/variant/${id}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Lists all data variants in inorigo
+	 * @return {object} - Response
+	 */
+	listDataVariants() {
+		return axios.get(`${this.parentAPI.BASE_URL_API}dataobject/variant`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
 	 * Creates a data object
 	 * @param {string} id - UUID (optional)
 	 * @param {string} type - Type of data object
 	 * @param {string} name - Name for the data object
 	 * @param {string} mimeType - Mime type for the data object data property
 	 * @param {any} data - Data to be stored
+	 * @param {string} iconUrl - URL for data object icon
+	 * @param {string} presentation - presentation of data objcet
+	 * @param {string} dataType - data type of value
+	 * @param {date} fromTime - fromTime for object
+	 * @param {date} toTime - toTime for object
+	 *
 	 * @return {object} - Response
 	 */
-	createDataObject(id, type, name, mimeType, data) {
+	createDataObject(id, type, name, mimeType, data, iconUrl, presentation, dataType, fromTime, toTime) {
 		const payload = {
+			id,
 			type,
 			name,
 			mimeType,
-			data
+			data,
+			iconUrl,
+			presentation,
+			dataType,
+			fromTime,
+			toTime
 		}
 		if (id) {
 			payload.id = id
 		}
 		return axios.post(`${this.parentAPI.BASE_URL_API}dataobject`, payload, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Registers a data variant
+	 * @param {string} id - UUID (optional)
+	 * @param {string} type - Type of data object
+	 * @param {string} name - Name for the data object
+	 * @param {string} mimeType - Mime type for the data object data property
+	 * @param {string} remark - Remark for the variant
+	 * @param {string} iconUrl - URL for data object icon
+	 * @param {string} presentation - presentation of data objcet
+	 * @param {string} dataType - data type of value
+	 * @param {date} fromTime - fromTime for object
+	 * @param {date} toTime - toTime for object
+	 *
+	 * @return {object} - Response
+	 */
+	registerDataVariant(id, type, name, mimeType, remark, iconUrl, presentation, dataType, fromTime, toTime) {
+		const payload = {
+			id,
+			type,
+			name,
+			mimeType,
+			remark,
+			iconUrl,
+			presentation,
+			dataType,
+			fromTime,
+			toTime
+		}
+		if (id) {
+			payload.id = id
+		}
+		return axios.post(`${this.parentAPI.BASE_URL_API}dataobject/variant`, payload, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -80,14 +143,26 @@ export class DataObjectAPI {
 	 * @param {string} name - Name for the data object
 	 * @param {string} mimeType - Mime type for the data object data property
 	 * @param {any} data - Data to be stored
+	 * @param {string} iconUrl - URL for data object icon
+	 * @param {string} presentation - presentation of data objcet
+	 * @param {string} dataType - data type of value
+	 * @param {date} fromTime - fromTime for object
+	 * @param {date} toTime - toTime for object
+	 *
 	 * @return {object} - Response
 	 */
-	updateDataObject(id, type, name, mimeType, data) {
+	updateDataObject(id, type, name, mimeType, data, iconUrl, presentation, dataType, fromTime, toTime) {
 		const payload = {
+			id,
 			type,
 			name,
 			mimeType,
-			data
+			data,
+			iconUrl,
+			presentation,
+			dataType,
+			fromTime,
+			toTime
 		}
 		return axios.put(`${this.parentAPI.BASE_URL_API}dataobject/${id}`, payload, this.parentAPI.DEFAULTCONFIG)
 	}
@@ -99,5 +174,14 @@ export class DataObjectAPI {
 	 */
 	deleteDataObject(id) {
 		return axios.delete(`${this.parentAPI.BASE_URL_API}dataobject/${id}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Delete data variant
+	 * @param {string} id - ID of data variant to delete
+	 * @return {object} - Response
+	 */
+	deleteDataVariant(id) {
+		return axios.delete(`${this.parentAPI.BASE_URL_API}dataobject/variant/${id}`, this.parentAPI.DEFAULTCONFIG)
 	}
 }
