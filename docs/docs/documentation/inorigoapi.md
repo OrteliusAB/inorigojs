@@ -148,7 +148,7 @@ executeMethod(uuid, contextID, commit?, stringInputArray)   |    Executes a meth
 ## Data Object
 The data object API allows for storage of arbitrary data objects in Inorigo. Useful for storing things like configuration for external applications:
 ```javascript
-const legacyAPI = api.getDataObjectAPI()
+const DOAPI = api.getDataObjectAPI()
 ```
 
 The following functions are supported:
