@@ -161,7 +161,7 @@ getDataVariant(id)   |   Gets a data variant by ID
 listDataVariants()   |   Lists all data variants in inorigo
 createDataObject(type, data, id, name, mimeType)   |   Creates a data object
 registerDataVariant(name, remark, id, mimeType)   |   Registers a data variant
-updateDataObject(id, type, data, name, mimeType)   |   Updates a data object
+updateDataObject(id, data, type, name, mimeType)   |   Updates a data object
 deleteDataObject(id)   |   Delete data object
 deleteDataVariant(id)   |   Delete data variant
     

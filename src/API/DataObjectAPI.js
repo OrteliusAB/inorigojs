@@ -121,18 +121,18 @@ export class DataObjectAPI {
 	/**
 	 * Updates a data object
 	 * @param {string} id - UUID
-	 * @param {string} type - Type of data object variant
 	 * @param {any} data - Data to be stored in data object
+	 * @param {string} type - Type of data object variant
 	 * @param {string} name - Name for the data object
 	 * @param {string} mimeType - Mime type for the data object data property
 	 *
 	 * @return {object} - Response
 	 */
-	updateDataObject(id, type, data, name, mimeType) {
+	updateDataObject(id, data, type, name, mimeType) {
 		const payload = {
 			id,
-			type,
 			data,
+			type,
 			name,
 			mimeType
 		}
