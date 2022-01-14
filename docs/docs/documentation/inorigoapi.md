@@ -159,9 +159,9 @@ getDataObject(id)   |   Gets a data object by ID
 async getDataObjects(type)   |   Gets several data objects by type (optional)
 getDataVariant(id)   |   Gets a data variant by ID
 listDataVariants()   |   Lists all data variants in inorigo
-createDataObject(id, type, name, mimeType, data, iconUrl, presentation, dataType, fromTime, toTime)   |   Creates a data object
-registerDataVariant(id, type, name, mimeType, remark, iconUrl, presentation, dataType, fromTime, toTime)   |   Registers a data variant
-updateDataObject(id, type, name, mimeType, data, iconUrl, presentation, dataType, fromTime, toTime)   |   Updates a data object
+createDataObject(type, data, id, name, mimeType)   |   Creates a data object
+registerDataVariant(name, remark, id, mimeType)   |   Registers a data variant
+updateDataObject(id, type, data, name, mimeType)   |   Updates a data object
 deleteDataObject(id)   |   Delete data object
 deleteDataVariant(id)   |   Delete data variant
     

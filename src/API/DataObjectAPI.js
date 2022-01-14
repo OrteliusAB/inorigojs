@@ -70,31 +70,21 @@ export class DataObjectAPI {
 
 	/**
 	 * Creates a data object
-	 * @param {string} id - UUID (optional)
-	 * @param {string} type - Type of data object
+	 * @param {string} type - Type of data object variant
+	 * @param {any} data - Data to be stored in data object
+	 * @param {string} id - UUID
 	 * @param {string} name - Name for the data object
 	 * @param {string} mimeType - Mime type for the data object data property
-	 * @param {any} data - Data to be stored
-	 * @param {string} iconUrl - URL for data object icon
-	 * @param {string} presentation - presentation of data objcet
-	 * @param {string} dataType - data type of value
-	 * @param {date} fromTime - fromTime for object
-	 * @param {date} toTime - toTime for object
 	 *
 	 * @return {object} - Response
 	 */
-	createDataObject(id, type, name, mimeType, data, iconUrl, presentation, dataType, fromTime, toTime) {
+	createDataObject(type, data, id, name, mimeType) {
 		const payload = {
-			id,
 			type,
-			name,
-			mimeType,
 			data,
-			iconUrl,
-			presentation,
-			dataType,
-			fromTime,
-			toTime
+			id,
+			name,
+			mimeType
 		}
 		Object.keys(payload).forEach(key => {
 			if (payload[key] === undefined) {
@@ -106,31 +96,19 @@ export class DataObjectAPI {
 
 	/**
 	 * Registers a data variant
-	 * @param {string} id - UUID (optional)
-	 * @param {string} type - Type of data object
 	 * @param {string} name - Name for the data object
-	 * @param {string} mimeType - Mime type for the data object data property
 	 * @param {string} remark - Remark for the variant
-	 * @param {string} iconUrl - URL for data object icon
-	 * @param {string} presentation - presentation of data objcet
-	 * @param {string} dataType - data type of value
-	 * @param {date} fromTime - fromTime for object
-	 * @param {date} toTime - toTime for object
+	 * @param {string} id - UUID
+	 * @param {string} mimeType - Mime type for the data object data property
 	 *
 	 * @return {object} - Response
 	 */
-	registerDataVariant(id, type, name, mimeType, remark, iconUrl, presentation, dataType, fromTime, toTime) {
+	registerDataVariant(name, remark, id, mimeType) {
 		const payload = {
-			id,
-			type,
 			name,
-			mimeType,
 			remark,
-			iconUrl,
-			presentation,
-			dataType,
-			fromTime,
-			toTime
+			id,
+			mimeType
 		}
 		Object.keys(payload).forEach(key => {
 			if (payload[key] === undefined) {
@@ -142,31 +120,21 @@ export class DataObjectAPI {
 
 	/**
 	 * Updates a data object
-	 * @param {string} id - ID of object to update
-	 * @param {string} type - Type of data object
+	 * @param {string} id - UUID
+	 * @param {string} type - Type of data object variant
+	 * @param {any} data - Data to be stored in data object
 	 * @param {string} name - Name for the data object
 	 * @param {string} mimeType - Mime type for the data object data property
-	 * @param {any} data - Data to be stored
-	 * @param {string} iconUrl - URL for data object icon
-	 * @param {string} presentation - presentation of data objcet
-	 * @param {string} dataType - data type of value
-	 * @param {date} fromTime - fromTime for object
-	 * @param {date} toTime - toTime for object
 	 *
 	 * @return {object} - Response
 	 */
-	updateDataObject(id, type, name, mimeType, data, iconUrl, presentation, dataType, fromTime, toTime) {
+	updateDataObject(id, type, data, name, mimeType) {
 		const payload = {
 			id,
 			type,
-			name,
-			mimeType,
 			data,
-			iconUrl,
-			presentation,
-			dataType,
-			fromTime,
-			toTime
+			name,
+			mimeType
 		}
 		Object.keys(payload).forEach(key => {
 			if (payload[key] === undefined) {
