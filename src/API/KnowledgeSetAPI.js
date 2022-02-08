@@ -129,6 +129,15 @@ export class KnowledgeSetAPI {
 	}
 
 	/**
+	 * Get the definition of specified knowledgeset
+	 * @param {string} uuid
+	 * @returns
+	 */
+	getDefinition(uuid) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}knowledgeset/${uuid}/definition`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
 	 * Retrieves all knowledgesets found in Inorigo.
 	 * @return {object} - Response
 	 */
