@@ -225,4 +225,70 @@ export class VersoRuntimeAPI {
 	focusComponent(vrid, component) {
 		return axios.post(`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/focus/${component}`, {}, this.parentAPI.DEFAULTCONFIG)
 	}
+
+	/**
+	 * Set a component read only
+	 * @param {string} vrid - The application runtime id.
+	 * @param {string} component - component
+	 * @param {boolean} readonly - readonly
+	 * @returns {object} - Response
+	 */
+	setComponentReadOnly(vrid, component, readonly) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/readonly/${component}/${readonly}`,
+			{},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
+	 * Trigger an interactive action to be performed for an entity
+	 * @param {string} vrid - The application runtime id.
+	 * @param {string} action - The type of action to perform.
+	 * @param {string} entityType - The entity type.
+	 * @param {string} entityUUID - The entity UUID
+	 * @param {string} where - The component responsible for the action.(required)
+	 * @returns {object} - Response
+	 */
+	triggerAction(vrid, action, entityType, entityUUID, where) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/entitiy/action/${action}${this.parentAPI._buildURIParams({
+				entityType,
+				entityUUID,
+				where
+			})}`,
+			{},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
+	 * Set the visibility of a component
+	 * @param {srting} vrid - The application runtime id.
+	 * @param {string} component - component
+	 * @param {boolean} visible - visible
+	 * @returns {object} - Response
+	 */
+	setComponentVisible(vrid, component, visible) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/visible/${component}/${visible}`,
+			{},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
+	 * Set a component enabled
+	 * @param {string} vrid - The application runtime id.
+	 * @param {string} component - component
+	 * @param {boolean} enabled - enabled
+	 * @returns {object} - Response
+	 */
+	setComponentEnabled(vrid, component, enabled) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/enabled/${component}/${enabled}`,
+			{},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
 }

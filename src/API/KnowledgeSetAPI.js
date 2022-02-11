@@ -131,7 +131,7 @@ export class KnowledgeSetAPI {
 	/**
 	 * Get the definition of specified knowledgeset
 	 * @param {string} uuid
-	 * @returns
+	 * @returns {object} - Response
 	 */
 	getDefinition(uuid) {
 		return axios.get(`${this.parentAPI.BASE_URL_API}knowledgeset/${uuid}/definition`, this.parentAPI.DEFAULTCONFIG)
@@ -191,5 +191,117 @@ export class KnowledgeSetAPI {
 	 */
 	getSchedulingStatus() {
 		return axios.get(`${this.parentAPI.BASE_URL_API}knowledgeset/scheduling/status`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Export knowledgeset to a file, as .CSV or Excel format, filename will be same as knowledgeset name.
+	 * @param {string} uuid
+	 * @param {boolean} metaData
+	 * @param {string} context
+	 * @param {boolean} isDistinct
+	 * @param {number} page
+	 * @param {number} pagesize
+	 * @param {boolean} compactpaths
+	 * @param {boolean} allowCache
+	 * @param {boolean} replaceidbypresentation
+	 * @param {boolean} excelFormat
+	 * @returns {object} - Response
+	 */
+	exportToFile(uuid, metaData, context, isDistinct, page, pagesize, compactpaths, allowCache, replaceidbypresentation, excelFormat = false) {
+		const uriParams = {
+			metadata: metaData,
+			context,
+			distinct: isDistinct,
+			page,
+			pagesize,
+			compactpaths,
+			allowCache,
+			replaceidbypresentation
+		}
+		// default text/csv
+		this.parentAPI.setDefaultRequestHeader("Accept", "text/csv")
+		if (excelFormat) {
+			this.parentAPI.setDefaultRequestHeader("Accept", "application/vnd.ms-excel")
+		}
+		return axios.get(`${this.parentAPI.BASE_URL_API}knowledgeset/file/${uuid}${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Execute a Knowledge Set. Result as Json Objects.
+	 * @param {string} uuid
+	 * @param {boolean} metaData
+	 * @param {string} context
+	 * @param {boolean} isDistinct
+	 * @param {number} page
+	 * @param {number} pagesize
+	 * @param {boolean} compactpaths
+	 * @param {boolean} allowCache
+	 * @param {boolean} replaceidbypresentation
+	 * @returns {object} - Response
+	 */
+	getResultAsObjects(uuid, metaData, context, isDistinct, page, pagesize, compactpaths, allowCache, replaceidbypresentation) {
+		const uriParams = {
+			metadata: metaData,
+			context,
+			distinct: isDistinct,
+			page,
+			pagesize,
+			compactpaths,
+			allowCache,
+			replaceidbypresentation
+		}
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}knowledgeset/objects/${uuid}${this.parentAPI._buildURIParams(uriParams)}`,
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
+	 * Search Knowledge Set for text occurrences. Result as Json Objects.
+	 * @param {string} uuid - The uuid of the Knowledge Set to search
+	 * @param {string} text - The text to search for
+	 * @param {boolean} fuzzy - Optional parameter. Enable Fuzzy Pattern Match? Default is false.
+	 * @param {boolean} metaData - Optional boolean parameter. If true, the response will include metadata about the Knowledge Set
+	 * @param {number} page - The page index
+	 * @param {number} pagesize - Number of items per page
+	 * @param {boolean} compactpaths - Compact Paths
+	 * @param {boolean} allowCache - Optional parameter. Allow data to be read from cache?
+	 * @param {boolean} searchIDs - Optional parameter. Should ID columns be searched?
+	 * @param {Array} includedColumns - Optional parameter. Columns to be included in search
+	 * @param {Array} excludedColumns - Optional parameter. Columns to be excluded from search
+	 * @param {boolean} replaceidbypresentation - Optional parameter. Replace all ids by presentations?
+	 * @returns
+	 */
+	searchResultAsObjects(
+		uuid,
+		text,
+		fuzzy,
+		metaData,
+		page,
+		pagesize,
+		compactpaths,
+		allowCache,
+		searchIDs,
+		includedColumns,
+		excludedColumns,
+		replaceidbypresentation
+	) {
+		const uriParams = {
+			text,
+			fuzzy,
+			metadata: metaData,
+			page,
+			pagesize,
+			compactpaths,
+			allowCache,
+			searchIDs,
+			includedColumns,
+			excludedColumns,
+			replaceidbypresentation
+		}
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}knowledgeset/${uuid}/objects/search/text${this.parentAPI._buildURIParams(uriParams)}`,
+			this.parentAPI.DEFAULTCONFIG
+		)
 	}
 }

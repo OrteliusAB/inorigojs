@@ -48,4 +48,14 @@ export class ResourceAPI {
 	updateResource(resourceJSONArray) {
 		return axios.put(`${this.parentAPI.BASE_URL_API}resource/resource`, resourceJSONArray, this.parentAPI.DEFAULTCONFIG)
 	}
+
+	/**
+	 * Get the data of the resource
+	 * @param {string} key - The id or name of the resource.
+	 * @param {boolean} attachment - Optional parameter used to set the disposition of the response to attachement (file). Default is false.
+	 * @returns
+	 */
+	getResourceData(key, attachment = false) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}resource/data/${key}${this.parentAPI._buildURIParams({ attachment })}`, this.parentAPI.DEFAULTCONFIG)
+	}
 }
