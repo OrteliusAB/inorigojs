@@ -228,30 +228,30 @@ export class KnowledgeSetAPI {
 
 	/**
 	 * Execute a Knowledge Set. Result as Json Objects.
-	 * @param {string} uuid
-	 * @param {boolean} metaData
-	 * @param {string} context
-	 * @param {boolean} isDistinct
-	 * @param {number} page
-	 * @param {number} pagesize
-	 * @param {boolean} compactpaths
-	 * @param {boolean} allowCache
-	 * @param {boolean} replaceidbypresentation
+	 * @param {string} uuid - The uuid of the Knowledge Set to execute
+	 * @param {boolean} metadata - Optional boolean parameter. If true, the response will include metadata about the Knowledge Set
+	 * @param {string} context - Optional parameter. The uuid of the data context the Knowledge Set will be executed in. If omitted, the data context of the current session will be used
+	 * @param {boolean} distinct - If the result should be distinct or not. Optional parameter, defaults to false
+	 * @param {number} page - The page index
+	 * @param {number} pagesize - Number of items per page
+	 * @param {boolean} compactpaths - Compact Paths
+	 * @param {boolean} allowCache - Optional parameter. Allow data to be read from cache?
+	 * @param {boolean} replaceidbypresentation - Optional parameter. Replace all ids by presentations?
 	 * @returns {object} - Response
 	 */
-	getResultAsObjects(uuid, metaData, context, isDistinct, page, pagesize, compactpaths, allowCache, replaceidbypresentation) {
+	getResultAsObjects(uuid, metadata, context, distinct, page, pagesize, compactpaths, allowCache, replaceidbypresentation) {
 		const uriParams = {
-			metadata: metaData,
+			metadata,
 			context,
-			distinct: isDistinct,
+			distinct,
 			page,
 			pagesize,
 			compactpaths,
 			allowCache,
 			replaceidbypresentation
 		}
-		// this.parentAPI.setDefaultRequestHeader("Accept", "application/json")
-		// this.parentAPI.setDefaultRequestHeader("Content-Type", "application/json")
+		this.parentAPI.setDefaultRequestHeader("Accept", "application/json")
+		this.parentAPI.setDefaultRequestHeader("Content-Type", "application/json")
 		return axios.post(
 			`${this.parentAPI.BASE_URL_API}knowledgeset/objects/${uuid}${this.parentAPI._buildURIParams(uriParams)}`,
 			{},
