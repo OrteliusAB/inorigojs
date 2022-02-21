@@ -572,7 +572,6 @@ export class EntityAPI {
 	 */
 	generateEntity(type, count, definition) {
 		const uriParams = {
-			type,
 			count,
 			definition
 		}

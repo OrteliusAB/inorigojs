@@ -250,8 +250,11 @@ export class KnowledgeSetAPI {
 			allowCache,
 			replaceidbypresentation
 		}
+		// this.parentAPI.setDefaultRequestHeader("Accept", "application/json")
+		// this.parentAPI.setDefaultRequestHeader("Content-Type", "application/json")
 		return axios.post(
 			`${this.parentAPI.BASE_URL_API}knowledgeset/objects/${uuid}${this.parentAPI._buildURIParams(uriParams)}`,
+			{},
 			this.parentAPI.DEFAULTCONFIG
 		)
 	}

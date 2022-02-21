@@ -37,7 +37,10 @@ export class ModuleAPI {
 	 * @returns {object} - Response
 	 */
 	getModule(enabled) {
-		return axios.get(`${this.parentAPI.BASE_URL_API}module`, { enabled }, this.parentAPI.DEFAULTCONFIG)
+		const uriParams = {
+			enabled
+		}
+		return axios.get(`${this.parentAPI.BASE_URL_API}module${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**

@@ -10,6 +10,7 @@ import { CoreAPI } from "./CoreAPI"
 import { FavoriteAPI } from "./FavoriteAPI"
 import { MiscellaneousAPI } from "./MiscellaneousAPI"
 import { ModuleAPI } from "./ModuleAPI"
+import { ThemeAPI } from "./ThemeAPI"
 
 /*
  * This is the main API communication class.
@@ -215,6 +216,10 @@ export class InorigoAPI {
 
 	getModuleAPI() {
 		return new ModuleAPI(this)
+	}
+
+	getThemeAPI() {
+		return new ThemeAPI(this)
 	}
 
 	/* Utility Functions */

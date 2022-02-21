@@ -252,7 +252,7 @@ export class VersoRuntimeAPI {
 	 */
 	triggerAction(vrid, action, entityType, entityUUID, where) {
 		return axios.post(
-			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/entitiy/action/${action}${this.parentAPI._buildURIParams({
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/entity/action/${action}${this.parentAPI._buildURIParams({
 				entityType,
 				entityUUID,
 				where
