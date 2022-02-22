@@ -195,19 +195,19 @@ export class KnowledgeSetAPI {
 
 	/**
 	 * Export knowledgeset to a file, as .CSV or Excel format, filename will be same as knowledgeset name.
-	 * @param {string} uuid
-	 * @param {boolean} metaData
-	 * @param {string} context
-	 * @param {boolean} isDistinct
-	 * @param {number} page
-	 * @param {number} pagesize
-	 * @param {boolean} compactpaths
-	 * @param {boolean} allowCache
-	 * @param {boolean} replaceidbypresentation
-	 * @param {boolean} excelFormat
+	 * @param {string} uuid - The uuid of the Knowledge Set to export
+	 * @param {boolean} metaData - Optional boolean parameter. If true, the response will include metadata about the Knowledge Set
+	 * @param {string} context - Optional parameter. The uuid of the data context the Knowledge Set will be executed in. If omitted, the data context of the current session will be used
+	 * @param {boolean} isDistinct - Optional parameter, If the result should be distinct or not. Defaults to false
+	 * @param {number} page - The page index
+	 * @param {number} pagesize - Number of items per page
+	 * @param {boolean} compactpaths - Compact Paths
+	 * @param {boolean} allowCache - Optional parameter. Allow data to be read from cache?
+	 * @param {boolean} replaceidbypresentation - Optional parameter. Replace all ids by presentations?
+	 * @param {boolean} mediaType - Type of file: 'text/csv' OR 'application/vnd.ms-excel ' OR 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 	 * @returns {object} - Response
 	 */
-	exportToFile(uuid, metaData, context, isDistinct, page, pagesize, compactpaths, allowCache, replaceidbypresentation, excelFormat = false) {
+	exportToFile(uuid, metaData, context, isDistinct, page, pagesize, compactpaths, allowCache, replaceidbypresentation, mediaType) {
 		const uriParams = {
 			metadata: metaData,
 			context,
@@ -218,11 +218,7 @@ export class KnowledgeSetAPI {
 			allowCache,
 			replaceidbypresentation
 		}
-		// default text/csv
-		this.parentAPI.setDefaultRequestHeader("Accept", "text/csv")
-		if (excelFormat) {
-			this.parentAPI.setDefaultRequestHeader("Accept", "application/vnd.ms-excel")
-		}
+		this.parentAPI.setDefaultRequestHeader("Accept", mediaType)
 		return axios.get(`${this.parentAPI.BASE_URL_API}knowledgeset/file/${uuid}${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
 	}
 
