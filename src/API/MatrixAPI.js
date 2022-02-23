@@ -1,0 +1,106 @@
+import axios from "axios"
+
+/*
+ * Matrix API class.
+ * This class contains APIs for doing operations on Matrix objects in Inorigo.
+ */
+export class MatrixAPI {
+	/**
+	 * Matrix API
+	 * @param {InorigoAPI} parentAPI - The parent API class.
+	 */
+	constructor(parentAPI) {
+		this.parentAPI = parentAPI
+	}
+
+	/**
+	 * Get Meta and Data for an Application Component
+	 * @param {string} applicationid - Application ID
+	 * @param {string} componentid - Component ID
+	 * @param {boolean} selected - Selected Items Only. (optional, default = true)
+	 * @param {boolean} deep - Load deep. (optional, default = false)
+	 * @returns
+	 */
+	getMetaAndDataForApplicationComponent(applicationid, componentid, selected, deep) {
+		const uriParams = {
+			selected,
+			deep
+		}
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}matrix/meta/and/data/for/application/component/${applicationid}/${componentid}${this.parentAPI._buildURIParams(
+				uriParams
+			)}`,
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
+	 * Get Meta and Data for a definition and its subclasses
+	 * @param {string} definitiontype - Definition Type
+	 * @param {string} definitionuuid - Definition ID
+	 * @param {boolean} subclasses - Include subclasses. (optional, default = true)
+	 * @param {boolean} deep - Load deep. (optional, default = false)
+	 * @returns
+	 */
+	getMetaAndDataForDefinition(definitiontype, definitionuuid, subclasses, deep) {
+		const uriParams = {
+			subclasses,
+			deep
+		}
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}matrix/meta/and/data/for/definition/${definitiontype}/${definitionuuid}${this.parentAPI._buildURIParams(uriParams)}`,
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
+	 * Get Meta for an Application Component
+	 * @param {string} applicationid - Application or Runtime ID
+	 * @param {string} componentid - Component ID
+	 * @returns
+	 */
+	getMetaForApplicationComponent(applicationid, componentid) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}matrix/meta/for/application/component/${applicationid}/${componentid}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Get Meta for a definition and its subclasses
+	 * @param {string} definitiontype - Definition Type
+	 * @param {string} definitionuuid - Definition ID
+	 * @param {boolean} subclasses - Include subclasses. (optional, default = true)
+	 * @returns
+	 */
+	getMetaForDefinition(definitiontype, definitionuuid, subclasses) {
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}matrix/meta/for/definition/${definitiontype}/${definitionuuid}${this.parentAPI._buildURIParams({ subclasses })}`,
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
+	 * Get Data for a request
+	 * @param {object} requestBody - Request body: application/json
+	 * @returns
+	 */
+	getDataForRequest(requestBody) {
+		return axios.post(`${this.parentAPI.BASE_URL_API}matrix/data/for/request`, { requestBody }, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Get Data for one Matrix Row
+	 * @param {object} requestBody - Request body: application/json
+	 * @returns
+	 */
+	getDataForRow(requestBody) {
+		return axios.post(`${this.parentAPI.BASE_URL_API}matrix/data/for/row`, { requestBody }, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Get Meta for a filter
+	 * @param {object} requestBody Request body: application/json
+	 * @returns
+	 */
+	getMetaForFilter(requestBody) {
+		return axios.post(`${this.parentAPI.BASE_URL_API}matrix/meta/for/filter`, { requestBody }, this.parentAPI.DEFAULTCONFIG)
+	}
+}
