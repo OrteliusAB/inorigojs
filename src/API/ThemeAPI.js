@@ -13,6 +13,11 @@ export class ThemeAPI {
 		this.parentAPI = parentAPI
 	}
 
+	/**
+	 * Get the default stylesheet
+	 * @param {string} cssClass - Optional class name
+	 * @returns {object} - Response
+	 */
 	getCssDefault(cssClass) {
 		const uriParams = {
 			class: cssClass
@@ -22,14 +27,27 @@ export class ThemeAPI {
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/default${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
 	}
 
+	/**
+	 * Get the default theme
+	 * @returns {object} - Response
+	 */
 	getVariablesDefault() {
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/variables/default`, this.parentAPI.DEFAULTCONFIG)
 	}
 
+	/**
+	 * Get the configured portal theme. The default theme is returned if no portal theme is configured
+	 * @returns {object} - Response
+	 */
 	getVariablesPortal() {
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/variables/portal`, this.parentAPI.DEFAULTCONFIG)
 	}
 
+	/**
+	 * Get the configured portal stylesheet. The default stylesheet is returned if no portal theme is configured
+	 * @param {string} cssClass
+	 * @returns {object} - Response
+	 */
 	getCssPortal(cssClass) {
 		const uriParams = {
 			class: cssClass
@@ -39,6 +57,11 @@ export class ThemeAPI {
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/portal${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
 	}
 
+	/**
+	 * Get the session stylesheet
+	 * @param {string} cssClass - Optional class name
+	 * @returns {object} - Response
+	 */
 	getCssSession(cssClass) {
 		const uriParams = {
 			class: cssClass
@@ -48,14 +71,29 @@ export class ThemeAPI {
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/session${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
 	}
 
+	/**
+	 * Get the session theme
+	 * @returns {object} - Response
+	 */
 	getVariablesSession() {
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/variables/session`, this.parentAPI.DEFAULTCONFIG)
 	}
 
+	/**
+	 * Get a theme
+	 * @param {string} id - Theme identifer
+	 * @returns {object} - Response
+	 */
 	getVariables(id) {
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/variables/${id}`, this.parentAPI.DEFAULTCONFIG)
 	}
 
+	/**
+	 * Get a theme
+	 * @param {string} id
+	 * @param {string} cssClass
+	 * @returns {object} - Response
+	 */
 	getCss(id, cssClass) {
 		const uriParams = {
 			class: cssClass
@@ -65,6 +103,15 @@ export class ThemeAPI {
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/${id}${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
 	}
 
+	/**
+	 *
+	 * @param {string} key
+	 * @param {strting} mainColor
+	 * @param {string} accentColor
+	 * @param {string} highlightColor
+	 * @param {string} theme
+	 * @returns {object} - Response
+	 */
 	getImage(key, mainColor, accentColor, highlightColor, theme) {
 		const uriParams = {
 			mainColor,
