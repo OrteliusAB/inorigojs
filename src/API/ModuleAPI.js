@@ -23,7 +23,7 @@ export class ModuleAPI {
 	}
 
 	/**
-	 * Delete operation that marks a module for removlal. Note that the module is not removed until a system administrator appproves the request
+	 * Delete operation that marks a module for removal. Note that the module is not removed until a system administrator appproves the request
 	 * @param {string} uuid
 	 * @returns {object} - Response
 	 */
