@@ -11,7 +11,7 @@ export class MatrixAPI {
 	 */
 	constructor(parentAPI) {
 		this.parentAPI = parentAPI
-		this.MATRIX_URL_API = this.parentAPI.BASE_URL += "services/api/"
+		this.MATRIX_URL_API = this.parentAPI.BASE_URL + "services/api/"
 	}
 
 	/**
