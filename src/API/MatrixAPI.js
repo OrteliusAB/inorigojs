@@ -11,7 +11,7 @@ export class MatrixAPI {
 	 */
 	constructor(parentAPI) {
 		this.parentAPI = parentAPI
-		this.MATRIX_URL_API = this.parentAPI.BASE_URL + "services/api/"
+		this.baseURL = this.parentAPI.BASE_URL + "services/api/"
 	}
 
 	/**
@@ -26,7 +26,7 @@ export class MatrixAPI {
 			selection
 		}
 		return axios.get(
-			`${this.MATRIX_URL_API}matrix/meta/and/data/for/application/component/${applicationid}/${componentid}${this.parentAPI._buildURIParams(uriParams)}`,
+			`${this.baseURL}matrix/meta/and/data/for/application/component/${applicationid}/${componentid}${this.parentAPI._buildURIParams(uriParams)}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
 	}
@@ -43,7 +43,7 @@ export class MatrixAPI {
 			subclasses
 		}
 		return axios.get(
-			`${this.MATRIX_URL_API}matrix/meta/and/data/for/definition/${definitiontype}/${definitionuuid}${this.parentAPI._buildURIParams(uriParams)}`,
+			`${this.baseURL}matrix/meta/and/data/for/definition/${definitiontype}/${definitionuuid}${this.parentAPI._buildURIParams(uriParams)}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
 	}
@@ -55,7 +55,7 @@ export class MatrixAPI {
 	 * @returns
 	 */
 	getMetaForApplicationComponent(applicationid, componentid) {
-		return axios.get(`${this.MATRIX_URL_API}matrix/meta/for/application/component/${applicationid}/${componentid}`, this.parentAPI.DEFAULTCONFIG)
+		return axios.get(`${this.baseURL}matrix/meta/for/application/component/${applicationid}/${componentid}`, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -67,7 +67,7 @@ export class MatrixAPI {
 	 */
 	getMetaForDefinition(definitiontype, definitionuuid, subclasses) {
 		return axios.get(
-			`${this.MATRIX_URL_API}matrix/meta/for/definition/${definitiontype}/${definitionuuid}${this.parentAPI._buildURIParams({ subclasses })}`,
+			`${this.baseURL}matrix/meta/for/definition/${definitiontype}/${definitionuuid}${this.parentAPI._buildURIParams({ subclasses })}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
 	}
@@ -78,7 +78,7 @@ export class MatrixAPI {
 	 * @returns
 	 */
 	getDataForRequest(requestBody) {
-		return axios.post(`${this.MATRIX_URL_API}matrix/data/for/request`, requestBody, this.parentAPI.DEFAULTCONFIG)
+		return axios.post(`${this.baseURL}matrix/data/for/request`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -87,7 +87,7 @@ export class MatrixAPI {
 	 * @returns
 	 */
 	getDataForRow(requestBody) {
-		return axios.post(`${this.MATRIX_URL_API}matrix/data/for/row`, requestBody, this.parentAPI.DEFAULTCONFIG)
+		return axios.post(`${this.baseURL}matrix/data/for/row`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -96,6 +96,15 @@ export class MatrixAPI {
 	 * @returns
 	 */
 	getMetaForFilter(requestBody) {
-		return axios.post(`${this.MATRIX_URL_API}matrix/meta/for/filter`, requestBody, this.parentAPI.DEFAULTCONFIG)
+		return axios.post(`${this.baseURL}matrix/meta/for/filter`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Populate matrix data
+	 * @param {object} requestBody Request body: application/json
+	 * @returns
+	 */
+	populate(requestBody) {
+		return axios.post(`${this.baseURL}matrix/populate`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 }
