@@ -18,14 +18,12 @@ export class MatrixAPI {
 	 * Get Meta and Data for an Application Component
 	 * @param {string} applicationid - Application ID
 	 * @param {string} componentid - Component ID
-	 * @param {boolean} selected - Selected Items Only. (optional, default = true)
-	 * @param {boolean} deep - Load deep. (optional, default = false)
+	 * @param {string} selection - Selection. (optional, default = All) options: "All", "Selected", "Implicit", "Explicit"
 	 * @returns
 	 */
-	getMetaAndDataForApplicationComponent(applicationid, componentid, selected, deep) {
+	getMetaAndDataForApplicationComponent(applicationid, componentid, selection) {
 		const uriParams = {
-			selected,
-			deep
+			selection
 		}
 		return axios.get(
 			`${this.MATRIX_URL_API}matrix/meta/and/data/for/application/component/${applicationid}/${componentid}${this.parentAPI._buildURIParams(uriParams)}`,
@@ -38,13 +36,11 @@ export class MatrixAPI {
 	 * @param {string} definitiontype - Definition Type
 	 * @param {string} definitionuuid - Definition ID
 	 * @param {boolean} subclasses - Include subclasses. (optional, default = true)
-	 * @param {boolean} deep - Load deep. (optional, default = false)
 	 * @returns
 	 */
-	getMetaAndDataForDefinition(definitiontype, definitionuuid, subclasses, deep) {
+	getMetaAndDataForDefinition(definitiontype, definitionuuid, subclasses) {
 		const uriParams = {
-			subclasses,
-			deep
+			subclasses
 		}
 		return axios.get(
 			`${this.MATRIX_URL_API}matrix/meta/and/data/for/definition/${definitiontype}/${definitionuuid}${this.parentAPI._buildURIParams(uriParams)}`,
