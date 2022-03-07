@@ -111,4 +111,13 @@ export class MatrixAPI {
 	populate(requestBody) {
 		return axios.post(`${this.baseURL}matrix/populate`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
+
+	/**
+	 * Commit matrix data
+	 * @param {object} requestBody Request body: application/json
+	 * @returns
+	 */
+	commit(requestBody) {
+		return axios.post(`${this.baseURL}matrix/commit`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
 }
