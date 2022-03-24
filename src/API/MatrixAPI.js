@@ -116,4 +116,22 @@ export class MatrixAPI {
 	commit(requestBody) {
 		return axios.post(`${this.baseURL}matrix/commit`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
+
+	/**
+	 * Attribute Options Count
+	 * @param {object} requestBody Request body: application/json
+	 * @returns
+	 */
+	attributeOptionsCount(requestBody) {
+		return axios.post(`${this.baseURL}matrix/attribute/options/count`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Attribute Options List
+	 * @param {object} requestBody Request body: application/json
+	 * @returns
+	 */
+	attributeOptionsList(requestBody) {
+		return axios.post(`${this.baseURL}matrix/attribute/options/list`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
 }
