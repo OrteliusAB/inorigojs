@@ -23,7 +23,7 @@ export class MiscellaneousAPI {
 
 	/**
 	 * Trigger an execution of a Method, Class or Function
-	 * @param {object} requestBody - Body example {"target": "string", "commit": true, "dataContextID": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "arguments": [{}]}
+	 * @param {{ target: string, commit: boolean, dataContextID: string, arguments: [{}]} } requestBody - Request Payload
 	 * @returns {object} - Response
 	 */
 	excecute(requestBody) {
@@ -32,7 +32,7 @@ export class MiscellaneousAPI {
 
 	/**
 	 * Register an activity to the user activity log
-	 * @param {object} requestBody -  Bode example: {"activityID": 0, "activity": "string", "eventType": "string", "userID": "string", "targetID": { "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "dataType": "string" }, "details": "string"}
+	 * @param {{ activityID: number, activity: string, eventType: string, userID: string, targetID: { id: "string", dataType: string }, details: string }} requestBody - Request Payload
 	 * @returns {object} - Response
 	 */
 	registerActivity(requestBody) {

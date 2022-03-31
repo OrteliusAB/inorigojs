@@ -204,7 +204,7 @@ export class KnowledgeSetAPI {
 	 * @param {boolean} compactpaths - Compact Paths
 	 * @param {boolean} allowCache - Optional parameter. Allow data to be read from cache?
 	 * @param {boolean} replaceidbypresentation - Optional parameter. Replace all ids by presentations?
-	 * @param {boolean} mediaType - Type of file: 'text/csv' OR 'application/vnd.ms-excel ' OR 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+	 * @param {string} mediaType - Type of file: 'text/csv' OR 'application/vnd.ms-excel ' OR 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 	 * @returns {object} - Response
 	 */
 	exportToFile(uuid, metaData, context, isDistinct, page, pagesize, compactpaths, allowCache, replaceidbypresentation, mediaType) {
@@ -218,8 +218,9 @@ export class KnowledgeSetAPI {
 			allowCache,
 			replaceidbypresentation
 		}
-		this.parentAPI.setDefaultRequestHeader("Accept", mediaType)
-		return axios.get(`${this.parentAPI.BASE_URL_API}knowledgeset/file/${uuid}${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = mediaType
+		return axios.get(`${this.parentAPI.BASE_URL_API}knowledgeset/file/${uuid}${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
 
 	/**
@@ -246,13 +247,10 @@ export class KnowledgeSetAPI {
 			allowCache,
 			replaceidbypresentation
 		}
-		this.parentAPI.setDefaultRequestHeader("Accept", "application/json")
-		this.parentAPI.setDefaultRequestHeader("Content-Type", "application/json")
-		return axios.post(
-			`${this.parentAPI.BASE_URL_API}knowledgeset/objects/${uuid}${this.parentAPI._buildURIParams(uriParams)}`,
-			{},
-			this.parentAPI.DEFAULTCONFIG
-		)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = "application/json"
+		customConfig.headers["Content-Type"] = "application/json"
+		return axios.post(`${this.parentAPI.BASE_URL_API}knowledgeset/objects/${uuid}${this.parentAPI._buildURIParams(uriParams)}`, {}, customConfig)
 	}
 
 	/**

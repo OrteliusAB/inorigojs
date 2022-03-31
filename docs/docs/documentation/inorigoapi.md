@@ -207,7 +207,7 @@ getAttributeReferenceName(attributeKey, definitionID, detailed = false)   |    R
 ## Module
 The Module API allows you to execute operations in the Inorigo module web services:
 ```javascript
-const coreAPI = api.getModuleAPI()
+const moduleAPI = api.getModuleAPI()
 ```
 
 The following functions are supported:
@@ -222,7 +222,7 @@ deleteDependency(requestBody)   |   Remove a registered dependency from the spec
 ## Favorite
 The Favorite API allows you to execute operations in the Inorigo favorite web services:
 ```javascript
-const coreAPI = api.getFavoriteAPI()
+const favoriteAPI = api.getFavoriteAPI()
 ```
 
 The following functions are supported:
@@ -236,7 +236,7 @@ deleteFavorite(uuid)    |   Delete a user favorite
 ## Miscellaneous
 The Miscellaneous API allows you to execute operations in the Inorigo Miscellaneous web services:
 ```javascript
-const coreAPI = api.getMiscellaneousAPI()
+const miscellaneousAPI = api.getMiscellaneousAPI()
 ```
 
 The following functions are supported:
@@ -252,7 +252,7 @@ getRelationIcon(direction, relationType, relationID)    |   Get the icon for a i
 ## Theme
 The Theme API allows you to execute operations in the Inorigo theme web services:
 ```javascript
-const coreAPI = api.getThemeAPI()
+const themeAPI = api.getThemeAPI()
 ```
 
 The following functions are supported:

@@ -15,7 +15,7 @@ export class ModuleAPI {
 
 	/**
 	 * Remove a registered dependency from the specified requester
-	 * @param {*} requestBody
+	 * @param {{ requesterID: string, resourceDataType: string, resourceID: string }} requestBody - Request Payload
 	 * @returns
 	 */
 	deleteDependency(requestBody) {
@@ -45,7 +45,7 @@ export class ModuleAPI {
 
 	/**
 	 * Register that a requester is depnding on some resource
-	 * @param {object} requestBody - Example: {"requesterID": "string", "resourceDataType": "string", "resourceID": "string"}
+	 * @param {{ requesterID: string, resourceDataType: string, resourceID: string }} requestBody - Request Payload
 	 * @returns {object} - Response
 	 */
 	registerDependency(requestBody) {
@@ -55,7 +55,7 @@ export class ModuleAPI {
 	/**
 	 * Submits a request that an external module is to be added to the system.
 	 * Note that the module is not enabled until the request is approved by a system administrator
-	 * @param {*} requestBody
+	 * @param {{ name: string, description: string, externalAddress: string, iconData: string, mimeType: string, integrations: [{string}], dataTypes: [{string}], variants: [{string}] }} requestBody - Request Payload
 	 * @returns {object} - Response
 	 */
 	registerModule(requestBody) {

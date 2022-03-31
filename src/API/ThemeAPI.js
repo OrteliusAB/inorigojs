@@ -22,9 +22,10 @@ export class ThemeAPI {
 		const uriParams = {
 			class: cssClass
 		}
-		this.parentAPI.setDefaultRequestHeader("Accept", null)
-		this.parentAPI.setDefaultRequestHeader("Content-Type", "text/csv")
-		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/default${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = null
+		customConfig.headers["Content-Type"] = "text/css"
+		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/default${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
 
 	/**
@@ -52,9 +53,10 @@ export class ThemeAPI {
 		const uriParams = {
 			class: cssClass
 		}
-		this.parentAPI.setDefaultRequestHeader("Accept", null)
-		this.parentAPI.setDefaultRequestHeader("Content-Type", "text/csv")
-		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/portal${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = null
+		customConfig.headers["Content-Type"] = "text/css"
+		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/portal${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
 
 	/**
@@ -66,9 +68,10 @@ export class ThemeAPI {
 		const uriParams = {
 			class: cssClass
 		}
-		this.parentAPI.setDefaultRequestHeader("Accept", null)
-		this.parentAPI.setDefaultRequestHeader("Content-Type", "text/csv")
-		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/session${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = null
+		customConfig.headers["Content-Type"] = "text/css"
+		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/session${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
 
 	/**
@@ -98,9 +101,10 @@ export class ThemeAPI {
 		const uriParams = {
 			class: cssClass
 		}
-		this.parentAPI.setDefaultRequestHeader("Accept", null)
-		this.parentAPI.setDefaultRequestHeader("Content-Type", "text/csv")
-		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/${id}${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = null
+		customConfig.headers["Content-Type"] = "text/css"
+		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/${id}${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
 
 	/**
@@ -119,16 +123,17 @@ export class ThemeAPI {
 			highlightColor,
 			theme
 		}
-		this.parentAPI.setDefaultRequestHeader("Accept", "image/svg+xml")
-		return axios.get(`${this.parentAPI.BASE_URL_API}theme/image/${key}${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = "image/svg+xml"
+		return axios.get(`${this.parentAPI.BASE_URL_API}theme/image/${key}${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
 
 	/**
 	 * Get themed image
 	 * @param {string} image - Image Name.
-	 * @param {string} mainColor - Optional Main Color.
-	 * @param {string} accentColor - Optional Accent Color.
-	 * @param {string} highlightColor - Optional Highlight Color.
+	 * @param {string} [mainColor] - Main Color.
+	 * @param {string} [accentColor] - Accent Color.
+	 * @param {string} [highlightColor] - Highlight Color.
 	 * @param {string} theme - Theme.
 	 * @returns
 	 */
@@ -140,8 +145,9 @@ export class ThemeAPI {
 			highlightColor,
 			theme
 		}
-		this.parentAPI.setDefaultRequestHeader("Accept", "image/svg+xml")
-		return axios.get(`${this.parentAPI.BASE_URL_API}theme/timage${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = "image/svg+xml"
+		return axios.get(`${this.parentAPI.BASE_URL_API}theme/timage${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
 
 	/**
@@ -165,17 +171,18 @@ export class ThemeAPI {
 	 * @returns {object} - Response
 	 */
 	getWorkbenchStylesheet() {
-		this.parentAPI.setDefaultRequestHeader("Accept", null)
-		this.parentAPI.setDefaultRequestHeader("Content-Type", "text/css")
-		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/workbench`, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = null
+		customConfig.headers["Content-Type"] = "text/css"
+		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/workbench`, customConfig)
 	}
 
 	/**
 	 * Apply theme on any text. Like svg, html etc
-	 * @param {string} mainColor - Optional Main Color.
-	 * @param {string} accentColor - Optional Accent Color.
-	 * @param {string} highlightColor - Optional Highlight Color.
-	 * @param {object} requestBody - Required Request Body
+	 * @param {string} [mainColor] - Main Color.
+	 * @param {string} [accentColor] - Accent Color.
+	 * @param {string} [highlightColor] - Highlight Color.
+	 * @param {object} requestBody - Request Body
 	 * @param {object} contentType - Type of media in input param requestBody, options: 'image/svg+xml' (default) OR 'text/html'
 	 * @returns {object} - Response
 	 */
@@ -185,8 +192,9 @@ export class ThemeAPI {
 			accentColor,
 			highlightColor
 		}
-		this.parentAPI.setDefaultRequestHeader("Accept", null)
-		this.parentAPI.setDefaultRequestHeader("Content-Type", contentType)
-		return axios.post(`${this.parentAPI.BASE_URL_API}theme/apply${this.parentAPI._buildURIParams(uriParams)}`, requestBody, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = null
+		customConfig.headers["Content-Type"] = contentType
+		return axios.post(`${this.parentAPI.BASE_URL_API}theme/apply${this.parentAPI._buildURIParams(uriParams)}`, requestBody, customConfig)
 	}
 }
