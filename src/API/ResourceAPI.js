@@ -34,7 +34,7 @@ export class ResourceAPI {
 	/**
 	 * Creates an array of resources in inorigo
 	 * @param {boolean} ignorewarnings - Ignore Warnings
-	 * @param { Array<{ id: string, dataType: string, presentation: string, fromTime: string, toTime: string, iconUrl: string, name: string, type: string, extension: string, size: string, data: Array<{string}> }> } requestBody - Request Payload (array)
+	 * @param { Array<{ id: string, dataType: string, presentation: string, fromTime: string, toTime: string, iconUrl: string, name: string, type: string, extension: string, size: string, data: string }> } requestBody - Request Payload (array)
 	 * @return {object} - Response
 	 */
 	createResource(ignorewarnings, requestBody) {
@@ -48,7 +48,7 @@ export class ResourceAPI {
 	/**
 	 * Updates an array of resources from inorigo
 	 * @param {boolean} ignorewarnings - Ignore Warnings
-	 * @param { Array<{ id: string, dataType: string, presentation: string, fromTime: string, toTime: string, iconUrl: string, name: string, type: string, extension: string, size: string, data: Array<{string}> }> } requestBody - Request Payload (array)
+	 * @param { Array<{ id: string, dataType: string, presentation: string, fromTime: string, toTime: string, iconUrl: string, name: string, type: string, extension: string, size: string, data: {string} }> } requestBody - Request Payload (array)
 	 * @return {object} - Response
 	 */
 	updateResource(ignorewarnings, requestBody) {
