@@ -134,4 +134,13 @@ export class MatrixAPI {
 	attributeOptionsList(requestBody) {
 		return axios.post(`${this.baseURL}matrix/attribute/options/list`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
+
+	/**
+	 * Attribute Parse Values
+	 * @param {object} requestBody Request body: application/json
+	 * @returns
+	 */
+	attributeParseValues(requestBody) {
+		return axios.post(`${this.baseURL}matrix/attribute/parse/values`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
 }
