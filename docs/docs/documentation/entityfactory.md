@@ -19,7 +19,7 @@ addUpdateToTransaction(transaction, data)   |   Adds an entity object to the tra
 Consider the following example to get an idea of how a transaction may be used in practice.
 ```javascript
 const entityTypes = new InorigoEnums().entityTypes()
-const entityOne = new Entity(entityTypes.ASSOCIATION_INSTANCE, "00000000-0000-0000-0000-000000000000")
+const entityOne = new Entity(entityTypes.ASSOCIATION, "00000000-0000-0000-0000-000000000000")
 .setDefinition(entityTypes.ASSOCIATION_DEFINITION, "11111111-1111-1111-1111-111111111111")
 .setValues({
     "22222222-2222-2222-2222-222222222222": "I am a value."

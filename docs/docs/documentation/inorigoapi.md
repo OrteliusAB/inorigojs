@@ -58,6 +58,10 @@ setRuntimeVariable(vrid, name, type, element, value)   |   Set a runtime variabl
 lockSelection(vrid, where)   |   Lock the selection in a given set of filterboxes.
 unlockSelection(vrid, where)   |   Unlock the selection in a given set of filterboxes.
 focusComponent(vrid, component)   |   Focus on a given component.
+setComponentReadOnly(vrid, component, readonly) |   Set a component read only
+setComponentVisible(vrid, component, visible)   |   Set the visibility of a component
+setComponentEnabled(vrid, component, enabled)   |   Set a component enabled
+triggerAction(vrid, action, entityType, entityUUID, where)  |   Trigger an interactive action to be performed for an entity
 
 ## Knowledgeset
 The knowledgeset API allows you to retrieve knowledgesets and meta data about knowledgesets. To access the API you need to first retrieve an instance of it from your API instance like so:
@@ -78,6 +82,9 @@ getAvailable()   |   Retrieves a list of all available knowledgesets.
 query(uuid, query, metadata, context, parameters, allowCache)   |   Executes a SQL Server query on top of the result of a given knowledgeset and retrieves the result.
 countRows(uuid, isDistinct)   |   Retrieves the amount of rows in a knowledgeset.
 getSchedulingStatus()   |   Retrieves the scheduling status for all knowledgeset caches.
+exportToFile(uuid, metaData, context, isDistinct, page, pagesize, compactpaths, allowCache, replaceidbypresentation, mediaType) |   Export knowledgeset to a file, as .CSV or Excel format, filename will be same as knowledgeset name.
+getResultAsObjects(uuid, metadata, context, distinct, page, pagesize, compactpaths, allowCache, replaceidbypresentation)    |   Execute a Knowledge Set. Result as Json Objects.
+searchResultAsObjects(uuid, text, fuzzy, metaData, page, pagesize, compactpaths, allowCache, searchIDs, includedColumns, excludedColumns, replaceidbypresentation)  |   Search Knowledge Set for text occurrences. Result as Json Objects.
 
 ## Entity
 The entity API allows you to execute CRUD operations in Inorigo. To access the API you need to first retrieve an instance of it from your API instance like so:
@@ -89,6 +96,7 @@ The following functions are supported:
 Function | Description
 --- | ---
 generateUUID(count)   |  Generates new valid UUIDs that is currently unused in Inorigo.
+generateEntity(type, count, definition) |   Generate one or several empty entities with ready made id.
 getEntity(entityType, uuid)   |  Retrieves information about a given entity in Inorigo.
 getSimplifiedEntity(entityType, uuid)   |  Retrieves information about a given entity in Inorigo, but in an easier to interpret format.
 getinstances(entityType, uuid, informationType, page, pagesize)   |  Retrieves a list of all instances of a given definition.
@@ -118,6 +126,7 @@ search(text, options)   |  Search Find entities by name / presentation. The sear
 getAttribute(entityType, entityUUID, attributeUUID)   |  Retrieves attribute meta data, including inheritance structure
 getUserAuthorization(entityType, entityUUID, userUUID)   |  Retrieves user permissions for a given user
 getCollateralDependants(entityType, entityUUID)   |  Retrieves collateral dependants for a given entity
+getGranted(type, entityId, variant, actions, userId, contextID) |   Query the granted actions for a class, variant or entity
 
 ## Resource
 The resource API allows you to execute CRUD operations for resources (files) stored in Inorigo. To access the API you need to first retrieve an instance of it from your API instance like so:
@@ -131,7 +140,8 @@ Function | Description
 getResource(uuid)   |    Retrieves a resource from Inorigo
 deleteResource(uuid)   |    Deletes a resource from Inorigo
 createResource(resourceJSONArray)   |   Creates a resource in Inorigo
-updateResource(resourceJSONArray)   |   Updates a resource in Inorigo   
+updateResource(resourceJSONArray)   |   Updates a resource in Inorigo  
+getResourceData(key, attachment)    |   Get the data of the resource 
 
 ## Legacy
 The legacy API allows you to execute operations in the Inorigo legacy web services:
@@ -193,3 +203,72 @@ getCategoryIconUrl(category, size)   |    Retrives the Icon URL for a given cate
 getInorigoDataTypes(primitives = false)   |    Retrives the known data types from Inorigo
 getExpressionFunctions()   |    Retrives the known Expression Functions from Inorigo
 getAttributeReferenceName(attributeKey, definitionID, detailed = false)   |    Retrieves the reference name for an Inorigo attribute
+
+## Module
+The Module API allows you to execute operations in the Inorigo module web services:
+```javascript
+const moduleAPI = api.getModuleAPI()
+```
+
+The following functions are supported:
+Function | Description
+--- | ---
+registerModule(requestBody) |   Submits a request that an external module is to be added to the system
+registerDependency(requestBody) |   Register that a requester is depnding on some resource
+getModule(enabled)  |   List the available modules
+deleteModule(uuid)  |   Delete operation that marks a module for removal. Note that the module is not removed until a system administrator appproves the request
+deleteDependency(requestBody)   |   Remove a registered dependency from the specified requester
+
+## Favorite
+The Favorite API allows you to execute operations in the Inorigo favorite web services:
+```javascript
+const favoriteAPI = api.getFavoriteAPI()
+```
+
+The following functions are supported:
+Function | Description
+--- | ---
+createFavorite(uuid, datatype)  |   Create a user favorite for id and data type of the entity
+getFavorite(uuid)   |   Get a user favorite object
+getFavorites(targetType)    |   List a users favorites - a list with all favorites
+deleteFavorite(uuid)    |   Delete a user favorite
+
+## Miscellaneous
+The Miscellaneous API allows you to execute operations in the Inorigo Miscellaneous web services:
+```javascript
+const miscellaneousAPI = api.getMiscellaneousAPI()
+```
+
+The following functions are supported:
+Function | Description
+--- | ---
+getUser()   |   Get info on the currently logged in user
+excecute(requestBody)   |   Trigger an execution of a Method, Class or Function
+registerActivity(requestBody)   |   Register an activity to the user activity log
+getDynamicImage(key, contextID, filter) |   Get a dynamic image. The filter parameter allows the image to be processed with the specified filter before it is returned
+getRelationDirectionIcon(direction) |   Get the general icon for a relation direction
+getRelationIcon(direction, relationType, relationID)    |   Get the icon for a identified relation
+
+## Theme
+The Theme API allows you to execute operations in the Inorigo theme web services:
+```javascript
+const themeAPI = api.getThemeAPI()
+```
+
+The following functions are supported:
+Function | Description
+--- | ---
+getCssDefault(cssClass) |   Get the default stylesheet
+getVariablesDefault()   |   Get the default theme
+getVariablesPortal()    |   Get the configured portal theme. The default theme is returned if no portal theme is configured
+getCssPortal(cssClass)  |   Get the configured portal stylesheet. The default stylesheet is returned if no portal theme is configured
+getCssSession(cssClass) |   Get the session stylesheet
+getVariablesSession()   |   Get the session theme
+getVariables(id)    |   Get a theme
+getCss(id, cssClass)    |   Get a theme
+getImage(key, mainColor, accentColor, highlightColor, theme)    |   
+getThemedImage(image, mainColor, accentColor, highlightColor, theme)    |   
+getTheme()  |   Get id and presentation for the available themes
+getWorkbenchTheme() |   Get the configured workbench theme. The default stylesheet is returned if no workbench theme is configured
+getWorkbenchStylesheet()    |   Get the configured workbench stylesheet. The default stylesheet is returned if no workbench theme is configured
+applyTheme(mainColor, accentColor, highlightColor, requestBody, contentType)    |   Apply theme on any text. Like svg, html etc
