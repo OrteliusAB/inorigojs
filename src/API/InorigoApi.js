@@ -11,6 +11,7 @@ import { FavoriteAPI } from "./FavoriteAPI"
 import { MiscellaneousAPI } from "./MiscellaneousAPI"
 import { ModuleAPI } from "./ModuleAPI"
 import { ThemeAPI } from "./ThemeAPI"
+import { MatrixAPI } from "./MatrixAPI"
 
 /*
  * This is the main API communication class.
@@ -220,6 +221,14 @@ export class InorigoAPI {
 
 	getThemeAPI() {
 		return new ThemeAPI(this)
+	}
+
+	/**
+	 * Retrieves a Matrix API.
+	 * @returns {MatrixAPI}
+	 */
+	getMatrixAPI() {
+		return new MatrixAPI(this)
 	}
 
 	/* Utility Functions */
