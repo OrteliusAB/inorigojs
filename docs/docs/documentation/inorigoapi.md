@@ -272,3 +272,27 @@ getTheme()  |   Get id and presentation for the available themes
 getWorkbenchTheme() |   Get the configured workbench theme. The default stylesheet is returned if no workbench theme is configured
 getWorkbenchStylesheet()    |   Get the configured workbench stylesheet. The default stylesheet is returned if no workbench theme is configured
 applyTheme(mainColor, accentColor, highlightColor, requestBody, contentType)    |   Apply theme on any text. Like svg, html etc
+
+## Matrix
+(Only available when Matrix plugin is installed)
+
+The Matrix API allows you to execute operations of the Inorigo Matrix web services:
+```javascript
+const matrixAPI = api.getMatrixAPI()
+```
+
+The following functions are supported:
+Function | Description
+--- | ---
+getMetaAndDataForApplicationComponent(applicationid, componentid, selection) |   Get Meta and Data for an Application Component
+getMetaAndDataForDefinition(definitiontype, definitionuuid, subclasses)   |   Get Meta and Data for a definition and its subclasses
+getMetaForApplicationComponent(applicationid, componentid)    |   Get Meta for an Application Component
+getMetaForDefinition(definitiontype, definitionuuid, subclasses)  |   Get Meta for a definition and its subclasses
+getDataForRequest(requestBody) | Get Data for a request
+getDataForRow(requestBody) | Get Data for one Matrix Row
+getMetaForFilter(requestBody) | Get Meta for a filter
+populate(requestBody) | Populate matrix data
+commit(requestBody) | Commit matrix data
+attributeOptionsCount(requestBody) | Attribute Options Count
+attributeOptionsList(requestBody) | Attribute Options List
+attributeParseValues(requestBody) | Attribute Parse Values
