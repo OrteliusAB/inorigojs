@@ -92,7 +92,7 @@ export class MatrixAPI {
 
 	/**
 	 * Get Meta for a filter
-	 * @param {object} requestBody Request body: application/json
+	 * @param {{dataType: string, sourceID: {uuid: string, type: string}, operator: string, parameters: Array<{id: string, dataType: string, name: string}>}} requestBody Request body: application/json
 	 * @returns
 	 */
 	getMetaForFilter(requestBody) {
