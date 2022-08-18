@@ -33,30 +33,32 @@ export class ResourceAPI {
 
 	/**
 	 * Creates an array of resources in inorigo
-	 * @param {boolean} ignorewarnings - Ignore Warnings
 	 * @param { Array<{ id: string, dataType: string, presentation: string, fromTime: string, toTime: string, iconUrl: string, name: string, type: string, extension: string, size: string, data: string }> } requestBody - Request Payload (array)
+	 * @param {boolean=} ignorewarnings - Ignore Warnings
 	 * @return {object} - Response
 	 */
-	createResource(ignorewarnings, requestBody) {
-		return axios.post(
-			`${this.parentAPI.BASE_URL_API}resource/resource${this.parentAPI._buildURIParams({ ignorewarnings })}`,
-			requestBody,
-			this.parentAPI.DEFAULTCONFIG
-		)
+	createResource(requestBody, ignorewarnings) {
+		let url = `${this.parentAPI.BASE_URL_API}resource/resource`
+		if (ignorewarnings !== undefined) {
+			url += `${this.parentAPI._buildURIParams({ ignorewarnings })}`
+		}
+
+		return axios.post(url, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
 	 * Updates an array of resources from inorigo
-	 * @param {boolean} ignorewarnings - Ignore Warnings
 	 * @param { Array<{ id: string, dataType: string, presentation: string, fromTime: string, toTime: string, iconUrl: string, name: string, type: string, extension: string, size: string, data: {string} }> } requestBody - Request Payload (array)
+	 * @param {boolean=} ignorewarnings - Ignore Warnings
 	 * @return {object} - Response
 	 */
-	updateResource(ignorewarnings, requestBody) {
-		return axios.put(
-			`${this.parentAPI.BASE_URL_API}resource/resource${this.parentAPI._buildURIParams({ ignorewarnings })}`,
-			requestBody,
-			this.parentAPI.DEFAULTCONFIG
-		)
+	updateResource(requestBody, ignorewarnings) {
+		let url = `${this.parentAPI.BASE_URL_API}resource/resource`
+		if (ignorewarnings !== undefined) {
+			url += `${this.parentAPI._buildURIParams({ ignorewarnings })}`
+		}
+
+		return axios.put(url, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
