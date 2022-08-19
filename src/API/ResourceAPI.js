@@ -33,19 +33,64 @@ export class ResourceAPI {
 
 	/**
 	 * Creates an array of resources in inorigo
-	 * @param {array} resourceJSONArray - array of resource DTOs
+	 * @param { Array<{ id: string, dataType: string, presentation: string, fromTime: string, toTime: string, iconUrl: string, name: string, type: string, extension: string, size: string, data: string }> } requestBody - Request Payload (array)
+	 * @param {boolean=} ignorewarnings - Ignore Warnings
 	 * @return {object} - Response
 	 */
-	createResource(resourceJSONArray) {
-		return axios.post(`${this.parentAPI.BASE_URL_API}resource/resource`, resourceJSONArray, this.parentAPI.DEFAULTCONFIG)
+	createResource(requestBody, ignorewarnings) {
+		let url = `${this.parentAPI.BASE_URL_API}resource/resource`
+		if (ignorewarnings !== undefined) {
+			url += `${this.parentAPI._buildURIParams({ ignorewarnings })}`
+		}
+
+		return axios.post(url, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
 	 * Updates an array of resources from inorigo
-	 * @param {array} resourceJSONArray - array of resource DTOs
+	 * @param { Array<{ id: string, dataType: string, presentation: string, fromTime: string, toTime: string, iconUrl: string, name: string, type: string, extension: string, size: string, data: {string} }> } requestBody - Request Payload (array)
+	 * @param {boolean=} ignorewarnings - Ignore Warnings
 	 * @return {object} - Response
 	 */
-	updateResource(resourceJSONArray) {
-		return axios.put(`${this.parentAPI.BASE_URL_API}resource/resource`, resourceJSONArray, this.parentAPI.DEFAULTCONFIG)
+	updateResource(requestBody, ignorewarnings) {
+		let url = `${this.parentAPI.BASE_URL_API}resource/resource`
+		if (ignorewarnings !== undefined) {
+			url += `${this.parentAPI._buildURIParams({ ignorewarnings })}`
+		}
+
+		return axios.put(url, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Get the data of the resource
+	 * @param {string} key - The id or name of the resource.
+	 * @param {boolean} attachment - Optional parameter used to set the disposition of the response to attachement (file). Default is false.
+	 * @returns {object}
+	 */
+	getResourceData(key, attachment = false) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}resource/data/${key}${this.parentAPI._buildURIParams({ attachment })}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Is image to be inverted on dark backgrounds?
+	 * @param {string} key - The id or name of the resource.
+	 * @returns {boolean} - true | false
+	 */
+	getInvertOnDark(key) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = "text/plain"
+		return axios.get(`${this.parentAPI.BASE_URL_API}resource/invert/on/dark/${key}`, customConfig)
+	}
+
+	/**
+	 * set image to be inverted on dark backgrounds or not
+	 * @param {string} key
+	 * @param {boolean} invert
+	 * @returns {boolean} - true | false
+	 */
+	setInvertOnDark(key, invert) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = "text/plain"
+		return axios.post(`${this.parentAPI.BASE_URL_API}resource/invert/on/dark/${key}?invert=${invert}`, {}, customConfig)
 	}
 }

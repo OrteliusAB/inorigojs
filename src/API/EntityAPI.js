@@ -540,4 +540,41 @@ export class EntityAPI {
 	getPresentations(entityArray) {
 		return axios.post(`${this.parentAPI.BASE_URL_API}entity/presentations/`, entityArray, this.parentAPI.DEFAULTCONFIG)
 	}
+
+	/**
+	 * Query the granted actions for a class, variant or entity
+	 * @param {string} type - The data type to get granted actions for.
+	 * @param {string} entityId - Optional id of an entity to get granted actions for
+	 * @param {string} variant - Optional data object variant to get granted actions for. Note: Only valid when type is GsGenericDataObject
+	 * @param {string} actions - Optional actions to get grants for, as a comma-separated string. Defaults to all actions
+	 * @param {string} userId - {uuid} Optional user to get authorizations for. Defaults to the user making the API call
+	 * @param {string} contextID - Optional context id. Defaults to the current request data context
+	 * @returns {object} - Response
+	 */
+	getGranted(type, entityId, variant, actions, userId, contextID) {
+		const uriParams = {
+			type,
+			entityId,
+			variant,
+			actions,
+			userId,
+			contextID
+		}
+		return axios.get(`${this.parentAPI.BASE_URL_API}entity/granted/${type}${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Generate one or several empty entities with ready made id
+	 * @param {string} type - The type of entity to generate
+	 * @param {number} count - Number of entities to generate. Defaults to 1, maximum allowed value is 1000
+	 * @param {string} definition - The uuid of the definition to base the generated entity on. Example : 492C2918-E33E-C6E2-317C-A75300C0D105
+	 * @returns {object} - Response
+	 */
+	generateEntity(type, count, definition) {
+		const uriParams = {
+			count,
+			definition
+		}
+		return axios.get(`${this.parentAPI.BASE_URL_API}entity/${type}/generate${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+	}
 }

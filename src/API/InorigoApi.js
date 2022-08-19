@@ -7,6 +7,11 @@ import { ResourceAPI } from "./ResourceAPI"
 import { ShortcutAPI } from "./ShortcutAPI"
 import { VersoRuntimeAPI } from "./VersoRuntimeAPI"
 import { CoreAPI } from "./CoreAPI"
+import { FavoriteAPI } from "./FavoriteAPI"
+import { MiscellaneousAPI } from "./MiscellaneousAPI"
+import { ModuleAPI } from "./ModuleAPI"
+import { ThemeAPI } from "./ThemeAPI"
+import { MatrixAPI } from "./MatrixAPI"
 
 /*
  * This is the main API communication class.
@@ -200,6 +205,30 @@ export class InorigoAPI {
 	 */
 	getCoreAPI() {
 		return new CoreAPI(this)
+	}
+
+	getFavoriteAPI() {
+		return new FavoriteAPI(this)
+	}
+
+	getMiscellaneousAPI() {
+		return new MiscellaneousAPI(this)
+	}
+
+	getModuleAPI() {
+		return new ModuleAPI(this)
+	}
+
+	getThemeAPI() {
+		return new ThemeAPI(this)
+	}
+
+	/**
+	 * Retrieves a Matrix API.
+	 * @returns {MatrixAPI}
+	 */
+	getMatrixAPI() {
+		return new MatrixAPI(this)
 	}
 
 	/* Utility Functions */

@@ -59,7 +59,7 @@ A typical example may look something like this:
 ```javascript
 const entityTypes = new InorigoEnums().entityTypes()
 const myEntity = new Entity()
-.setType(entityTypes.ASSOCIATION_INSTANCE)
+.setType(entityTypes.ASSOCIATION)
 .setDefinition(entityTypes.ASSOCIATION_DEFINITION, "00000000-0000-0000-0000-000000000000")
 .setValues({
     "11111111-1111-1111-1111-111111111111": "Some value"
