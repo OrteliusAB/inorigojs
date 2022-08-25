@@ -12,6 +12,7 @@ import { MiscellaneousAPI } from "./MiscellaneousAPI"
 import { ModuleAPI } from "./ModuleAPI"
 import { ThemeAPI } from "./ThemeAPI"
 import { MatrixAPI } from "./MatrixAPI"
+import { LosAPI } from "./LosAPI"
 
 /*
  * This is the main API communication class.
@@ -229,6 +230,14 @@ export class InorigoAPI {
 	 */
 	getMatrixAPI() {
 		return new MatrixAPI(this)
+	}
+
+	/**
+	 * Retrieves a LOS API.
+	 * @returns {LosAPI}
+	 */
+	getLosAPI() {
+		return new LosAPI(this)
 	}
 
 	/* Utility Functions */
