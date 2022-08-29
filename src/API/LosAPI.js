@@ -25,18 +25,13 @@ export class LosAPI {
 	}
 
 	/** Returns all projects */
-	getAllProject() {
+	getProjects() {
 		return axios.get(`${this.baseURL}customer/los/project/all`, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/** Create a project */
 	createProject(requestBody) {
 		return axios.post(`${this.baseURL}customer/los/project/create/basics`, requestBody, this.parentAPI.DEFAULTCONFIG)
-	}
-
-	/** Create houses */
-	createHouses(requestBody) {
-		return axios.post(`${this.baseURL}customer/los/project/create/houses`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/** Returns a project */
@@ -60,7 +55,7 @@ export class LosAPI {
 	}
 
 	/** Returns all existing versions */
-	getAllVersions() {
+	getVersions() {
 		return axios.get(`${this.baseURL}customer/los/version/all`, this.parentAPI.DEFAULTCONFIG)
 	}
 
@@ -73,5 +68,17 @@ export class LosAPI {
 			requestBody.sourceVersionID = sourceVersionID
 		}
 		return axios.post(`${this.baseURL}customer/los/version/clone`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/** Returns a list of distinct version house values for the given column */
+	getVersionHouseValues(columnName, versionId) {
+		const param = versionId ? "version=" + versionId + "&attribute=" + columnName.replaceAll(" ", "%20") : "attribute=" + columnName.replaceAll(" ", "%20")
+		return axios.get(`${this.baseURL}customer/los/version/house/values?` + param, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/** Returns a list of version hosues */
+	getVersionHouses(versionId) {
+		const param = versionId ? "?version=" + versionId : ""
+		return axios.get(`${this.baseURL}customer/los/version/houses` + param, this.parentAPI.DEFAULTCONFIG)
 	}
 }
