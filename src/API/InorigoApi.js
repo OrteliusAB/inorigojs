@@ -21,10 +21,10 @@ export class InorigoAPI {
 	/**
 	 * Inorigo API
 	 * @param {string} url - The URL of your inorigo instance.
-	 * @param {object} options - Options
-	 * @param {object} options.customHttpsAgent - A custom HTTPS agent that can used to, for example, surpress certificate related errors
-	 * @param {object} options.authorization - Authorization parameters (username, password). If provided these will be stored and sent in every subsequent request
-	 * @param {object} options.apiEndpoint - By default the latest version of the web API will typically be used. You can override this by providing your own endpoint.
+	 * @param {object=} options - Options
+	 * @param {object=} options.customHttpsAgent - A custom HTTPS agent that can used to, for example, surpress certificate related errors
+	 * @param {object=} options.authorization - Authorization parameters (username, password). If provided these will be stored and sent in every subsequent request
+	 * @param {object=} options.apiEndpoint - By default the latest version of the web API will typically be used. You can override this by providing your own endpoint.
 	 */
 	constructor(url, { customHttpsAgent, authorization, apiEndpoint }) {
 		this.IS_SECURE = true
