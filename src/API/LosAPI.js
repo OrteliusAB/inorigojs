@@ -60,9 +60,10 @@ export class LosAPI {
 	}
 
 	/** Create a new version */
-	cloneVersion(targetVersionName, sourceVersionID = null) {
+	cloneVersion(targetVersionName, fromDate, sourceVersionID = null) {
 		const uriParams = {
-			targetVersionName
+			targetVersionName,
+			fromDate
 		}
 		if (sourceVersionID) {
 			uriParams.sourceVersionID = sourceVersionID
