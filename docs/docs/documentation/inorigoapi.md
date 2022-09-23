@@ -317,6 +317,6 @@ updateProject(requestBody) | Update a project
 updateHouses(requestBody) | Update houses
 getRoles() | Returns all existing roles
 getVersions() | Returns all existing versions
-cloneVersion(targetVersionName, sourceVersionID = null) | Create a new version
+cloneVersion(requestBody) | Create a new version
 getVersionHouseValues(columnName, versionId) | Returns a list of distinct version house values for the given column
 getVersionHouses(versionId) | Returns a list of version hosues

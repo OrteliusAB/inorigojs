@@ -60,15 +60,8 @@ export class LosAPI {
 	}
 
 	/** Create a new version */
-	cloneVersion(targetVersionName, fromDate, sourceVersionID = null) {
-		const uriParams = {
-			targetVersionName,
-			fromDate
-		}
-		if (sourceVersionID) {
-			uriParams.sourceVersionID = sourceVersionID
-		}
-		return axios.post(`${this.baseURL}customer/los/version/clone${this.parentAPI._buildURIParams(uriParams)}`, {}, this.parentAPI.DEFAULTCONFIG)
+	cloneVersion(requestBody) {
+		return axios.post(`${this.baseURL}customer/los/version/clone`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/** Returns a list of distinct version house values for the given column */
