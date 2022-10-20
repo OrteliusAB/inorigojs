@@ -55,8 +55,8 @@ export class KnowledgeSetAPI {
 	 * @param {boolean} compactLeafs - Should leafs be compact when searching?
 	 * @param {boolean} allowCache - Allow cached data?
 	 * @param {boolean} searchIDs - Should IDs be searched?
-	 * @param {boolean} includedColumns - Columns of the knowledge set to be exclusively included
-	 * @param {boolean} excludedColumns - Columns of th knowledge set to be exclusively excluded
+	 * @param {[string]} includedColumns - Columns of the knowledge set to be exclusively included
+	 * @param {[string]} excludedColumns - Columns of th knowledge set to be exclusively excluded
 	 * @return {object} - Response
 	 */
 	searchResult(uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns) {
@@ -71,7 +71,7 @@ export class KnowledgeSetAPI {
 			excludedColumns
 		}
 		return axios.get(
-			`${this.parentAPI.BASE_URL_API}knowledgeset/${uuid}/tree/search/text${this.parentAPI._buildURIParams(uriParams)}`,
+			`${this.parentAPI.BASE_URL_API}knowledgeset/${uuid}/search/text${this.parentAPI._buildURIParams(uriParams)}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
 	}
@@ -107,8 +107,8 @@ export class KnowledgeSetAPI {
 	 * @param {boolean} compactLeafs - Should leafs be compact when searching?
 	 * @param {boolean} allowCache - Allow cached data?
 	 * @param {boolean} searchIDs - Should IDs be searched?
-	 * @param {boolean} includedColumns - Columns of the knowledge set to be exclusively included
-	 * @param {boolean} excludedColumns - Columns of th knowledge set to be exclusively excluded
+	 * @param {[string]} includedColumns - Columns of the knowledge set to be exclusively included
+	 * @param {[string]} excludedColumns - Columns of th knowledge set to be exclusively excluded
 	 * @return {object} - Response
 	 */
 	searchTreeResult(uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns) {
@@ -264,8 +264,8 @@ export class KnowledgeSetAPI {
 	 * @param {boolean} compactpaths - Compact Paths
 	 * @param {boolean} allowCache - Optional parameter. Allow data to be read from cache?
 	 * @param {boolean} searchIDs - Optional parameter. Should ID columns be searched?
-	 * @param {Array} includedColumns - Optional parameter. Columns to be included in search
-	 * @param {Array} excludedColumns - Optional parameter. Columns to be excluded from search
+	 * @param {[string]} includedColumns - Optional parameter. Columns to be included in search
+	 * @param {[string]} excludedColumns - Optional parameter. Columns to be excluded from search
 	 * @param {boolean} replaceidbypresentation - Optional parameter. Replace all ids by presentations?
 	 * @returns
 	 */
