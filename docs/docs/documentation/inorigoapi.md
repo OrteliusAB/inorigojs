@@ -296,3 +296,27 @@ commit(requestBody) | Commit matrix data
 attributeOptionsCount(requestBody) | Attribute Options Count
 attributeOptionsList(requestBody) | Attribute Options List
 attributeParseValues(requestBody) | Attribute Parse Values
+
+## LOS
+(Only available when LOS plugin is installed)
+
+The LOS API is a customer plugin which allows you to make customer specific calls to LOS web services:
+```javascript
+const losAPI = api.getLOSAPI()
+```
+
+The following functions are supported:
+Function | Description
+--- | ---
+getLocations() |   Returns all locations
+getPersons()   |   Returns all persons
+getProjects()    |   Returns all projects
+createProject(requestBody)  |   Create a project
+getProject(projectId) | Returns a project
+updateProject(requestBody) | Update a project
+updateHouses(requestBody) | Update houses
+getRoles() | Returns all existing roles
+getVersions() | Returns all existing versions
+cloneVersion(requestBody) | Create a new version
+getVersionHouseValues(columnName, versionId) | Returns a list of distinct version house values for the given column
+getVersionHouses(versionId) | Returns a list of version hosues
