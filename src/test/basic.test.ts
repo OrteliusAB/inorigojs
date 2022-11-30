@@ -16,6 +16,6 @@ test.skip("JSON", () => {
 
 	const output = JSON.stringify(input)
 
-	expect(output).eq('{"foo":"hello","bar":"world"}')
+	expect(output).eq("{\"foo\":\"hello\",\"bar\":\"world\"}")
 	assert.deepEqual(JSON.parse(output), input, "matches original")
 })
