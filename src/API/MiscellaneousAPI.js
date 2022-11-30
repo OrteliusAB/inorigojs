@@ -63,7 +63,7 @@ export class MiscellaneousAPI {
 		const uriParams = {
 			direction
 		}
-		return axios.get(`${this.parentAPI.BASE_URL_API}dynamic/image${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		return axios.get(`${this.parentAPI.BASE_URL_API}relation/direction/icon${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -79,6 +79,33 @@ export class MiscellaneousAPI {
 			relationType,
 			relationID
 		}
-		return axios.get(`${this.parentAPI.BASE_URL_API}dynamic/id/icon${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		return axios.get(`${this.parentAPI.BASE_URL_API}relation/id/icon${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Get the icon for a relation specifier
+	 * @param {string} direction - Relation direction
+	 * @param {string} specifier - Relation specifier (ID or name of an UnRel)
+	 * @returns {object}
+	 */
+	getRelationSpecifierIcon(direction, specifier) {
+		const uriParams = {
+			direction,
+			specifier
+		}
+		return axios.get(`${this.parentAPI.BASE_URL_API}relation/specifier/icon${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Get a static image
+	 * @param {string} key - Key (image name)
+	 * @param {string} filter - Optional filter name
+	 * @returns {object}
+	 */
+	getStaticImage(key, filter) {
+		const uriParams = {
+			filter
+		}
+		return axios.get(`${this.parentAPI.BASE_URL_API}static/image/${key}${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
 	}
 }

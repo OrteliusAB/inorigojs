@@ -1,0 +1,11 @@
+{
+	"environment": {
+		"INORIGO_BASE_URL": "http://localhost:8080/inorigoOusDevelop1/",
+		"INORIGO_USER": "sa2009",
+		"INORIGO_PWD": "p1pp1n!2009"
+	},
+	"ssl": {
+		"INTERMEDIATE_CERT": "sectigo-ca.cer",
+		"ROOT_CERT": "sectigo-root.cer"
+	}
+}

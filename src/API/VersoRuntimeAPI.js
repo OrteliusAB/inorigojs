@@ -291,4 +291,74 @@ export class VersoRuntimeAPI {
 			this.parentAPI.DEFAULTCONFIG
 		)
 	}
+
+	/**
+	 * Get a list of predefined commands and their states and details
+	 * @param {string} vrid -  The application runtime id
+	 * @returns {object} - Response
+	 */
+	getCommands(vrid) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/commands`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 *
+	 * @param {string} vrid - The application runtime id
+	 * @param {boolean} enabled - Enabled ?
+	 * @param {string} command - The command
+	 * @param {string} where - The component
+	 * @returns {object}
+	 */
+	setCommandEnabled(vrid, enabled, command, where) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/command/enabled/${enabled}${this.parentAPI._buildURIParams({
+				command,
+				where
+			})}`,
+			{},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	executeCommand(vrid, command, where) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/command/execute${this.parentAPI._buildURIParams({
+				command,
+				where
+			})}`,
+			{},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	setCommandVisible(vrid, command, where) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/command/visible/${this.parentAPI._buildURIParams({
+				command,
+				where
+			})}`,
+			{},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
+	 * Execute one of the predefined commands, by ID
+	 * @param {string} vrid - The application id
+	 * @param {string} command - The command ID to perform
+	 * @returns {object} - Response
+	 */
+	executePredefinedCommand(vrid, command) {
+		return axios.post(`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/exec/command/${command}`, {}, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Export component
+	 * @param {string} vrid - The application runtime id
+	 * @param {string} component - component
+	 * @returns {object} - Response
+	 */
+	exportComponent(vrid, component) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/export/${component}`, this.parentAPI.DEFAULTCONFIG)
+	}
 }

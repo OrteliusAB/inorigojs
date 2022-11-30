@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`Knowledgeset Module > snapshot 1`] = `
+{
+  "foo": "bar",
+}
+`;
