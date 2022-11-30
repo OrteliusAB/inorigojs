@@ -20,43 +20,43 @@ describe("resource...", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.skip("check connection [/knowledgeset/list]", async () => {
+	it.todo("check connection [/knowledgeset/list]", async () => {
 		assert.exists(resourceAPI)
 		// const list = await resourceAPI
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getResource(uuid) [/resource/resource/{id}]", async () => {
+	it.todo("getResource(uuid) [/resource/resource/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("deleteResource(uuid) [/resource/resource/{id}]", async () => {
+	it.todo("deleteResource(uuid) [/resource/resource/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("createResource(...) [/resource/resource]", async () => {
+	it.todo("createResource(...) [/resource/resource]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("updateResource(...) [/resource/resource]", async () => {
+	it.todo("updateResource(...) [/resource/resource]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getResourceData(...) [/resource/data/{key}]", async () => {
+	it.todo("getResourceData(...) [/resource/data/{key}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getInvertOnDark(key) [/resource/invert/on/dark/{key}]", async () => {
+	it.todo("getInvertOnDark(key) [/resource/invert/on/dark/{key}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("setInvertOnDark(...) [/resource/invert/on/dark/{key}]", async () => {
+	it.todo("setInvertOnDark(...) [/resource/invert/on/dark/{key}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})

@@ -20,68 +20,68 @@ describe("resource...", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.skip("check connection [??]", async () => {
+	it.todo("check connection [??]", async () => {
 		assert.exists(matrixAPI)
 		// const response = await matrixAPI.
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getMetaAndDataForApplicationComponent(...) [/matrix/meta/and/data/for/application/component/{applicationid}/{componentid}]", async () => {
+	it.todo("getMetaAndDataForApplicationComponent(...) [/matrix/meta/and/data/for/application/component/{applicationid}/{componentid}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getMetaAndDataForDefinition(...) [/matrix/meta/and/data/for/definition/{definitiontype}/{definitionuuid}]", async () => {
+	it.todo("getMetaAndDataForDefinition(...) [/matrix/meta/and/data/for/definition/{definitiontype}/{definitionuuid}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getMetaForApplicationComponent(...) [/matrix/meta/for/application/component/{applicationid}/{componentid}]", async () => {
+	it.todo("getMetaForApplicationComponent(...) [/matrix/meta/for/application/component/{applicationid}/{componentid}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getMetaForDefinition(...) [/matrix/meta/for/definition/{definitiontype}/{definitionuuid}]", async () => {
+	it.todo("getMetaForDefinition(...) [/matrix/meta/for/definition/{definitiontype}/{definitionuuid}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getDataForRequest(...) [/matrix/data/for/request]", async () => {
+	it.todo("getDataForRequest(...) [/matrix/data/for/request]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getDataForRow(...) [/matrix/data/for/row]", async () => {
+	it.todo("getDataForRow(...) [/matrix/data/for/row]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getMetaForFilter(...) [/matrix/meta/for/filter]", async () => {
+	it.todo("getMetaForFilter(...) [/matrix/meta/for/filter]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("populate(requestBody) [/matrix/populate]", async () => {
+	it.todo("populate(requestBody) [/matrix/populate]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("commit(requestBody) [/matrix/commit]", async () => {
+	it.todo("commit(requestBody) [/matrix/commit]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("attributeOptionsCount(requestBody) [/matrix/attribute/options/count]", async () => {
+	it.todo("attributeOptionsCount(requestBody) [/matrix/attribute/options/count]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("attributeOptionsList(requestBody) [/matrix/attribute/options/list]", async () => {
+	it.todo("attributeOptionsList(requestBody) [/matrix/attribute/options/list]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("attributeParseValues(requestBody) [/matrix/attribute/parse/values]", async () => {
+	it.todo("attributeParseValues(requestBody) [/matrix/attribute/parse/values]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})

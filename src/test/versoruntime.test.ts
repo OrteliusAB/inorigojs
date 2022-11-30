@@ -20,143 +20,143 @@ describe("resource...", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.skip("check connection [??]", async () => {
+	it.todo("check connection [??]", async () => {
 		assert.exists(versoRuntimeAPI)
 		// const response = await versoRuntimeAPI.
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("refresh(vrid) [/application/runtime/{id}/refresh]", async () => {
+	it.todo("refresh(vrid) [/application/runtime/{id}/refresh]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("calculate(vrid) [/application/runtime/{id}/calculate]", async () => {
+	it.todo("calculate(vrid) [/application/runtime/{id}/calculate]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
-	it.skip("clear(...) [/application/runtime/{id}/select/clear]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
-	})
-
-	it.skip("getValue(...) [/application/runtime/{id}/variable/value]", async () => {
+	it.todo("clear(...) [/application/runtime/{id}/select/clear]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("selectOne(...) [/application/runtime/{id}/select/one]", async () => {
+	it.todo("getValue(...) [/application/runtime/{id}/variable/value]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("selectMany(...) [/application/runtime/{id}/select/many]", async () => {
+	it.todo("selectOne(...) [/application/runtime/{id}/select/one]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("countAll(...) [/application/runtime/{id}/items/count/all]", async () => {
+	it.todo("selectMany(...) [/application/runtime/{id}/select/many]", async () => {
+		// const list = await KSAPI.countRows(uuid, isDistinct)
+		// expect(list.status).equals(200)
+	})
+
+	it.todo("countAll(...) [/application/runtime/{id}/items/count/all]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
 	// =====
-	it.skip("countSelected(...) [/application/runtime/{id}/items/count/selected]", async () => {
+	it.todo("countSelected(...) [/application/runtime/{id}/items/count/selected]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("countExplicit(...) [/application/runtime/{id}/items/count/explicit]", async () => {
+	it.todo("countExplicit(...) [/application/runtime/{id}/items/count/explicit]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("countImplicit(..) [/application/runtime/{id}/items/count/implicit]", async () => {
+	it.todo("countImplicit(..) [/application/runtime/{id}/items/count/implicit]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getScript(...) [/application/runtime/{id}/script]", async () => {
+	it.todo("getScript(...) [/application/runtime/{id}/script]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getTooltip(...) [/application/runtime/{id}/cell/tooltip]", async () => {
+	it.todo("getTooltip(...) [/application/runtime/{id}/cell/tooltip]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("evaluateExpression(..) [/application/runtime/{id}/evaluate]", async () => {
+	it.todo("evaluateExpression(..) [/application/runtime/{id}/evaluate]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("setRuntimeVariable(...) [/application/runtime/{id}/set/runtime/value]", async () => {
+	it.todo("setRuntimeVariable(...) [/application/runtime/{id}/set/runtime/value]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("lockSelection(...) [/application/runtime/{id}/lock/selection]", async () => {
+	it.todo("lockSelection(...) [/application/runtime/{id}/lock/selection]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("unlockSelection(...) [/application/runtime/{id}/unlock/selection]", async () => {
+	it.todo("unlockSelection(...) [/application/runtime/{id}/unlock/selection]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("focusComponent(...) [/application/runtime/{id}/component/focus/{component}]", async () => {
+	it.todo("focusComponent(...) [/application/runtime/{id}/component/focus/{component}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("setComponentReadOnly(...) [/application/runtime/{id}/component/readonly/{component}/{readonly}]", async () => {
+	it.todo("setComponentReadOnly(...) [/application/runtime/{id}/component/readonly/{component}/{readonly}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("triggerAction(...) [/application/runtime/{id}/entity/action/{action}]", async () => {
+	it.todo("triggerAction(...) [/application/runtime/{id}/entity/action/{action}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("setComponentVisible(...) [/application/runtime/{id}/component/visible/{component}/{visible}]", async () => {
+	it.todo("setComponentVisible(...) [/application/runtime/{id}/component/visible/{component}/{visible}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("setComponentEnabled(...) [/application/runtime/{id}/component/enabled/{component}/{enabled}]", async () => {
+	it.todo("setComponentEnabled(...) [/application/runtime/{id}/component/enabled/{component}/{enabled}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getCommands(vrid) [/application/runtime/{id}/commands]", async () => {
+	it.todo("getCommands(vrid) [/application/runtime/{id}/commands]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("setCommandEnabled(..)  [/application/runtime/{id}/component/command/enabled/{enabled}]", async () => {
+	it.todo("setCommandEnabled(..)  [/application/runtime/{id}/component/command/enabled/{enabled}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("executeCommand(..)  [/application/runtime/{id}/component/command/execute]", async () => {
+	it.todo("executeCommand(..)  [/application/runtime/{id}/component/command/execute]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("setCommandVisible(..)  [/application/runtime/{id}/component/command/visible/{visible}]", async () => {
+	it.todo("setCommandVisible(..)  [/application/runtime/{id}/component/command/visible/{visible}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("executePredefinedCommand(..)  [/application/runtime/{id}/exec/command/{command}]", async () => {
+	it.todo("executePredefinedCommand(..)  [/application/runtime/{id}/exec/command/{command}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("exportComponent(..)  [/application/runtime/{id}/export/{component}]", async () => {
+	it.todo("exportComponent(..)  [/application/runtime/{id}/export/{component}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})

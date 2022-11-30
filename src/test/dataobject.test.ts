@@ -19,63 +19,63 @@ describe("resource...", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.skip("check connection [/knowledgeset/list]", async () => {
+	it.todo("check connection [/knowledgeset/list]", async () => {
 		assert.exists(dataObectAPI)
 		// const list = await resourceAPI
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("listDataObjects(type) [/dataobject]", async () => {
+	it.todo("listDataObjects(type) [/dataobject]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getDataObject(id) [/dataobject/{id}]", async () => {
+	it.todo("getDataObject(id) [/dataobject/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getDataObjects(type) [/dataobject]", async () => {
+	it.todo("getDataObjects(type) [/dataobject]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getDataVariant(id) [/dataobject/variant/{id}]", async () => {
+	it.todo("getDataVariant(id) [/dataobject/variant/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("listDataVariants() [/dataobject/variant]", async () => {
+	it.todo("listDataVariants() [/dataobject/variant]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("createDataObject(...) [/dataobject]", async () => {
+	it.todo("createDataObject(...) [/dataobject]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("registerDataVariant(...) [/dataobject/variant]", async () => {
+	it.todo("registerDataVariant(...) [/dataobject/variant]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("updateDataObject(...) [/dataobject/{id}]", async () => {
+	it.todo("updateDataObject(...) [/dataobject/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("deleteDataObject(id) [/dataobject/{id}]", async () => {
+	it.todo("deleteDataObject(id) [/dataobject/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("deleteDataVariant(id) [/dataobject/variant/{id}]", async () => {
+	it.todo("deleteDataVariant(id) [/dataobject/variant/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getVariantName(id) NEW FUNCTION [/dataobject/{id}/variant/name]", async () => {
+	it.todo("getVariantName(id) NEW FUNCTION [/dataobject/{id}/variant/name]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})

@@ -20,28 +20,28 @@ describe("resource...", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.skip("check connection [??]", async () => {
+	it.todo("check connection [??]", async () => {
 		assert.exists(favoriteAPI)
 		// const list = await resourceAPI
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("deleteFavorite(uuid) [/favorite/{id}]", async () => {
+	it.todo("deleteFavorite(uuid) [/favorite/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getFavorites(targetType) [/favorite]", async () => {
+	it.todo("getFavorites(targetType) [/favorite]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getFavorite(uuid) [/favorite/{id}]", async () => {
+	it.todo("getFavorite(uuid) [/favorite/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("createFavorite(...) [/favorite]", async () => {
+	it.todo("createFavorite(...) [/favorite]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})

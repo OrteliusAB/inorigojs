@@ -20,111 +20,111 @@ describe("resource...", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.skip("check connection [/knowledgeset/list]", async () => {
+	it.todo("check connection [/knowledgeset/list]", async () => {
 		assert.exists(coreAPI)
 		// const list = await resourceAPI
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getEntityPresentation(...) [/core/presentation/{type}/{uuid}]", async () => {
+	it.todo("getEntityPresentation(...) [/core/presentation/{type}/{uuid}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getFilter(uuid) [/core/filter/definition/{uuid}]", async () => {
+	it.todo("getFilter(uuid) [/core/filter/definition/{uuid}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("runFilter(...) [/core/filter/run]", async () => {
+	it.todo("runFilter(...) [/core/filter/run]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getTranslation(...) [/core/translate]", async () => {
+	it.todo("getTranslation(...) [/core/translate]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getAttributeDefinition( [/core/attribute/definition]", async () => {
+	it.todo("getAttributeDefinition( [/core/attribute/definition]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getPossibleAttributeValues(...) [/core/attribute/value/list]", async () => {
+	it.todo("getPossibleAttributeValues(...) [/core/attribute/value/list]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getPossibleAttributeValuesCount(...)[/core/attribute/value/count]", async () => {
+	it.todo("getPossibleAttributeValuesCount(...)[/core/attribute/value/count]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getEntityTypeCount(...) [/core/count/entity/{entityType}]", async () => {
+	it.todo("getEntityTypeCount(...) [/core/count/entity/{entityType}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getRelationSpecifierName(...) [/core/relation/specifier/name]", async () => {
+	it.todo("getRelationSpecifierName(...) [/core/relation/specifier/name]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getEntityConfigByRequest(...) [/core/get/entity/config]", async () => {
+	it.todo("getEntityConfigByRequest(...) [/core/get/entity/config]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getEntityConfigTreeByRequest(...) [/core/get/entity/config/tree]", async () => {
+	it.todo("getEntityConfigTreeByRequest(...) [/core/get/entity/config/tree]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getCriterionOptions(...) [/core/criterion/options/list]", async () => {
+	it.todo("getCriterionOptions(...) [/core/criterion/options/list]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getCriterionOptionsCount(...) [/core/criterion/options/count]", async () => {
+	it.todo("getCriterionOptionsCount(...) [/core/criterion/options/count]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getEntityIconUrl(...) [/core/icon/url/{type}/{uuid}]", async () => {
+	it.todo("getEntityIconUrl(...) [/core/icon/url/{type}/{uuid}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getTypeIconUrl(...) [/core/type/icon/{type}]", async () => {
+	it.todo("getTypeIconUrl(...) [/core/type/icon/{type}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
-	it.skip("getCategoryIconUrl(...) [/core/type/icon/{category}]", async () => {
+	it.todo("getCategoryIconUrl(...) [/core/type/icon/{category}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
-	it.skip("getInorigoDataTypes(...) [/core/datatypes]", async () => {
+	it.todo("getInorigoDataTypes(...) [/core/datatypes]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
-	it.skip("getExpressionFunctions() [/core/expression/functions]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
-	})
-
-	it.skip("getAttributeReferenceName(...) [/core/attribute/reference/name/{attributeID}]", async () => {
+	it.todo("getExpressionFunctions() [/core/expression/functions]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getHardcodes()  NEW FUNCTION [/core/hardcodes]", async () => {
+	it.todo("getAttributeReferenceName(...) [/core/attribute/reference/name/{attributeID}]", async () => {
+		// const list = await KSAPI.countRows(uuid, isDistinct)
+		// expect(list.status).equals(200)
+	})
+
+	it.todo("getHardcodes()  NEW FUNCTION [/core/hardcodes]", async () => {
 		// Get the system hardcoded ids
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip(" []", async () => {
+	it.todo(" []", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})

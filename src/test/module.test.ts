@@ -20,58 +20,58 @@ describe("Module...", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.skip("check connection [/knowledgeset/list]", async () => {
+	it.todo("check connection [/knowledgeset/list]", async () => {
 		assert.exists(moduleAPI)
 		// const list = await moduleAPI
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getComponentModifiers() [/module/application/component/modifiers]", async () => {
+	it.todo("getComponentModifiers() [/module/application/component/modifiers]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getModule(...) [/module/{id}]", async () => {
+	it.todo("getModule(...) [/module/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getModuleState(...) NEW [/module/state/{id}]", async () => {
+	it.todo("getModuleState(...) NEW [/module/state/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getModuleStates() [/module/states]", async () => {
+	it.todo("getModuleStates() [/module/states]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("isModuleActive(...) [/module/active/{id}]", async () => {
+	it.todo("isModuleActive(...) [/module/active/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("registerDependency(...) [/module/dependency]", async () => {
+	it.todo("registerDependency(...) [/module/dependency]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("deleteDependency(...) [/module/dependency]", async () => {
+	it.todo("deleteDependency(...) [/module/dependency]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("deleteModule(...) [/module/{id}]", async () => {
+	it.todo("deleteModule(...) [/module/{id}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("registerModule(...) [/module]", async () => {
+	it.todo("registerModule(...) [/module]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getModule() [/module]", async () => {
+	it.todo("getModule() [/module]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})

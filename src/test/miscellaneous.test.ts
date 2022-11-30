@@ -24,42 +24,42 @@ describe("resource...", () => {
 		expect(response.status).equals(200)
 	})
 
-	it.skip("getUser() [/user]", async () => {
+	it.todo("getUser() [/user]", async () => {
 		const response = await miscellandeousAPI.getUser()
 		expect(response.status).equals(200)
 	})
 
-	it.skip("excecute(requestBody) [/execute]", async () => {
+	it.todo("excecute(requestBody) [/execute]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("registerActivity(...) [/activity]", async () => {
+	it.todo("registerActivity(...) [/activity]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getDynamicImage(...) [/dynamic/image/{key}]", async () => {
+	it.todo("getDynamicImage(...) [/dynamic/image/{key}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getRelationDirectionIcon(...) [/relation/direction/icon]", async () => {
+	it.todo("getRelationDirectionIcon(...) [/relation/direction/icon]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getRelationIcon(...) [/relation/id/icon]", async () => {
+	it.todo("getRelationIcon(...) [/relation/id/icon]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getRelationSpecifierIcon( [/relation/specifier/icon]", async () => {
+	it.todo("getRelationSpecifierIcon( [/relation/specifier/icon]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getStaticImage(...) [/static/image/{key}]", async () => {
+	it.todo("getStaticImage(...) [/static/image/{key}]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
