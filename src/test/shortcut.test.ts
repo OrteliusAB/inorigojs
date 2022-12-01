@@ -8,13 +8,12 @@ const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const shortcutAPI: ShortcutAPI = inorigoAPI.getShortcutAPI()
 
 describe("resource...", () => {
-	it("Utilities test, verify config read", () => {
+	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 		expect("2").equals("2")
 	})
 
-	it("initialize IniorigoAPI to endpoint", () => {
-		// console.log(inorigoAPI)
+	it("assert IniorigoAPI", () => {
 		assert.exists(inorigoAPI)
 	})
 

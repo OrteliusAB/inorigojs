@@ -3,24 +3,24 @@ import { InorigoAPI } from "../API/InorigoApi"
 import { EntityAPI } from "../API/EntityAPI"
 import { Utilities } from "../test-utils/utilities"
 
-let utilities: Utilities
-let inorigoAPI: InorigoAPI
-let entityAPI: EntityAPI
+const utilities: Utilities = new Utilities()
+const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
+const entityAPI: EntityAPI = inorigoAPI.getEntityAPI()
 
 describe("resource...", () => {
 	it("Utilities test, verify config read", () => {
-		utilities = new Utilities()
+		// utilities = new Utilities()
 		assert.exists(utilities)
 	})
 
 	it("initialize IniorigoAPI to endpoint", () => {
-		inorigoAPI = utilities.getInorigoAPI()
+		// inorigoAPI = utilities.getInorigoAPI()
 		// console.log(inorigoAPI)
 		assert.exists(inorigoAPI)
 	})
 
 	it("check connection [DUMMY]", async () => {
-		entityAPI = inorigoAPI.getEntityAPI()
+		// entityAPI = inorigoAPI.getEntityAPI()
 		const response = await entityAPI.getPresentation("GsCube", "1B92405E-7DBA-41B5-0653-AE8900A01E90", "")
 		expect(response.status).equals(200)
 		expect("2").equals("2")
@@ -176,13 +176,15 @@ describe("resource...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	it.todo("getGranted(...) [/entity/granted/{type}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getGranted(...) [/entity/granted/{type}]", async () => {
+		const response = await entityAPI.getGranted("AsDefinition", "1800F333-2231-29D5-2E09-AC61013D95E0", "", "", "", "")
+		// console.log(response.data)
+		expect(response.status).equals(200)
 	})
 
-	it.todo("generateEntity(...) [/entity/{type}/generate]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("generateEntity(...) [/entity/{type}/generate]", async () => {
+		const response = await entityAPI.generateEntity("AsDefinition", 1, "065D3E1F-DF4E-2C8C-31DB-AB180089CA3E")
+		// console.log(response)
+		expect(response.status).equals(200)
 	})
 })

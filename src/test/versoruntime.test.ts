@@ -8,15 +8,12 @@ const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const versoRuntimeAPI: VersoRuntimeAPI = inorigoAPI.getVersoRuntimeAPI()
 
 describe("resource...", () => {
-	it("Utilities test, verify config read", () => {
-		// utilities = new Utilities()
+	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 		expect("2").equals("2")
 	})
 
-	it("initialize IniorigoAPI to endpoint", () => {
-		// inorigoAPI = utilities.getInorigoAPI()
-		// console.log(inorigoAPI)
+	it("assert IniorigoAPI", () => {
 		assert.exists(inorigoAPI)
 	})
 

@@ -72,6 +72,30 @@ class Utilities {
 			throw err
 		}
 	}
+
+	getTimestamp() {
+		const date = new Date()
+
+		// Results below assume UTC timezone - your results may vary
+		const options = {
+			year: "numeric",
+			month: "numeric",
+			day: "numeric",
+			hour: "numeric",
+			minute: "numeric",
+			second: "numeric",
+			hour12: false,
+			timeZone: "UTC"
+		}
+
+		// Specify default date formatting for language (locale)
+		return new Intl.DateTimeFormat("se-SE", options).format(date)
+	}
+
+	getISOTimestamp() {
+		const date = new Date()
+		return date.toISOString()
+	}
 }
 
 export { Utilities }

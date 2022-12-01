@@ -8,23 +8,20 @@ const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const miscellandeousAPI: MiscellaneousAPI = inorigoAPI.getMiscellaneousAPI()
 
 describe("resource...", () => {
-	it("Utilities test, verify config read", () => {
-		// utilities = new Utilities()
+	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
-		expect("2").equals("2")
 	})
 
-	it("initialize IniorigoAPI to endpoint", () => {
+	it("assert IniorigoAPI", () => {
 		assert.exists(inorigoAPI)
 	})
 
 	it("check connection [/user]", async () => {
 		const response = await miscellandeousAPI.getUser()
-		// console.debug(response.data)
 		expect(response.status).equals(200)
 	})
 
-	it.todo("getUser() [/user]", async () => {
+	it.skip("getUser() [/user]", async () => {
 		const response = await miscellandeousAPI.getUser()
 		expect(response.status).equals(200)
 	})

@@ -8,19 +8,16 @@ const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const moduleAPI: ModuleAPI = inorigoAPI.getModuleAPI()
 
 describe("Module...", () => {
-	it("Utilities test, verify config read", () => {
-		// utilities = new Utilities()
+	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 		expect("2").equals("2")
 	})
 
-	it("initialize IniorigoAPI to endpoint", () => {
-		// inorigoAPI = utilities.getInorigoAPI()
-		// console.log(inorigoAPI)
+	it("assert IniorigoAPI", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.todo("check connection [/knowledgeset/list]", async () => {
+	it("check connection [/knowledgeset/list]", async () => {
 		assert.exists(moduleAPI)
 		// const list = await moduleAPI
 		// expect(list.status).equals(200)

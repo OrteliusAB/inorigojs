@@ -9,12 +9,11 @@ const themeAPI: ThemeAPI = inorigoAPI.getThemeAPI()
 
 describe("resource...", () => {
 	it("Utilities test, verify config read", () => {
-		// utilities = new Utilities()
 		assert.exists(utilities)
 		expect("2").equals("2")
 	})
 
-	it("initialize IniorigoAPI to endpoint", () => {
+	it("assert IniorigoAPI", () => {
 		// inorigoAPI = utilities.getInorigoAPI()
 		// console.log(inorigoAPI)
 		assert.exists(inorigoAPI)
@@ -92,11 +91,6 @@ describe("resource...", () => {
 	})
 
 	it.todo("applyTheme(...) [/theme/apply]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
-	})
-
-	it.todo(" []", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})

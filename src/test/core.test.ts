@@ -8,22 +8,17 @@ const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const coreAPI: CoreAPI = inorigoAPI.getCoreAPI()
 
 describe("resource...", () => {
-	it("Utilities test, verify config read", () => {
-		// utilities = new Utilities()
+	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 		expect("2").equals("2")
 	})
 
-	it("initialize IniorigoAPI to endpoint", () => {
-		// inorigoAPI = utilities.getInorigoAPI()
-		// console.log(inorigoAPI)
+	it("assert IniorigoAPI", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.todo("check connection [/knowledgeset/list]", async () => {
+	it.todo("check connection []", async () => {
 		assert.exists(coreAPI)
-		// const list = await resourceAPI
-		// expect(list.status).equals(200)
 	})
 
 	it.todo("getEntityPresentation(...) [/core/presentation/{type}/{uuid}]", async () => {
@@ -120,11 +115,6 @@ describe("resource...", () => {
 
 	it.todo("getHardcodes()  NEW FUNCTION [/core/hardcodes]", async () => {
 		// Get the system hardcoded ids
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
-	})
-
-	it.todo(" []", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
