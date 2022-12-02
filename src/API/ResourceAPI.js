@@ -68,7 +68,11 @@ export class ResourceAPI {
 	 * @returns {object}
 	 */
 	getResourceData(key, attachment = false) {
-		return axios.get(`${this.parentAPI.BASE_URL_API}resource/data/${key}${this.parentAPI._buildURIParams({ attachment })}`, this.parentAPI.DEFAULTCONFIG)
+		const encodedKey = encodeURIComponent(key)
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}resource/data/${encodedKey}${this.parentAPI._buildURIParams({ attachment })}`,
+			this.parentAPI.DEFAULTCONFIG
+		)
 	}
 
 	/**
