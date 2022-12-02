@@ -82,6 +82,7 @@ export class ResourceAPI {
 	 */
 	getInvertOnDark(key) {
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = "text/plain"
 		const encodedKey = encodeURIComponent(key)
 		return axios.get(`${this.parentAPI.BASE_URL_API}resource/invert/on/dark/${encodedKey}`, customConfig)
@@ -95,6 +96,7 @@ export class ResourceAPI {
 	 */
 	setInvertOnDark(key, invert) {
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = "text/plain"
 		const encodedKey = encodeURIComponent(key)
 		return axios.post(`${this.parentAPI.BASE_URL_API}resource/invert/on/dark/${encodedKey}?invert=${invert}`, {}, customConfig)
