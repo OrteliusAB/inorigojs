@@ -63,13 +63,31 @@ describe("Module...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	it.todo("registerModule(...) [/module]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.only("registerModule(...) [/module]", async () => {
+		const requestBody: object = {
+			name: "VITEST_sMODULE",
+			description: "VITEST Register Module",
+			externalAddress: "http://test",
+			iconData:
+				"iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACz0lEQVRYCcVXvWsUURCf2WxCCk/S2MQzxFwUO+EMasAIGo1GQbG3CZhW0DKgYqd/gwEbKxFF8VuTwiBRuRzYCeaSkDvT2ATPIiSXfc7vXfbY29vNvux9+GDZfe/NzG/em4+dYdpmfC8UkqV15zIpvqiYUqyoW5HatQ0LMfFfoV0R2hyxemV3WM8PJ5OFMB4O2sgu/+52Smt3ZW+MlGoLojFeY94U2oeW3Xkn3bNnxc9Xo0B24dclRzmPiFTCT1zfnIsWW1fTfXtfeOVY3klmMX9dkfOs8eBAUQnIBoYXs3IDODkIlFJVSnmJG/HNzA6TdcW9Ca2AtvnG2o/mnDxIbTFHe+ch+IQ+bdnhGm3zIGB3TSW2nJwYobaxrpbq9nZXtulboqO9g3utcpzXGWpboH9WV+nlk8d0c3wsWg0Jb2DbSDJi+2iGEIrNUonmvszS9Ls3lP06SyWZGw/BtpHh4uAvzv/UoDNTHwgnjzOAbZfTqxk7gD59fK+Bl3LzNUy7u7poaPgsDZ+/ULMXtABsOyq3u4z3bk0EXrFt23Tk+CCdGhnV7zaZmw5gG1N/+zxTJbc31U+nz43SyTMjhJPHHU3NeiZKcSa3bBQC929PaG/3ezlMkD42qG8DptiJCaCgsQIgNnVCmGZ//wGwRI4dKeCVhiiYevuawsLw6XS1z3h5vd+xFXCFhCUiUwWMo8AF9L9h86MnhvTjNZGfLmzOc7l80TQXhAmJu4760UIBGVdAvXzARirOSRwejBI2kOqJIqnal/CumgdNgG2hdA7abMmaYFuo26lcOrcEswIimMDWNWFmIf9AKqJrlc1WfDBPDvTtG9f/AjQNkhSLrcAtY0hRqjGJtAK6OpWmASVzs5UAhm5Qtrqkyt8QdbqExY1mKgHZwHB7Ahy20pi4J/+vrRmUgHZoGiQyJhsSHYgwkaUbEV9fCLyaG8CiO1rRnv8D8ZlIJkXNeegAAAAASUVORK5CYII=",
+			mimeType: "image/png",
+			integrations: [],
+			dataTypes: [],
+			variants: []
+		}
+		const response = await moduleAPI.registerModule(requestBody)
+
+		expect(response.status).equals(200)
+
+		if (response.status === 200) {
+			const deleteResponse = await moduleAPI.deleteModule(response.data.uuid)
+			expect(deleteResponse.status).equals(204)
+		}
 	})
 
-	it.todo("getModule() [/module]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getModule() [/module]", async () => {
+		const response = await moduleAPI.getModule(true)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 })

@@ -7,23 +7,20 @@ const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const entityAPI: EntityAPI = inorigoAPI.getEntityAPI()
 
-describe("resource...", () => {
+describe("entity...", () => {
 	it("Utilities test, verify config read", () => {
 		// utilities = new Utilities()
 		assert.exists(utilities)
 	})
 
-	it("initialize IniorigoAPI to endpoint", () => {
-		// inorigoAPI = utilities.getInorigoAPI()
-		// console.log(inorigoAPI)
+	it("assert IniorigoAPI", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it("check connection [DUMMY]", async () => {
-		// entityAPI = inorigoAPI.getEntityAPI()
-		const response = await entityAPI.getPresentation("GsCube", "1B92405E-7DBA-41B5-0653-AE8900A01E90", "")
+	it("check connection [/entity/{type}/{id}/presentation]", async () => {
+		// const response = await entityAPI.getPresentation("GsCube", "BFBEAF8A-A2F7-273B-C8F1-AEB30064C93A", "")
+		const response = await entityAPI.getPresentation("GsCube", "BFBEAF8A-A2F7-273B-C8F1-AEB30064C93A")
 		expect(response.status).equals(200)
-		expect("2").equals("2")
 	})
 
 	it.todo("generateUUID(count) [/entity/generateid]", async () => {
