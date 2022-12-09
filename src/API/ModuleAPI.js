@@ -40,7 +40,12 @@ export class ModuleAPI {
 		const uriParams = {
 			enabled
 		}
-		return axios.get(`${this.parentAPI.BASE_URL_API}module${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		const param = this.parentAPI._buildURIParams(uriParams)
+		const baseurl = this.parentAPI.BASE_URL_API
+		const url = baseurl + "module" + param
+		return axios.get(url, this.parentAPI.DEFAULTCONFIG)
+
+		// return axios.get(`${this.parentAPI.BASE_URL_API}module${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -60,5 +65,16 @@ export class ModuleAPI {
 	 */
 	registerModule(requestBody) {
 		return axios.post(`${this.parentAPI.BASE_URL_API}module`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 *
+	 * @param {string} id - Module id
+	 * @returns {object} - Response
+	 */
+	isModuleActive(id) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = "*/*"
+		return axios.get(`${this.parentAPI.BASE_URL_API}module/active/${id}`, customConfig)
 	}
 }
