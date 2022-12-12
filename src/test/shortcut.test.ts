@@ -17,42 +17,11 @@ describe("resource...", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.todo("check connection [??]", async () => {
+	it.todo("assert shortcutAPI", async () => {
 		assert.exists(shortcutAPI)
-		// const list = await resourceAPI
-		// expect(list.status).equals(200)
 	})
 
 	it.todo("getClassifiedValuesList(definitionUUID, isDeep)", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
-	})
-
-	it.todo(" []", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
-	})
-
-	it.todo(" []", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
-	})
-	it.todo(" []", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
-	})
-
-	it.todo(" []", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
-	})
-
-	it.todo(" []", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
-	})
-
-	it.todo(" []", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})

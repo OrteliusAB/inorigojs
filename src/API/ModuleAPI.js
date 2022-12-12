@@ -36,16 +36,11 @@ export class ModuleAPI {
 	 * @param {boolean} enabled
 	 * @returns {object} - Response
 	 */
-	getModule(enabled) {
+	listModules(enabled) {
 		const uriParams = {
 			enabled
 		}
-		const param = this.parentAPI._buildURIParams(uriParams)
-		const baseurl = this.parentAPI.BASE_URL_API
-		const url = baseurl + "module" + param
-		return axios.get(url, this.parentAPI.DEFAULTCONFIG)
-
-		// return axios.get(`${this.parentAPI.BASE_URL_API}module${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		return axios.get(`${this.parentAPI.BASE_URL_API}module${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -76,5 +71,39 @@ export class ModuleAPI {
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
 		customConfig.headers["Accept"] = "*/*"
 		return axios.get(`${this.parentAPI.BASE_URL_API}module/active/${id}`, customConfig)
+	}
+
+	/**
+	 * Get module states for an application component.
+	 * @param {object} requestBody - Payload
+	 * @returns {object} - Response
+	 */
+	getModuleModifiers(requestBody) {
+		return axios.post(`${this.parentAPI.BASE_URL_API}module/application/component/modifiers`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Get one Module
+	 * @param {string} id - Module uuid
+	 * @returns {object} - Response
+	 */
+	getModule(id) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}module/${id}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Get Module State
+	 * @param {string} id - Module uuid
+	 * @returns {object} - Response
+	 */
+	getModuleState(id) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}module/state/${id}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Get all module states.
+	 */
+	getAllModuleStates() {
+		return axios.get(`${this.parentAPI.BASE_URL_API}module/states`, this.parentAPI.DEFAULTCONFIG)
 	}
 }

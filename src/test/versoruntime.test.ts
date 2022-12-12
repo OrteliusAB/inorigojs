@@ -57,7 +57,6 @@ describe("resource...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	// =====
 	it.todo("countSelected(...) [/application/runtime/{id}/items/count/selected]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
@@ -118,9 +117,10 @@ describe("resource...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	it.todo("setComponentVisible(...) [/application/runtime/{id}/component/visible/{component}/{visible}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("setComponentVisible(...) [/application/runtime/{id}/component/visible/{component}/{visible}]", async () => {
+		// how start an application to get the runtime id?
+		const response = await versoRuntimeAPI.setComponentVisible("3071d6ac-de72-4c8d-bf37-af6900d9fbd0", "D2A9A29A-8EE4-A00A-59A1-AEB4006CD5B8", true)
+		expect(response.status).equals(200)
 	})
 
 	it.todo("setComponentEnabled(...) [/application/runtime/{id}/component/enabled/{component}/{enabled}]", async () => {

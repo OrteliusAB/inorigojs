@@ -7,7 +7,7 @@ const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const moduleAPI: ModuleAPI = inorigoAPI.getModuleAPI()
 
-describe("Module...", () => {
+describe.skip("Module...", () => {
 	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 	})
@@ -18,35 +18,48 @@ describe("Module...", () => {
 
 	it("check connection [/knowledgeset/list]", async () => {
 		assert.exists(moduleAPI)
-		// const list = await moduleAPI
-		// expect(list.status).equals(200)
 	})
 
-	it.todo("getComponentModifiers() [/module/application/component/modifiers]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it("getComponentModifiers() [/module/application/component/modifiers]", async () => {
+		const payload = {
+			componentID: "D2A9A29A-8EE4-A00A-59A1-AEB4006CD5B8",
+			applicationID: "04b207a5-842f-3b26-54c9-af6900c86ad9"
+		}
+		const response = await moduleAPI.getModuleModifiers(payload)
+		expect(response.status).equals(200)
 	})
 
-	it.todo("getModule(...) [/module/{id}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it("getModule(...) [/module/{id}]", async () => {
+		const response = await moduleAPI.getModule("0a2af80e-4528-4688-8031-55c114cbfba7")
+		expect(response.status).equals(200)
 	})
 
-	it.todo("getModuleState(...) NEW [/module/state/{id}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it("getModuleState(...) [/module/state/{id}]", async () => {
+		const responseAllStates = await moduleAPI.getAllModuleStates()
+
+		let moduleId = ""
+		for (const item of responseAllStates.data) {
+			if (item.enabled && item.approved) {
+				moduleId = item.moduleID
+				break
+			}
+		}
+
+		const responseState = await moduleAPI.getModuleState(moduleId)
+		expect(responseState.status).equals(200)
 	})
 
-	it.todo("getModuleStates() [/module/states]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it("getModuleStates() [/module/states]", async () => {
+		const response = await moduleAPI.getAllModuleStates()
+		expect(response.status).equals(200)
 	})
 
-	it.only("isModuleActive(...) [/module/active/{id}]", async () => {
+	it("isModuleActive(...) [/module/active/{id}]", async () => {
 		const response = await moduleAPI.isModuleActive("0a2af80e-4528-4688-8031-55c114cbfba7")
 		expect(response.status).equals(200)
 	})
 
+	// does not work, get http status 401 for delete
 	it.skip("registerDependency(...) [/module/dependency]", async () => {
 		const payload = {
 			requesterID: "8057210C-395E-4D0A-93EC-FA58F4743638",
@@ -58,16 +71,25 @@ describe("Module...", () => {
 		expect(responseRegister.status).equals(204)
 
 		const responseDelete = await moduleAPI.deleteDependency(payload)
-
 		expect(responseDelete.status).equals(204)
 	})
 
-	it.todo("deleteDependency(...) [/module/dependency]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	// does not work, get http status 401 for delete
+	it.skip("deleteDependency(...) [/module/dependency]", async () => {
+		const payload = {
+			requesterID: "8057210C-395E-4D0A-93EC-FA58F4743638",
+			resourceDataType: "UnResource",
+			resourceID: "F754A777-A73B-4B91-8FA4-673D2C6045EC"
+		}
+		const responseRegister = await moduleAPI.registerDependency(payload)
+
+		expect(responseRegister.status).equals(204)
+
+		const responseDelete = await moduleAPI.deleteDependency(payload)
+		expect(responseDelete.status).equals(204)
 	})
 
-	it.skip("deleteModule(...) [/module/{id}]", async () => {
+	it("deleteModule(...) [/module/{id}]", async () => {
 		const requestBody: object = {
 			name: "VITEST_DELETE_MODULE",
 			description: "VITEST Delete Module",
@@ -87,7 +109,7 @@ describe("Module...", () => {
 		expect(deleteResponse.status).equals(204)
 	})
 
-	it.skip("registerModule(...) [/module]", async () => {
+	it("registerModule(...) [/module]", async () => {
 		const requestBody: object = {
 			name: "VITEST_REGISTER_MODULE",
 			description: "VITEST Register Module",
@@ -107,9 +129,8 @@ describe("Module...", () => {
 		expect(deleteResponse.status).equals(204)
 	})
 
-	it.skip("getModule() [/module]", async () => {
-		const response = await moduleAPI.getModule(true)
-		// console.dir(response.data)
+	it("getModule() [/module]", async () => {
+		const response = await moduleAPI.listModules(true)
 		expect(response.status).equals(200)
 	})
 })
