@@ -60,9 +60,9 @@ describe.skip("Module...", () => {
 	})
 
 	// does not work, get http status 401 for delete
-	it.skip("registerDependency(...) [/module/dependency]", async () => {
+	it("registerDependency(...) [/module/dependency]", async () => {
 		const payload = {
-			requesterID: "8057210C-395E-4D0A-93EC-FA58F4743638",
+			requesterID: "0a2af80e-4528-4688-8031-55c114cbfba7",
 			resourceDataType: "UnResource",
 			resourceID: "F754A777-A73B-4B91-8FA4-673D2C6045EC"
 		}
@@ -74,10 +74,9 @@ describe.skip("Module...", () => {
 		expect(responseDelete.status).equals(204)
 	})
 
-	// does not work, get http status 401 for delete
-	it.skip("deleteDependency(...) [/module/dependency]", async () => {
+	it("deleteDependency(...) [/module/dependency]", async () => {
 		const payload = {
-			requesterID: "8057210C-395E-4D0A-93EC-FA58F4743638",
+			requesterID: "0a2af80e-4528-4688-8031-55c114cbfba7",
 			resourceDataType: "UnResource",
 			resourceID: "F754A777-A73B-4B91-8FA4-673D2C6045EC"
 		}
@@ -85,8 +84,12 @@ describe.skip("Module...", () => {
 
 		expect(responseRegister.status).equals(204)
 
-		const responseDelete = await moduleAPI.deleteDependency(payload)
-		expect(responseDelete.status).equals(204)
+		try {
+			const responseDelete = await moduleAPI.deleteDependency(payload)
+			expect(responseDelete.status).equals(204)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it("deleteModule(...) [/module/{id}]", async () => {

@@ -7,7 +7,7 @@ const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const resourceAPI: ResourceAPI = inorigoAPI.getResourceAPI()
 
-describe("resource...", () => {
+describe.skip("resource...", () => {
 	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 	})

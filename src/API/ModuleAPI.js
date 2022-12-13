@@ -19,7 +19,9 @@ export class ModuleAPI {
 	 * @returns
 	 */
 	deleteDependency(requestBody) {
-		return axios.delete(`${this.parentAPI.BASE_URL_API}module/dependency`, requestBody, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.data = requestBody
+		return axios.delete(`${this.parentAPI.BASE_URL_API}module/dependency`, customConfig)
 	}
 
 	/**

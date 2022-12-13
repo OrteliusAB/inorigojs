@@ -92,9 +92,9 @@ export class ThemeAPI {
 	}
 
 	/**
-	 * Get a theme
-	 * @param {string} id
-	 * @param {string} cssClass
+	 * Get a theme as a stylesheet
+	 * @param {string} id - Theme identifier
+	 * @param {string} cssClass - Optional class name
 	 * @returns {object} - Response
 	 */
 	getCss(id, cssClass) {
