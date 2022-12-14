@@ -7,7 +7,7 @@ const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const shortcutAPI: ShortcutAPI = inorigoAPI.getShortcutAPI()
 
-describe("resource...", () => {
+describe("shortcut...", () => {
 	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 		expect("2").equals("2")
@@ -17,7 +17,7 @@ describe("resource...", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.todo("assert shortcutAPI", async () => {
+	it("assert shortcutAPI", async () => {
 		assert.exists(shortcutAPI)
 	})
 

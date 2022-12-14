@@ -16,17 +16,17 @@ export class MatrixAPI {
 
 	/**
 	 * Get Meta and Data for an Application Component
-	 * @param {string} applicationid - Application ID
-	 * @param {string} componentid - Component ID
+	 * @param {string} runtimeid - Runtime ID (uuid)
+	 * @param {string} componentid - Component ID (uuid)
 	 * @param {string} selection - Selection. (optional, default = All) options: "All", "Selected", "Implicit", "Explicit"
 	 * @returns
 	 */
-	getMetaAndDataForApplicationComponent(applicationid, componentid, selection) {
+	getMetaAndDataForApplicationComponent(runtimeid, componentid, selection) {
 		const uriParams = {
 			selection
 		}
 		return axios.get(
-			`${this.baseURL}matrix/meta/and/data/for/application/component/${applicationid}/${componentid}${this.parentAPI._buildURIParams(uriParams)}`,
+			`${this.baseURL}matrix/meta/and/data/for/application/component/${runtimeid}/${componentid}${this.parentAPI._buildURIParams(uriParams)}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
 	}
@@ -50,7 +50,7 @@ export class MatrixAPI {
 
 	/**
 	 * Get Meta for an Application Component
-	 * @param {string} applicationid - Application or Runtime ID
+	 * @param {string} runtimeid - Application or Runtime ID
 	 * @param {string} componentid - Component ID
 	 * @returns
 	 */

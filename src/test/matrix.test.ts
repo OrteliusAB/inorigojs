@@ -10,45 +10,55 @@ const matrixAPI: MatrixAPI = inorigoAPI.getMatrixAPI()
 describe("resource...", () => {
 	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
-		expect("2").equals("2")
 	})
 
 	it("assert IniorigoAPI", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.todo("check connection [??]", async () => {
+	it("assert matrixAPI", () => {
 		assert.exists(matrixAPI)
-		// const response = await matrixAPI.
-		// expect(list.status).equals(200)
 	})
 
-	it.todo("getMetaAndDataForApplicationComponent(...) [/matrix/meta/and/data/for/application/component/{applicationid}/{componentid}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.todo("getMetaAndDataForApplicationComponent(...) [/matrix/meta/and/data/for/application/component/{runtimeid}/{componentid}]", async () => {
+		// need to fetch runtimeID for the Edit Matrix application.
+		const response = await matrixAPI.getMetaAndDataForApplicationComponent(
+			"4500f13f-4a13-a26f-2a41-af6b008dfe2f",
+			"D2A9A29A-8EE4-A00A-59A1-AEB4006CD5B8",
+			"All"
+		)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
-	it.todo("getMetaAndDataForDefinition(...) [/matrix/meta/and/data/for/definition/{definitiontype}/{definitionuuid}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getMetaAndDataForDefinition(...) [/matrix/meta/and/data/for/definition/{definitiontype}/{definitionuuid}]", async () => {
+		const response = await matrixAPI.getMetaAndDataForDefinition("AsDefinition", "C2ED6335-C1A0-C115-FD2C-AF6300EB2477", false)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
-	it.todo("getMetaForApplicationComponent(...) [/matrix/meta/for/application/component/{applicationid}/{componentid}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getMetaForApplicationComponent(...) [/matrix/meta/for/application/component/{applicationid}/{componentid}]", async () => {
+		const response = await matrixAPI.getMetaForApplicationComponent("BFBEAF8A-A2F7-273B-C8F1-AEB30064C93A", "D2A9A29A-8EE4-A00A-59A1-AEB4006CD5B8")
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
-	it.todo("getMetaForDefinition(...) [/matrix/meta/for/definition/{definitiontype}/{definitionuuid}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getMetaForDefinition(...) [/matrix/meta/for/definition/{definitiontype}/{definitionuuid}]", async () => {
+		const response = await matrixAPI.getMetaForDefinition("AsDefinition", "C2ED6335-C1A0-C115-FD2C-AF6300EB2477", false)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it.todo("getDataForRequest(...) [/matrix/data/for/request]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		// need a relevant payload to be able to execute the test
+		const payload = {}
+		const response = await matrixAPI.getDataForRequest(payload)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it.todo("getDataForRow(...) [/matrix/data/for/row]", async () => {
+		// REMOVE THIS, DOES NOT SEEM TO EXIST ANY LONGER
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
