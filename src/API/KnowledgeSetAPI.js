@@ -80,20 +80,22 @@ export class KnowledgeSetAPI {
 	 * Executes a given knowledge set and retrieves the response in a tree format.
 	 * @param {string} uuid - UUID of the knowledge set
 	 * @param {boolean} metaData - Should meta data be included?
-	 * @param {number} compactLeafs - Should leafs be made compact?
+	 * @param {boolean} compactLeafs - Should leafs be made compact?
 	 * @param {object} parameters - Extra parameters for the knowledge set provided as an object literal
 	 * @param {boolean} allowCache - Allow cached data?
 	 * @return {object} - Response
 	 */
-	getTreeResult(uuid, metaData, compactLeafs, parameters, allowCache) {
+	getTreeResult(uuid, metaData, compactLeafs, parameters, allowCache, replaceidbypresentation) {
 		const uriParams = {
 			metadata: metaData,
 			compactleafs: compactLeafs,
-			allowCache
+			allowCache,
+			replaceidbypresentation
 		}
 		return axios.post(
 			`${this.parentAPI.BASE_URL_API}knowledgeset/tree/${uuid}${this.parentAPI._buildURIParams(uriParams)}`,
-			parameters !== undefined && parameters !== null ? { parameters } : {},
+			// parameters !== undefined && parameters !== null ? { parameters } : undefined,
+			parameters !== undefined && parameters !== null ? parameters : undefined,
 			this.parentAPI.DEFAULTCONFIG
 		)
 	}
@@ -155,16 +157,17 @@ export class KnowledgeSetAPI {
 	 * @param {boolean} allowCache - Allow cached data?
 	 * @return {object} - Response
 	 */
-	query(uuid, query, metadata, context, parameters, allowCache) {
+	query(uuid, query, metadata, context, parameters, allowCache, replaceidbypresentation) {
 		const uriParams = {
-			sql: query,
 			metadata,
+			sql: encodeURIComponent(query).replace(/'/g, "%27").replace(/\*/g, "%2A"),
 			context,
-			allowCache
+			allowCache,
+			replaceidbypresentation
 		}
 		return axios.post(
 			`${this.parentAPI.BASE_URL_API}knowledgeset/${uuid}/query${this.parentAPI._buildURIParams(uriParams)}`,
-			parameters !== undefined && parameters !== null ? { parameters } : {},
+			parameters !== undefined && parameters !== null ? { parameters } : undefined,
 			this.parentAPI.DEFAULTCONFIG
 		)
 	}
@@ -219,6 +222,7 @@ export class KnowledgeSetAPI {
 			replaceidbypresentation
 		}
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = mediaType
 		return axios.get(`${this.parentAPI.BASE_URL_API}knowledgeset/file/${uuid}${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
@@ -248,6 +252,7 @@ export class KnowledgeSetAPI {
 			replaceidbypresentation
 		}
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = "application/json"
 		customConfig.headers["Content-Type"] = "application/json"
 		return axios.post(`${this.parentAPI.BASE_URL_API}knowledgeset/objects/${uuid}${this.parentAPI._buildURIParams(uriParams)}`, {}, customConfig)

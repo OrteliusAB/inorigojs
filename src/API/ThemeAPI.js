@@ -23,6 +23,7 @@ export class ThemeAPI {
 			class: cssClass
 		}
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = null
 		customConfig.headers["Content-Type"] = "text/css"
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/default${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
@@ -54,6 +55,7 @@ export class ThemeAPI {
 			class: cssClass
 		}
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = null
 		customConfig.headers["Content-Type"] = "text/css"
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/portal${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
@@ -69,6 +71,7 @@ export class ThemeAPI {
 			class: cssClass
 		}
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = null
 		customConfig.headers["Content-Type"] = "text/css"
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/session${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
@@ -102,6 +105,7 @@ export class ThemeAPI {
 			class: cssClass
 		}
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = null
 		customConfig.headers["Content-Type"] = "text/css"
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/${id}${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
@@ -124,6 +128,7 @@ export class ThemeAPI {
 			theme
 		}
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = "image/svg+xml"
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/image/${key}${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
@@ -146,6 +151,7 @@ export class ThemeAPI {
 			theme
 		}
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = "image/svg+xml"
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/timage${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
@@ -172,6 +178,7 @@ export class ThemeAPI {
 	 */
 	getWorkbenchStylesheet() {
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = null
 		customConfig.headers["Content-Type"] = "text/css"
 		return axios.get(`${this.parentAPI.BASE_URL_API}theme/css/workbench`, customConfig)
@@ -193,6 +200,7 @@ export class ThemeAPI {
 			highlightColor
 		}
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = null
 		customConfig.headers["Content-Type"] = contentType
 		return axios.post(`${this.parentAPI.BASE_URL_API}theme/apply${this.parentAPI._buildURIParams(uriParams)}`, requestBody, customConfig)

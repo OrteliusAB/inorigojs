@@ -15,11 +15,11 @@ describe("entity...", () => {
 
 	it("assert IniorigoAPI", () => {
 		assert.exists(inorigoAPI)
+		assert.exists(entityAPI)
 	})
 
 	it("check connection [/entity/{type}/{id}/presentation]", async () => {
-		// const response = await entityAPI.getPresentation("GsCube", "BFBEAF8A-A2F7-273B-C8F1-AEB30064C93A", "")
-		const response = await entityAPI.getPresentation("GsCube", "BFBEAF8A-A2F7-273B-C8F1-AEB30064C93A")
+		const response = await entityAPI.getPresentation("GsCube", "BFBEAF8A-A2F7-273B-C8F1-AEB30064C93A", "")
 		expect(response.status).equals(200)
 	})
 
