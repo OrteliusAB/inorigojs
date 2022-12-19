@@ -23,23 +23,43 @@ describe("entity...", () => {
 		expect(response.status).equals(200)
 	})
 
-	it.todo("generateUUID(count) [/entity/generateid]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("generateUUID(count) [/entity/generateid]", async () => {
+		try {
+			const response = await entityAPI.generateEntity("AsInstance", 1, "578A446C-E919-2353-DDB9-AF6300F5695F")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getEntity(...) [/entity/{type}/{id}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getEntity(...) [/entity/{type}/{id}]", async () => {
+		try {
+			const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
-	it.todo("getInstances(...) [/entity/{type}/{id}/instances]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getInstances(...) [/entity/{type}/{id}/instances]", async () => {
+		try {
+			const response = await entityAPI.getInstances("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F", ["Name"], 1, 10)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("partners(...) [/entity/{type}/{id}/partners]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		// try {
+		// 	const response = await entityAPI.partners()
+		// 	// console.dir(response.data)
+		// 	expect(response.status).equals(200)
+		// } catch (error) {
+		// 	console.warn(error)
+		// }
 	})
 
 	it.todo("getModelPartners(...) [/entity/{type}/{id}/model/partners]", async () => {
@@ -52,34 +72,53 @@ describe("entity...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	it.todo("search(...) [/entity/search]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("search(...) [/entity/search]", async () => {
+		try {
+			const options = {
+				dataTypes: ["AsInstance"],
+				definitionType: "Company",
+				definitionID: "578A446C-E919-2353-DDB9-AF6300F5695F",
+				extendedMetadata: true,
+				includeIcons: true,
+				caseSensitive: true,
+				fullScan: true,
+				positionRelevant: true,
+				contextSizeRelevant: true,
+				maxErrors: 0
+			}
+
+			const response = await entityAPI.search("Boeing", options)
+			// console.dir(response)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getDefinitions(...) [/entity/{type}/{id}/definitions]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getDefinitions(...) [/entity/{type}/{id}/definitions]", async () => {
+		try {
+			const response = await entityAPI.getDefinitions("AsInstance", "7092ECD0-6319-4DFC-E770-AF6300F6BC6B", false, ["presentation"], 1, 10)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("getSuperClasses(...) [/entity/{type}/{id}/superclasses]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		// check with Joakim C what data to send in call
 	})
 
 	it.todo("getSubClasses(...) [/entity/{type}/{id}/subclasses]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		// check with Joakim C what data to send in call
 	})
 
 	it.todo("getReferents(...) [/entity/{type}/{id}/referents]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		// check with Joakim C what data to send in call
 	})
 
 	it.todo("getRelations(...) [/entity/{type}/{id}/relations]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		// check with Joakim C what data to send in call
 	})
 
 	it.todo("updateEntity(...) [/entity]", async () => {
@@ -102,15 +141,26 @@ describe("entity...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	it.todo("getSimplifiedInstances(...) [/entity/{type}/{id}/instances]", async () => {
+	it.skip("getSimplifiedInstances(...) [/entity/{type}/{id}/instances]", async () => {
 		// Fetch an entities instances. Only useful for definition types (AsDefinition, etc)
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		try {
+			const response = await entityAPI.getSimplifiedInstances("C697BD4D-33F5-88C3-8136-ABF100CF08ED")
+			// console.dir(response)
+			expect(response.length).toBeGreaterThan(0)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getSimplifiedEntity(...) [/entity/{type}/{id}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.only("getSimplifiedEntity(...) [/entity/{type}/{id}]", async () => {
+		// is missing parameters info, icons, presentations
+		// try {
+		// 	const response = await entityAPI.getSimplifiedEntity("AsInstance", "F38679E3-7FEE-36F6-DC37-AC3E007808CE")
+		// 	console.dir(response)
+		// 	// expect(response.status).equals(200)
+		// } catch (error) {
+		// 	console.warn(error)
+		// }
 	})
 
 	it.todo("getGraphDependencies(...) [/entity/{type}/{id}/dependencies/graph]", async () => {
@@ -128,9 +178,14 @@ describe("entity...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	it.todo("getPresentation(...) [/entity/{type}/{id}/presentation]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getPresentation(...) [/entity/{type}/{id}/presentation]", async () => {
+		try {
+			const response = await entityAPI.getPresentation("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F", "")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("getDependencyEdges(...) [/entity/{type}/{id}/dependencies/edges]", async () => {
@@ -138,14 +193,24 @@ describe("entity...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	it.todo("getAttribute(...) [/entity/{type}/{entityId}/attribute/{attributeId}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getAttribute(...) [/entity/{type}/{entityId}/attribute/{attributeId}]", async () => {
+		try {
+			const response = await entityAPI.getAttribute("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F", "F0ECDF4A-4754-1740-062E-AF6300F57465")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getUserAuthorization(...) [/entity/{type}/{entityId}/authorizations/{userId}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getUserAuthorization(...) [/entity/{type}/{entityId}/authorizations/{userId}]", async () => {
+		try {
+			const response = await entityAPI.getUserAuthorization("AsInstance", "635e7cf7-78dd-48c5-ae0a-aca698e1d67b", "423111ec-aed6-6e84-c740-a66500636f86")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("getCollateralDependants(...) [/entity/{type}/{id}/collateral/dependants]", async () => {
@@ -153,24 +218,59 @@ describe("entity...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	it.todo("getEntityIcon(...) [/entity/{type}/{id}/icon/id]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getEntityIcon(...) [/entity/{type}/{id}/icon/id]", async () => {
+		try {
+			const response = await entityAPI.getEntityIcon("AsInstance", "635e7cf7-78dd-48c5-ae0a-aca698e1d67b", 24, "")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getEntityIconID(...) [/entity/{type}/{id}/icon/id]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getEntityIconID(...) [/entity/{type}/{id}/icon/id]", async () => {
+		const response = await entityAPI.getEntityIconID("AsInstance", "635e7cf7-78dd-48c5-ae0a-aca698e1d67b", "")
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
-	it.todo("getValueset(uuid) [/entity/valueset/{id}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getValueset(uuid) [/entity/valueset/{id}]", async () => {
+		const response = await entityAPI.getValueset("C406570B-17EA-5E54-84FE-A49D00B25D0C")
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
-	it.todo("getPresentations(entityArray) [/entity/presentations]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getPresentations(entityArray) [/entity/presentations]", async () => {
+		const payload = [
+			{
+				id: "7C7770FF-2E52-0A14-011B-AF6300F6BC6B",
+				dataType: "AsInstance"
+			},
+			{
+				id: "69770D9B-2D26-ADA8-433A-AF6300F6BC6D",
+				dataType: "AsInstance"
+			},
+			{
+				id: "F6036AFA-6349-1EBD-C1E8-AF6300F6BC6E",
+				dataType: "AsInstance"
+			},
+			{
+				id: "6265F793-D396-12D4-C2C1-AF6300F6BC6D",
+				dataType: "AsInstance"
+			},
+			{
+				id: "C2DA37AA-1503-1EB7-C06A-AF6300F6BC6E",
+				dataType: "AsInstance"
+			}
+		]
+
+		try {
+			const response = await entityAPI.getPresentations(JSON.stringify(payload))
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.skip("getGranted(...) [/entity/granted/{type}]", async () => {

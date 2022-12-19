@@ -49,7 +49,7 @@ export class EntityAPI {
 	 * Retrieves all instances of a given definition entity
 	 * @param {string} entityType - Type of defining entity
 	 * @param {string} uuid - ID of defining entity
-	 * @param {string} informationType - What type of information to include in the response.
+	 * @param {[string]} informationType - What type of information to include in the response.
 	 * @param {number} page - What page to retrieve
 	 * @param {number} pagesize - How large should the page size be?
 	 * @return {object} - Response
@@ -149,8 +149,8 @@ export class EntityAPI {
 	 * Find all defining entities
 	 * @param {string} entityType - Type of origin entity
 	 * @param {string} uuid - ID of origin entity
-	 * @param {string} isDeep - Is the search deep?
-	 * @param {string} informationType - What type of information to include in the response.
+	 * @param {boolean} isDeep - Is the search deep?
+	 * @param {[string]} informationType - What type of information to include in the response.
 	 * @param {number} page - What page to retrieve
 	 * @param {number} pagesize - How large should the page size be?
 	 * @return {object} - Response
@@ -498,12 +498,15 @@ export class EntityAPI {
 	 * @return {object} - Response
 	 */
 	getEntityIcon(entityType, uuid, size, contextID) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "*/*"
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/icon${this.parentAPI._buildURIParams({
 				size,
 				contextID
 			})}`,
-			this.parentAPI.DEFAULTCONFIG
+			customConfig
 		)
 	}
 
