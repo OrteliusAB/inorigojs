@@ -36,6 +36,7 @@ describe("entity...", () => {
 	it.skip("getEntity(...) [/entity/{type}/{id}]", async () => {
 		try {
 			const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true)
+			// const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true, false)
 			// console.dir(response.data)
 			expect(response.status).equals(200)
 		} catch (error) {
@@ -52,7 +53,26 @@ describe("entity...", () => {
 		}
 	})
 
-	it.todo("partners(...) [/entity/{type}/{id}/partners]", async () => {
+	it.skip("partners(...) [/entity/{type}/{id}/partners]", async () => {
+		try {
+			const response = await entityAPI.partners(
+				"AsDefinition",
+				"37F28315-525E-04C5-A84B-ABF0011DC8BA",
+				undefined,
+				"",
+				false,
+				false,
+				undefined,
+				1,
+				10,
+				true,
+				true
+			)
+			// console.dir(response.data.entities)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 		// try {
 		// 	const response = await entityAPI.partners()
 		// 	// console.dir(response.data)
@@ -105,20 +125,40 @@ describe("entity...", () => {
 		}
 	})
 
-	it.todo("getSuperClasses(...) [/entity/{type}/{id}/superclasses]", async () => {
-		// check with Joakim C what data to send in call
+	it.skip("getSuperClasses(...) [/entity/{type}/{id}/superclasses]", async () => {
+		// parameter info cannot be added, reported as bug.
+		try {
+			const response = await entityAPI.getSuperClasses("AsDefinition", "C6886D83-4444-1B1E-7EEE-AC1C0097925F", true, undefined, 1, 10, true, true)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getSubClasses(...) [/entity/{type}/{id}/subclasses]", async () => {
-		// check with Joakim C what data to send in call
+	it.skip("getSubClasses(...) [/entity/{type}/{id}/subclasses]", async () => {
+		// parameter info cannot be added, reported as bug.
+		try {
+			const response = await entityAPI.getSubClasses("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA", true, undefined, 1, 10, true, true)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("getReferents(...) [/entity/{type}/{id}/referents]", async () => {
-		// check with Joakim C what data to send in call
+		// check with Joakim C/Måns what data to send in call
 	})
 
-	it.todo("getRelations(...) [/entity/{type}/{id}/relations]", async () => {
-		// check with Joakim C what data to send in call
+	it.only("getRelations(...) [/entity/{type}/{id}/relations]", async () => {
+		try {
+			const response = await entityAPI.getRelations("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
+			// console.dir(response.data.relations)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("updateEntity(...) [/entity]", async () => {
@@ -152,30 +192,45 @@ describe("entity...", () => {
 		}
 	})
 
-	it.only("getSimplifiedEntity(...) [/entity/{type}/{id}]", async () => {
+	it.skip("getSimplifiedEntity(...) [/entity/{type}/{id}]", async () => {
 		// is missing parameters info, icons, presentations
-		// try {
-		// 	const response = await entityAPI.getSimplifiedEntity("AsInstance", "F38679E3-7FEE-36F6-DC37-AC3E007808CE")
-		// 	console.dir(response)
-		// 	// expect(response.status).equals(200)
-		// } catch (error) {
-		// 	console.warn(error)
-		// }
+		try {
+			const response = await entityAPI.getSimplifiedEntity("AsInstance", "F38679E3-7FEE-36F6-DC37-AC3E007808CE")
+			// console.dir(response)
+			expect(response)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getGraphDependencies(...) [/entity/{type}/{id}/dependencies/graph]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getGraphDependencies(...) [/entity/{type}/{id}/dependencies/graph]", async () => {
+		try {
+			const response = await entityAPI.getGraphDependencies("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F")
+			// console.dir(response.data.edges)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getPossibleEntityReferences(...) [/entity/possible/references]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getPossibleEntityReferences(...) [/entity/possible/references]", async () => {
+		try {
+			const response = await entityAPI.getPossibleEntityReferences("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
+			// console.dir(response.data.attributes)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getPossibleInstanceReferences(...) [/entity/possible/instance/references]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getPossibleInstanceReferences(...) [/entity/possible/instance/references]", async () => {
+		try {
+			const response = await entityAPI.getPossibleInstanceReferences("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
+			// console.dir(response.data.attributes)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.skip("getPresentation(...) [/entity/{type}/{id}/presentation]", async () => {
@@ -188,9 +243,14 @@ describe("entity...", () => {
 		}
 	})
 
-	it.todo("getDependencyEdges(...) [/entity/{type}/{id}/dependencies/edges]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getDependencyEdges(...) [/entity/{type}/{id}/dependencies/edges]", async () => {
+		try {
+			const response = await entityAPI.getDependencyEdges("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F")
+			// console.dir(response.data.edges)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.skip("getAttribute(...) [/entity/{type}/{entityId}/attribute/{attributeId}]", async () => {
@@ -213,9 +273,14 @@ describe("entity...", () => {
 		}
 	})
 
-	it.todo("getCollateralDependants(...) [/entity/{type}/{id}/collateral/dependants]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getCollateralDependants(...) [/entity/{type}/{id}/collateral/dependants]", async () => {
+		try {
+			const response = await entityAPI.getCollateralDependants("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.skip("getEntityIcon(...) [/entity/{type}/{id}/icon/id]", async () => {

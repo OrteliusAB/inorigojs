@@ -13,7 +13,7 @@ describe("shortcut...", () => {
 		expect("2").equals("2")
 	})
 
-	it("assert IniorigoAPI", () => {
+	it("assert InorigoAPI", () => {
 		assert.exists(inorigoAPI)
 	})
 

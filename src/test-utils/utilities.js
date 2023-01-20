@@ -96,6 +96,22 @@ class Utilities {
 		const date = new Date()
 		return date.toISOString()
 	}
+
+	/**
+	 * Encode SQL specific characters that are note handled by encodeURIComponent() or encodeURI()
+	 * @param {string} text
+	 * @returns {string}
+	 */
+	encodeSQLChars(text) {
+		const map = {
+			"*": "%2A",
+			"'": "%27"
+		}
+
+		return text.replace(/['*]/g, m => {
+			return map[m]
+		})
+	}
 }
 
 export { Utilities }
