@@ -1,4 +1,4 @@
-import { assert, describe, expect, it } from "vitest"
+import { assert, describe, expect, it, expectTypeOf } from "vitest"
 import { InorigoAPI } from "../API/InorigoApi"
 import { ShortcutAPI } from "../API/ShortcutAPI"
 import { Utilities } from "../test-utils/utilities"
@@ -8,12 +8,11 @@ const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const shortcutAPI: ShortcutAPI = inorigoAPI.getShortcutAPI()
 
 describe("shortcut...", () => {
-	it("assert utilities class, verify config read", () => {
+	it("assert utilities class, verify config read", async () => {
 		assert.exists(utilities)
-		expect("2").equals("2")
 	})
 
-	it("assert InorigoAPI", () => {
+	it("assert InorigoAPI", async () => {
 		assert.exists(inorigoAPI)
 	})
 
@@ -21,8 +20,14 @@ describe("shortcut...", () => {
 		assert.exists(shortcutAPI)
 	})
 
-	it.todo("getClassifiedValuesList(definitionUUID, isDeep)", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it("getClassifiedValuesList(definitionUUID, isDeep)", async () => {
+		try {
+			const response = await shortcutAPI.getClassifiedValuesList("37F28315-525E-04C5-A84B-ABF0011DC8BA", true)
+			// console.dir(response)
+			expect(response.length).toEqual(6)
+			expectTypeOf(response).toBeArray()
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 })

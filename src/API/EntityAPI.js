@@ -271,7 +271,7 @@ export class EntityAPI {
 
 	/**
 	 * Updates an entity
-	 * @param {object} entityJSON - Entity DTO
+	 * @param {array} entityJSONArray - Array of entity DTOs
 	 * @return {object} - Response
 	 */
 	updateEntity(entityJSON) {

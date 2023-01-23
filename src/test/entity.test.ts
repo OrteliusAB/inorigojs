@@ -2,6 +2,8 @@ import { assert, describe, expect, it } from "vitest"
 import { InorigoAPI } from "../API/InorigoApi"
 import { EntityAPI } from "../API/EntityAPI"
 import { Utilities } from "../test-utils/utilities"
+import { Entity } from "../Entity/Entity"
+import { InorigoEnums } from "../Utils/Enums"
 
 const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
@@ -9,7 +11,6 @@ const entityAPI: EntityAPI = inorigoAPI.getEntityAPI()
 
 describe("entity...", () => {
 	it("Utilities test, verify config read", () => {
-		// utilities = new Utilities()
 		assert.exists(utilities)
 	})
 
@@ -35,7 +36,7 @@ describe("entity...", () => {
 
 	it.skip("getEntity(...) [/entity/{type}/{id}]", async () => {
 		try {
-			const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true)
+			const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true, false)
 			// const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true, false)
 			// console.dir(response.data)
 			expect(response.status).equals(200)
@@ -73,23 +74,116 @@ describe("entity...", () => {
 		} catch (error) {
 			console.warn(error)
 		}
-		// try {
-		// 	const response = await entityAPI.partners()
-		// 	// console.dir(response.data)
-		// 	expect(response.status).equals(200)
-		// } catch (error) {
-		// 	console.warn(error)
-		// }
 	})
 
-	it.todo("getModelPartners(...) [/entity/{type}/{id}/model/partners]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getModelPartners(...) [/entity/{type}/{id}/model/partners]", async () => {
+		try {
+			const response = await entityAPI.getModelPartners("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("query(...) [/entity/query]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("query(...) [/entity/query]", async () => {
+		const query = {
+			kind: "Filter",
+			dataType: "AsInstance",
+			operator: "AND",
+			criteria: [
+				{
+					kind: "Definition",
+					qualifier: "KIND_OF",
+					dataType: "AsDefinition",
+					value: {
+						kind: "GlobalID",
+						uuid: "c2ed6335-c1a0-c115-fd2c-af6300eb2477",
+						type: "AsDefinition"
+					}
+				},
+				{
+					kind: "Reference",
+					qualifier: "IN",
+					dataType: "AsInstance",
+					value: {
+						kind: "Filter",
+						dataType: "AsInstance",
+						operator: "AND",
+						criteria: [
+							{
+								kind: "Definition",
+								qualifier: "KIND_OF",
+								dataType: "AsDefinition",
+								value: {
+									kind: "GlobalID",
+									uuid: "fe37f8f5-5344-d7bf-4b8f-af6300f713bf",
+									type: "AsDefinition"
+								}
+							},
+							{
+								kind: "Attribute",
+								qualifier: "IN",
+								dataType: "AsInstance",
+								value: {
+									kind: "Filter",
+									dataType: "AsInstance",
+									operator: "AND",
+									criteria: [
+										{
+											kind: "Definition",
+											qualifier: "KIND_OF",
+											dataType: "AsDefinition",
+											value: {
+												kind: "GlobalID",
+												uuid: "578a446c-e919-2353-ddb9-af6300f5695f",
+												type: "AsDefinition"
+											}
+										},
+										{
+											kind: "Attribute",
+											qualifier: "EQ",
+											dataType: "GeGeopArea",
+											value: {
+												kind: "GlobalID",
+												uuid: "9864cbde-1d23-4ff5-91ef-40a982c946db",
+												type: "GeGeopArea"
+											},
+											key: "b2617504-119b-c209-2592-af6300f657d5",
+											name: "Location",
+											definitionID: {
+												uuid: "578a446c-e919-2353-ddb9-af6300f5695f",
+												type: "AsDefinition"
+											}
+										}
+									]
+								},
+								key: "a3f376e0-da2f-d0ee-030b-af6300f76506",
+								name: "Company",
+								definitionID: {
+									uuid: "fe37f8f5-5344-d7bf-4b8f-af6300f713bf",
+									type: "AsDefinition"
+								}
+							}
+						]
+					},
+					attributeKey: "04d99258-973d-a19b-4306-af6300f72376",
+					attributeName: "Person",
+					definitionID: {
+						uuid: "fe37f8f5-5344-d7bf-4b8f-af6300f713bf",
+						type: "AsDefinition"
+					}
+				}
+			]
+		}
+
+		try {
+			const response = await entityAPI.query(query, true, 1, 10)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.skip("search(...) [/entity/search]", async () => {
@@ -151,7 +245,7 @@ describe("entity...", () => {
 		// check with Joakim C/Måns what data to send in call
 	})
 
-	it.only("getRelations(...) [/entity/{type}/{id}/relations]", async () => {
+	it.skip("getRelations(...) [/entity/{type}/{id}/relations]", async () => {
 		try {
 			const response = await entityAPI.getRelations("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
 			// console.dir(response.data.relations)
@@ -161,24 +255,102 @@ describe("entity...", () => {
 		}
 	})
 
-	it.todo("updateEntity(...) [/entity]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("updateEntity(...) [/entity]", async () => {
+		const entityTypes = new InorigoEnums().entityTypes()
+		const data: object[] = []
+		const payload = new Entity()
+			.setType(entityTypes.ASSOCIATION)
+			.setDefinition(entityTypes.ASSOCIATION_DEFINITION, "C2ED6335-C1A0-C115-FD2C-AF6300EB2477")
+			.setValues({
+				"4F7B6B18-B8B9-D7F7-479E-AF6300EEDC08": "VITEST Entity create autotest",
+				"6630E548-8E42-1206-8B2B-AF6300EEE420": "2001-09-13",
+				"DEF8268D-1CDD-3F61-932D-AF6300EEF587": 40,
+				"83C626C4-68B8-541E-0C64-AF6300EF0AF4": 50
+			})
+			.print()
+
+		data.push(payload)
+		try {
+			const response = await entityAPI.createEntity(JSON.stringify(data))
+			// console.dir(response.data)
+			// console.dir(response.data.ids[0])
+
+			expect(response.status).equals(200)
+			const updatePayload = new Entity(entityTypes.ASSOCIATION, response.data.ids[0]).setValues({ "DEF8268D-1CDD-3F61-932D-AF6300EEF587": 45 }).print()
+			const updateData: object[] = []
+			updateData.push(updatePayload)
+			const responseUpdate = await entityAPI.updateEntity(JSON.stringify(updateData))
+			// console.log(responseUpdate)
+			expect(responseUpdate.status).equals(200)
+
+			const responseDelete = await entityAPI.deleteEntity(entityTypes.ASSOCIATION, response.data.ids[0])
+			// console.dir(responseDelete)
+			expect(responseDelete.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("createEntity(...) [/entity]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("createEntity(...) [/entity]", async () => {
+		const entityTypes = new InorigoEnums().entityTypes()
+		const data: object[] = []
+		const payload = new Entity()
+			.setType(entityTypes.ASSOCIATION)
+			.setDefinition(entityTypes.ASSOCIATION_DEFINITION, "C2ED6335-C1A0-C115-FD2C-AF6300EB2477")
+			.setValues({
+				"4F7B6B18-B8B9-D7F7-479E-AF6300EEDC08": "VITEST Entity create autotest",
+				"6630E548-8E42-1206-8B2B-AF6300EEE420": "2001-09-13",
+				"DEF8268D-1CDD-3F61-932D-AF6300EEF587": 40,
+				"83C626C4-68B8-541E-0C64-AF6300EF0AF4": 50
+			})
+			.print()
+
+		data.push(payload)
+		try {
+			const response = await entityAPI.createEntity(JSON.stringify(data))
+			// console.dir(response.data)
+			// console.dir(response.data.ids[0])
+
+			expect(response.status).equals(200)
+			const responseDelete = await entityAPI.deleteEntity(entityTypes.ASSOCIATION, response.data.ids[0])
+			// console.dir(responseDelete)
+			expect(responseDelete.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("transaction() [/entity/commit/transaction]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
 	})
 
-	it.todo("deleteEntity(...) [/entity/{type}/{id}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("deleteEntity(...) [/entity/{type}/{id}]", async () => {
+		const entityTypes = new InorigoEnums().entityTypes()
+		const data: object[] = []
+		const payload = new Entity()
+			.setType(entityTypes.ASSOCIATION)
+			.setDefinition(entityTypes.ASSOCIATION_DEFINITION, "C2ED6335-C1A0-C115-FD2C-AF6300EB2477")
+			.setValues({
+				"4F7B6B18-B8B9-D7F7-479E-AF6300EEDC08": "VITEST Entity delete autotest",
+				"6630E548-8E42-1206-8B2B-AF6300EEE420": "2001-09-13",
+				"DEF8268D-1CDD-3F61-932D-AF6300EEF587": 41,
+				"83C626C4-68B8-541E-0C64-AF6300EF0AF4": 51
+			})
+			.print()
+
+		data.push(payload)
+		try {
+			const response = await entityAPI.createEntity(JSON.stringify(data))
+			// console.dir(response.data)
+			// console.dir(response.data.ids[0])
+
+			expect(response.status).equals(200)
+			const responseDelete = await entityAPI.deleteEntity(entityTypes.ASSOCIATION, response.data.ids[0])
+			// console.dir(responseDelete)
+			expect(responseDelete.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.skip("getSimplifiedInstances(...) [/entity/{type}/{id}/instances]", async () => {

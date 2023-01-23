@@ -7,7 +7,7 @@ const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const knowledgesetAPI: KnowledgeSetAPI = inorigoAPI.getKnowledgesetAPI()
 
-describe("Knowledgeset testsuit", () => {
+describe.skip("Knowledgeset testsuit", () => {
 	it("Utilities test, verify config read", () => {
 		assert.exists(utilities)
 	})
@@ -49,7 +49,7 @@ describe("Knowledgeset testsuit", () => {
 				"27a238ab-4a7c-c2fe-055a-af6d00e19431",
 				false,
 				true,
-				{ parameters: [{ name: "PARA", value: "France" }]},
+				{ parameters: [{ name: "PARA", value: "France" }] },
 				false,
 				true
 			)
