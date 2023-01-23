@@ -49,7 +49,7 @@ describe.skip("Knowledgeset testsuit", () => {
 				"27a238ab-4a7c-c2fe-055a-af6d00e19431",
 				false,
 				true,
-				{ parameters: [{ name: "PARA", value: "France" }] },
+				{ parameters: [{ name: "PARA", value: "France" }]},
 				false,
 				true
 			)

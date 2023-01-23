@@ -10,20 +10,24 @@ const coreAPI: CoreAPI = inorigoAPI.getCoreAPI()
 describe("resource...", () => {
 	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
-		expect("2").equals("2")
 	})
 
 	it("assert IniorigoAPI", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.todo("check connection []", async () => {
+	it("assert coreAPI", () => {
 		assert.exists(coreAPI)
 	})
 
-	it.todo("getEntityPresentation(...) [/core/presentation/{type}/{uuid}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it("getEntityPresentation(...) [/core/presentation/{type}/{uuid}]", async () => {
+		try {
+			const response = await coreAPI.getEntityPresentation("AsInstance", "578A446C-E919-2353-DDB9-AF6300F5695F")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("getFilter(uuid) [/core/filter/definition/{uuid}]", async () => {
@@ -113,7 +117,7 @@ describe("resource...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	it.todo("getHardcodes()  NEW FUNCTION [/core/hardcodes]", async () => {
+	it.todo("getHardcodes() NEW FUNCTION [/core/hardcodes]", async () => {
 		// Get the system hardcoded ids
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)

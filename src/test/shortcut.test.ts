@@ -8,15 +8,15 @@ const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const shortcutAPI: ShortcutAPI = inorigoAPI.getShortcutAPI()
 
 describe("shortcut...", () => {
-	it("assert utilities class, verify config read", async () => {
+	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 	})
 
-	it("assert InorigoAPI", async () => {
+	it("assert InorigoAPI", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it("assert shortcutAPI", async () => {
+	it("assert shortcutAPI", () => {
 		assert.exists(shortcutAPI)
 	})
 
@@ -24,8 +24,8 @@ describe("shortcut...", () => {
 		try {
 			const response = await shortcutAPI.getClassifiedValuesList("37F28315-525E-04C5-A84B-ABF0011DC8BA", true)
 			// console.dir(response)
-			expect(response.length).toEqual(6)
-			expectTypeOf(response).toBeArray()
+			await expect(response.length).toEqual(6)
+			await expectTypeOf(response).toBeArray()
 		} catch (error) {
 			console.warn(error)
 		}
