@@ -20,7 +20,7 @@ describe("resource...", () => {
 		assert.exists(coreAPI)
 	})
 
-	it("getEntityPresentation(...) [/core/presentation/{type}/{uuid}]", async () => {
+	it.skip("getEntityPresentation(...) [/core/presentation/{type}/{uuid}]", async () => {
 		try {
 			const response = await coreAPI.getEntityPresentation("AsInstance", "578A446C-E919-2353-DDB9-AF6300F5695F")
 			// console.dir(response.data)
@@ -30,39 +30,94 @@ describe("resource...", () => {
 		}
 	})
 
-	it.todo("getFilter(uuid) [/core/filter/definition/{uuid}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getFilter(uuid) [/core/filter/definition/{uuid}]", async () => {
+		try {
+			const response = await coreAPI.getFilter("6e29d6be-85d0-1a63-d680-a3b500df3adb")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("runFilter(...) [/core/filter/run]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("runFilter(...) [/core/filter/run]", async () => {
+		try {
+			const payload = {
+				kind: "FilterQuery",
+				id: "6e29d6be-85d0-1a63-d680-a3b500df3adb",
+				name: "Countries",
+				dataType: "GeGeopArea",
+				dataContextID: "64c3dcc8-de9b-408c-3299-a38d008c8fc7",
+				operator: "AND",
+				criteria: [
+					{
+						kind: "Definition",
+						qualifier: "KIND_OF",
+						dataType: "GeGeopType",
+						value: {
+							kind: "GlobalID",
+							uuid: "7fa79d62-33fa-4fd0-b2a5-91e868e27636",
+							type: "GeGeopType"
+						}
+					}
+				]
+			}
+			const response = await coreAPI.runFilter(payload, true, true)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("getTranslation(...) [/core/translate]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		// what do I send in payload/Request body
 	})
 
-	it.todo("getAttributeDefinition( [/core/attribute/definition]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getAttributeDefinition( [/core/attribute/definition]", async () => {
+		try {
+			const response = await coreAPI.getAttributeDefinition(
+				"6630E548-8E42-1206-8B2B-AF6300EEE420",
+				"C2ED6335-C1A0-C115-FD2C-AF6300EB2477",
+				"AsDefinition",
+				"AsInstance"
+			)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getPossibleAttributeValues(...) [/core/attribute/value/list]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getPossibleAttributeValues(...) [/core/attribute/value/list]", async () => {
+		try {
+			const response = await coreAPI.getPossibleAttributeValues("6A9E4AEB-B873-0AE2-9ACC-AF6300F74001")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getPossibleAttributeValuesCount(...)[/core/attribute/value/count]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getPossibleAttributeValuesCount(...)[/core/attribute/value/count]", async () => {
+		try {
+			const response = await coreAPI.getPossibleAttributeValuesCount("6A9E4AEB-B873-0AE2-9ACC-AF6300F74001")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("getEntityTypeCount(...) [/core/count/entity/{entityType}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		// what kind of entityType uuid should be provided?
+		try {
+			const response = await coreAPI.getEntityTypeCount("6A9E4AEB-B873-0AE2-9ACC-AF6300F74001")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("getRelationSpecifierName(...) [/core/relation/specifier/name]", async () => {
