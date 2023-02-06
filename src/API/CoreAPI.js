@@ -290,4 +290,12 @@ export class CoreAPI {
 			)
 		}
 	}
+
+	/**
+	 * Get the system hardcoded ids
+	 * @return {object} - Response
+	 */
+	getHardcodes() {
+		return axios.get(`${this.parentAPI.BASE_URL_API}core/hardcodes`, this.parentAPI.DEFAULTCONFIG)
+	}
 }

@@ -49,7 +49,7 @@ describe.skip("Knowledgeset testsuit", () => {
 				"27a238ab-4a7c-c2fe-055a-af6d00e19431",
 				false,
 				true,
-				{ parameters: [{ name: "PARA", value: "France" }]},
+				{ parameters: [{ name: "PARA", value: "France" }] },
 				false,
 				true
 			)
@@ -98,7 +98,6 @@ describe.skip("Knowledgeset testsuit", () => {
 				true
 			)
 			// console.log(response.data.dataSets[0].metadata.columns)
-
 			// console.log(response.data.dataSets[0].rows)
 			expect(response.status).equals(200)
 		} catch (error) {
@@ -110,7 +109,7 @@ describe.skip("Knowledgeset testsuit", () => {
 		try {
 			const response = await knowledgesetAPI.getResult("7e3af419-7188-8220-c75c-ab1800838602", false, 1, 30, null, false)
 			// console.log(response.data.dataSets[0].rows)
-			expect(response.status).equals(200) // const response = await KSAPI.countRows(uuid, isDistinct)
+			expect(response.status).equals(200)
 		} catch (error) {
 			console.warn(error)
 		}

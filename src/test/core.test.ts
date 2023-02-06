@@ -72,6 +72,7 @@ describe("resource...", () => {
 
 	it.todo("getTranslation(...) [/core/translate]", async () => {
 		// what do I send in payload/Request body
+		//  check with JC one what to send in the payload
 	})
 
 	it.skip("getAttributeDefinition( [/core/attribute/definition]", async () => {
@@ -101,7 +102,7 @@ describe("resource...", () => {
 
 	it.skip("getPossibleAttributeValuesCount(...)[/core/attribute/value/count]", async () => {
 		try {
-			const response = await coreAPI.getPossibleAttributeValuesCount("6A9E4AEB-B873-0AE2-9ACC-AF6300F74001")
+			const response = await coreAPI.getPossibleAttributeValuesCount("", "", "AsInstance", "", true, true)
 			// console.dir(response.data)
 			expect(response.status).equals(200)
 		} catch (error) {
@@ -109,10 +110,9 @@ describe("resource...", () => {
 		}
 	})
 
-	it.todo("getEntityTypeCount(...) [/core/count/entity/{entityType}]", async () => {
-		// what kind of entityType uuid should be provided?
+	it.skip("getEntityTypeCount(...) [/core/count/entity/{entityType}]", async () => {
 		try {
-			const response = await coreAPI.getEntityTypeCount("6A9E4AEB-B873-0AE2-9ACC-AF6300F74001")
+			const response = await coreAPI.getEntityTypeCount("UnResource")
 			// console.dir(response.data)
 			expect(response.status).equals(200)
 		} catch (error) {
@@ -121,60 +121,104 @@ describe("resource...", () => {
 	})
 
 	it.todo("getRelationSpecifierName(...) [/core/relation/specifier/name]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		//  check with JC one what to send in the payload
 	})
 
 	it.todo("getEntityConfigByRequest(...) [/core/get/entity/config]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		//  check with JC one what to send in the payload
 	})
 
 	it.todo("getEntityConfigTreeByRequest(...) [/core/get/entity/config/tree]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		//  check with JC one what to send in the payload
 	})
 
 	it.todo("getCriterionOptions(...) [/core/criterion/options/list]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		//  check with JC one what to send in the payload
+		try {
+			const response = await coreAPI.getCriterionOptions({}, "", true, true, 1, 10)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("getCriterionOptionsCount(...) [/core/criterion/options/count]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		//  check with JC one what to send in the payload
+		try {
+			const response = await coreAPI.getCriterionOptionsCount("")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getEntityIconUrl(...) [/core/icon/url/{type}/{uuid}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getEntityIconUrl(...) [/core/icon/url/{type}/{uuid}]", async () => {
+		// UnResource:03B72771-D791-4B7F-A186-BD0634CC41A3
+		try {
+			const response = await coreAPI.getEntityIconUrl("UnResource", "03B72771-D791-4B7F-A186-BD0634CC41A3")
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getTypeIconUrl(...) [/core/type/icon/{type}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getTypeIconUrl(...) [/core/type/icon/{type}]", async () => {
+		try {
+			const response = await coreAPI.getTypeIconUrl("UnResource", 24)
+			// console.dir(response)
+			expect(response).toBeTruthy
+		} catch (error) {
+			console.warn(error)
+		}
 	})
-	it.todo("getCategoryIconUrl(...) [/core/type/icon/{category}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getCategoryIconUrl(...) [/core/type/icon/{category}]", async () => {
+		try {
+			const response = await coreAPI.getCategoryIconUrl("Relation", 24)
+			// console.dir(response)
+			expect(response).toBeTruthy
+		} catch (error) {
+			console.warn(error)
+		}
 	})
-	it.todo("getInorigoDataTypes(...) [/core/datatypes]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getInorigoDataTypes(...) [/core/datatypes]", async () => {
+		try {
+			const response = await coreAPI.getInorigoDataTypes(true)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
-	it.todo("getExpressionFunctions() [/core/expression/functions]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getExpressionFunctions() [/core/expression/functions]", async () => {
+		try {
+			const response = await coreAPI.getExpressionFunctions()
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getAttributeReferenceName(...) [/core/attribute/reference/name/{attributeID}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getAttributeReferenceName(...) [/core/attribute/reference/name/{attributeID}]", async () => {
+		try {
+			const response = await coreAPI.getAttributeReferenceName("A17F8D36-A4DC-ABC6-3E37-AC1500CFA5F6", "2162F09C-AE7E-A11D-5CCE-AC1C00C66701", true)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
-	it.todo("getHardcodes() NEW FUNCTION [/core/hardcodes]", async () => {
-		// Get the system hardcoded ids
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+	it.skip("getHardcodes() NEW FUNCTION [/core/hardcodes]", async () => {
+		try {
+			const response = await coreAPI.getHardcodes()
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 })
