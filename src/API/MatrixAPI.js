@@ -143,4 +143,12 @@ export class MatrixAPI {
 	attributeParseValues(requestBody) {
 		return axios.post(`${this.baseURL}matrix/attribute/parse/values`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
+
+	/**
+	 * Validate a resource
+	 * @param {object} requestBody Request body: application/json
+	 */
+	resourceValidate(requestBody) {
+		return axios.post(`${this.baseURL}matrix/resource/validate`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
 }
