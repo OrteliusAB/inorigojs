@@ -151,4 +151,12 @@ export class MatrixAPI {
 	resourceValidate(requestBody) {
 		return axios.post(`${this.baseURL}matrix/resource/validate`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
+
+	/**
+	 * Get meta data for attribute form
+	 * @param {object} requestBody Request body: application/json
+	 */
+	attributeForm(requestBody) {
+		return axios.post(`${this.baseURL}matrix/attribute/form`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
 }
