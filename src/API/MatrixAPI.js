@@ -153,10 +153,10 @@ export class MatrixAPI {
 	}
 
 	/**
-	 * Get meta data for attribute form
+	 * Get meta data for attribute recipe
 	 * @param {object} requestBody Request body: application/json
 	 */
-	attributeForm(requestBody) {
-		return axios.post(`${this.baseURL}matrix/attribute/form`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	attributeRecipe(requestBody) {
+		return axios.post(`${this.baseURL}matrix/attribute/recipe`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 }
