@@ -7,20 +7,17 @@ const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const versoRuntimeAPI: VersoRuntimeAPI = inorigoAPI.getVersoRuntimeAPI()
 
-describe("resource...", () => {
+describe("versoruntime...", () => {
 	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
-		expect("2").equals("2")
 	})
 
 	it("assert IniorigoAPI", () => {
 		assert.exists(inorigoAPI)
 	})
 
-	it.todo("check connection [??]", async () => {
+	it.todo("check versoruntimeAPI", async () => {
 		assert.exists(versoRuntimeAPI)
-		// const response = await versoRuntimeAPI.
-		// expect(list.status).equals(200)
 	})
 
 	it.todo("refresh(vrid) [/application/runtime/{id}/refresh]", async () => {
@@ -124,8 +121,13 @@ describe("resource...", () => {
 	})
 
 	it.todo("setComponentEnabled(...) [/application/runtime/{id}/component/enabled/{component}/{enabled}]", async () => {
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
+		try {
+			const response = await versoRuntimeAPI.setComponentEnabled("runtimeid", "componentid", true)
+			// console.dir(response.data)
+			expect(response.status).equals(200)
+		} catch (error) {
+			console.warn(error)
+		}
 	})
 
 	it.todo("getCommands(vrid) [/application/runtime/{id}/commands]", async () => {

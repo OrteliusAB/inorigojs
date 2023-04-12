@@ -24,7 +24,7 @@ describe("entity...", () => {
 		expect(response.status).equals(200)
 	})
 
-	it.skip("generateUUID(count) [/entity/generateid]", async () => {
+	it("generateUUID(count) [/entity/generateid]", async () => {
 		try {
 			const response = await entityAPI.generateEntity("AsInstance", 1, "578A446C-E919-2353-DDB9-AF6300F5695F")
 			// console.dir(response.data)
@@ -34,7 +34,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getEntity(...) [/entity/{type}/{id}]", async () => {
+	it("getEntity(...) [/entity/{type}/{id}]", async () => {
 		try {
 			const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true, false)
 			// const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true, false)
@@ -44,7 +44,7 @@ describe("entity...", () => {
 			console.warn(error)
 		}
 	})
-	it.skip("getInstances(...) [/entity/{type}/{id}/instances]", async () => {
+	it("getInstances(...) [/entity/{type}/{id}/instances]", async () => {
 		try {
 			const response = await entityAPI.getInstances("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F", ["Name"], 1, 10)
 			// console.dir(response.data)
@@ -54,7 +54,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("partners(...) [/entity/{type}/{id}/partners]", async () => {
+	it("partners(...) [/entity/{type}/{id}/partners]", async () => {
 		try {
 			const response = await entityAPI.partners(
 				"AsDefinition",
@@ -76,7 +76,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getModelPartners(...) [/entity/{type}/{id}/model/partners]", async () => {
+	it("getModelPartners(...) [/entity/{type}/{id}/model/partners]", async () => {
 		try {
 			const response = await entityAPI.getModelPartners("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
 			// console.dir(response.data)
@@ -86,7 +86,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("query(...) [/entity/query]", async () => {
+	it("query(...) [/entity/query]", async () => {
 		const query = {
 			kind: "Filter",
 			dataType: "AsInstance",
@@ -186,7 +186,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("search(...) [/entity/search]", async () => {
+	it("search(...) [/entity/search]", async () => {
 		try {
 			const options = {
 				dataTypes: ["AsInstance"],
@@ -209,7 +209,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getDefinitions(...) [/entity/{type}/{id}/definitions]", async () => {
+	it("getDefinitions(...) [/entity/{type}/{id}/definitions]", async () => {
 		try {
 			const response = await entityAPI.getDefinitions("AsInstance", "7092ECD0-6319-4DFC-E770-AF6300F6BC6B", false, ["presentation"], 1, 10)
 			// console.dir(response.data)
@@ -219,8 +219,8 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getSuperClasses(...) [/entity/{type}/{id}/superclasses]", async () => {
-		// parameter info cannot be added, reported as bug.
+	it("getSuperClasses(...) [/entity/{type}/{id}/superclasses]", async () => {
+		// Allowed values for parameter info: Attributes, Values, Presentation, Icons
 		try {
 			const response = await entityAPI.getSuperClasses("AsDefinition", "C6886D83-4444-1B1E-7EEE-AC1C0097925F", true, undefined, 1, 10, true, true)
 			// console.dir(response.data)
@@ -230,8 +230,8 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getSubClasses(...) [/entity/{type}/{id}/subclasses]", async () => {
-		// parameter info cannot be added, reported as bug.
+	it("getSubClasses(...) [/entity/{type}/{id}/subclasses]", async () => {
+		// Allowed values for parameter info: Attributes, Values, Presentation, Icons
 		try {
 			const response = await entityAPI.getSubClasses("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA", true, undefined, 1, 10, true, true)
 			// console.dir(response.data)
@@ -245,7 +245,7 @@ describe("entity...", () => {
 		// check with Joakim C/Måns what data to send in call
 	})
 
-	it.skip("getRelations(...) [/entity/{type}/{id}/relations]", async () => {
+	it("getRelations(...) [/entity/{type}/{id}/relations]", async () => {
 		try {
 			const response = await entityAPI.getRelations("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
 			// console.dir(response.data.relations)
@@ -255,7 +255,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("updateEntity(...) [/entity]", async () => {
+	it("updateEntity(...) [/entity]", async () => {
 		const entityTypes = new InorigoEnums().entityTypes()
 		const data: object[] = []
 		const payload = new Entity()
@@ -291,7 +291,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("createEntity(...) [/entity]", async () => {
+	it("createEntity(...) [/entity]", async () => {
 		const entityTypes = new InorigoEnums().entityTypes()
 		const data: object[] = []
 		const payload = new Entity()
@@ -324,7 +324,7 @@ describe("entity...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("deleteEntity(...) [/entity/{type}/{id}]", async () => {
+	it("deleteEntity(...) [/entity/{type}/{id}]", async () => {
 		const entityTypes = new InorigoEnums().entityTypes()
 		const data: object[] = []
 		const payload = new Entity()
@@ -353,7 +353,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getSimplifiedInstances(...) [/entity/{type}/{id}/instances]", async () => {
+	it("getSimplifiedInstances(...) [/entity/{type}/{id}/instances]", async () => {
 		// Fetch an entities instances. Only useful for definition types (AsDefinition, etc)
 		try {
 			const response = await entityAPI.getSimplifiedInstances("C697BD4D-33F5-88C3-8136-ABF100CF08ED")
@@ -364,8 +364,8 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getSimplifiedEntity(...) [/entity/{type}/{id}]", async () => {
-		// is missing parameters info, icons, presentations
+	it("getSimplifiedEntity(...) [/entity/{type}/{id}]", async () => {
+		// is missing parameters icons, presentations
 		try {
 			const response = await entityAPI.getSimplifiedEntity("AsInstance", "F38679E3-7FEE-36F6-DC37-AC3E007808CE")
 			// console.dir(response)
@@ -375,7 +375,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getGraphDependencies(...) [/entity/{type}/{id}/dependencies/graph]", async () => {
+	it("getGraphDependencies(...) [/entity/{type}/{id}/dependencies/graph]", async () => {
 		try {
 			const response = await entityAPI.getGraphDependencies("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F")
 			// console.dir(response.data.edges)
@@ -385,7 +385,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getPossibleEntityReferences(...) [/entity/possible/references]", async () => {
+	it("getPossibleEntityReferences(...) [/entity/possible/references]", async () => {
 		try {
 			const response = await entityAPI.getPossibleEntityReferences("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
 			// console.dir(response.data.attributes)
@@ -395,7 +395,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getPossibleInstanceReferences(...) [/entity/possible/instance/references]", async () => {
+	it("getPossibleInstanceReferences(...) [/entity/possible/instance/references]", async () => {
 		try {
 			const response = await entityAPI.getPossibleInstanceReferences("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
 			// console.dir(response.data.attributes)
@@ -405,7 +405,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getPresentation(...) [/entity/{type}/{id}/presentation]", async () => {
+	it("getPresentation(...) [/entity/{type}/{id}/presentation]", async () => {
 		try {
 			const response = await entityAPI.getPresentation("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F", "")
 			// console.dir(response.data)
@@ -415,7 +415,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getDependencyEdges(...) [/entity/{type}/{id}/dependencies/edges]", async () => {
+	it("getDependencyEdges(...) [/entity/{type}/{id}/dependencies/edges]", async () => {
 		try {
 			const response = await entityAPI.getDependencyEdges("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F")
 			// console.dir(response.data.edges)
@@ -425,7 +425,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getAttribute(...) [/entity/{type}/{entityId}/attribute/{attributeId}]", async () => {
+	it("getAttribute(...) [/entity/{type}/{entityId}/attribute/{attributeId}]", async () => {
 		try {
 			const response = await entityAPI.getAttribute("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F", "F0ECDF4A-4754-1740-062E-AF6300F57465")
 			// console.dir(response.data)
@@ -435,7 +435,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getUserAuthorization(...) [/entity/{type}/{entityId}/authorizations/{userId}]", async () => {
+	it("getUserAuthorization(...) [/entity/{type}/{entityId}/authorizations/{userId}]", async () => {
 		try {
 			const response = await entityAPI.getUserAuthorization("AsInstance", "635e7cf7-78dd-48c5-ae0a-aca698e1d67b", "423111ec-aed6-6e84-c740-a66500636f86")
 			// console.dir(response.data)
@@ -445,7 +445,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getCollateralDependants(...) [/entity/{type}/{id}/collateral/dependants]", async () => {
+	it("getCollateralDependants(...) [/entity/{type}/{id}/collateral/dependants]", async () => {
 		try {
 			const response = await entityAPI.getCollateralDependants("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F")
 			// console.dir(response.data)
@@ -455,7 +455,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getEntityIcon(...) [/entity/{type}/{id}/icon/id]", async () => {
+	it("getEntityIcon(...) [/entity/{type}/{id}/icon/id]", async () => {
 		try {
 			const response = await entityAPI.getEntityIcon("AsInstance", "635e7cf7-78dd-48c5-ae0a-aca698e1d67b", 24, "")
 			// console.dir(response.data)
@@ -465,19 +465,19 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getEntityIconID(...) [/entity/{type}/{id}/icon/id]", async () => {
+	it("getEntityIconID(...) [/entity/{type}/{id}/icon/id]", async () => {
 		const response = await entityAPI.getEntityIconID("AsInstance", "635e7cf7-78dd-48c5-ae0a-aca698e1d67b", "")
 		// console.dir(response.data)
 		expect(response.status).equals(200)
 	})
 
-	it.skip("getValueset(uuid) [/entity/valueset/{id}]", async () => {
+	it("getValueset(uuid) [/entity/valueset/{id}]", async () => {
 		const response = await entityAPI.getValueset("C406570B-17EA-5E54-84FE-A49D00B25D0C")
 		// console.dir(response.data)
 		expect(response.status).equals(200)
 	})
 
-	it.skip("getPresentations(entityArray) [/entity/presentations]", async () => {
+	it("getPresentations(entityArray) [/entity/presentations]", async () => {
 		const payload = [
 			{
 				id: "7C7770FF-2E52-0A14-011B-AF6300F6BC6B",
@@ -510,15 +510,15 @@ describe("entity...", () => {
 		}
 	})
 
-	it.skip("getGranted(...) [/entity/granted/{type}]", async () => {
-		const response = await entityAPI.getGranted("AsDefinition", "1800F333-2231-29D5-2E09-AC61013D95E0", "", "", "", "")
+	it("getGranted(...) [/entity/granted/{type}]", async () => {
+		const response = await entityAPI.getGranted("GsKnowledgeSet", "7E3AF419-7188-8220-C75C-AB1800838602", "", "create,read,update,delete", "", "")
 		// console.log(response.data)
 		expect(response.status).equals(200)
 	})
 
 	it.skip("generateEntity(...) [/entity/{type}/generate]", async () => {
-		const response = await entityAPI.generateEntity("AsDefinition", 1, "065D3E1F-DF4E-2C8C-31DB-AB180089CA3E")
-		// console.log(response)
+		const response = await entityAPI.generateEntity("AsInstance", 1, "578A446C-E919-2353-DDB9-AF6300F5695F")
+		// console.log(response.data)
 		expect(response.status).equals(200)
 	})
 })

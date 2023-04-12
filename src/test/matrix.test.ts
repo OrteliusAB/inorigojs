@@ -7,7 +7,7 @@ const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const matrixAPI: MatrixAPI = inorigoAPI.getMatrixAPI()
 
-describe.skip("resource...", () => {
+describe("matrix...", () => {
 	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 	})
@@ -31,19 +31,19 @@ describe.skip("resource...", () => {
 		expect(response.status).equals(200)
 	})
 
-	it.skip("getMetaAndDataForDefinition(...) [/matrix/meta/and/data/for/definition/{definitiontype}/{definitionuuid}]", async () => {
+	it("getMetaAndDataForDefinition(...) [/matrix/meta/and/data/for/definition/{definitiontype}/{definitionuuid}]", async () => {
 		const response = await matrixAPI.getMetaAndDataForDefinition("AsDefinition", "C2ED6335-C1A0-C115-FD2C-AF6300EB2477", false)
 		// console.dir(response.data)
 		expect(response.status).equals(200)
 	})
 
-	it.skip("getMetaForApplicationComponent(...) [/matrix/meta/for/application/component/{applicationid}/{componentid}]", async () => {
+	it("getMetaForApplicationComponent(...) [/matrix/meta/for/application/component/{applicationid}/{componentid}]", async () => {
 		const response = await matrixAPI.getMetaForApplicationComponent("BFBEAF8A-A2F7-273B-C8F1-AEB30064C93A", "D2A9A29A-8EE4-A00A-59A1-AEB4006CD5B8")
 		// console.dir(response.data)
 		expect(response.status).equals(200)
 	})
 
-	it.skip("getMetaForDefinition(...) [/matrix/meta/for/definition/{definitiontype}/{definitionuuid}]", async () => {
+	it("getMetaForDefinition(...) [/matrix/meta/for/definition/{definitiontype}/{definitionuuid}]", async () => {
 		const response = await matrixAPI.getMetaForDefinition("AsDefinition", "C2ED6335-C1A0-C115-FD2C-AF6300EB2477", false)
 		// console.dir(response.data)
 		expect(response.status).equals(200)

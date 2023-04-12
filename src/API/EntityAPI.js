@@ -580,7 +580,6 @@ export class EntityAPI {
 	 */
 	getGranted(type, entityId, variant, actions, userId, contextID) {
 		const uriParams = {
-			type,
 			entityId,
 			variant,
 			actions,

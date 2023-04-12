@@ -123,9 +123,14 @@ export class MiscellaneousAPI {
 	 * @returns {object}
 	 */
 	getStaticImage(key, filter) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "image/*"
+		customConfig.headers["Content-Type"] = ""
+
 		const uriParams = {
 			filter
 		}
-		return axios.get(`${this.parentAPI.BASE_URL_API}static/image/${key}${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		return axios.get(`${this.parentAPI.BASE_URL_API}static/image/${key}${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
 }

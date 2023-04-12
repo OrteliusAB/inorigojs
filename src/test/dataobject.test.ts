@@ -7,7 +7,7 @@ const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const dataObjectAPI: DataObjectAPI = inorigoAPI.getDataObjectAPI()
 
-describe.skip("resource...", () => {
+describe("Dataobjects...", () => {
 	it("Utilities test, verify config read", () => {
 		assert.exists(utilities)
 	})

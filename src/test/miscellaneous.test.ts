@@ -7,7 +7,7 @@ const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const miscellandeousAPI: MiscellaneousAPI = inorigoAPI.getMiscellaneousAPI()
 
-describe("resource...", () => {
+describe("miscellaneous...", () => {
 	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 	})
@@ -21,12 +21,12 @@ describe("resource...", () => {
 		expect(response.status).equals(200)
 	})
 
-	it.skip("getUser() [/user]", async () => {
+	it("getUser() [/user]", async () => {
 		const response = await miscellandeousAPI.getUser()
 		expect(response.status).equals(200)
 	})
 
-	it.skip("excecute(requestBody) [/execute]", async () => {
+	it("excecute(requestBody) [/execute]", async () => {
 		const payload = {
 			target: "4FF7ED7A-97BF-83C5-DEAA-A43D00C393FF",
 			commit: false,
@@ -49,7 +49,7 @@ describe("resource...", () => {
 		// expect(list.status).equals(200)
 	})
 
-	it.skip("getDynamicImage(...) [/dynamic/image/{key}]", async () => {
+	it("getDynamicImage(...) [/dynamic/image/{key}]", async () => {
 		try {
 			// const response = await miscellandeousAPI.getDynamicImage("5C65937C-90C8-48DA-8B8E-7A02495C01EF") // png
 			// const response = await miscellandeousAPI.getDynamicImage("E2B192F6-1048-7DA2-9A4B-A9FF01150F81") //jpg
@@ -61,7 +61,7 @@ describe("resource...", () => {
 		}
 	})
 
-	it.skip("getRelationDirectionIcon(...) [/relation/direction/icon]", async () => {
+	it("getRelationDirectionIcon(...) [/relation/direction/icon]", async () => {
 		try {
 			const response = await miscellandeousAPI.getRelationDirectionIcon("DOWN")
 			// console.dir(response.data)
@@ -71,7 +71,7 @@ describe("resource...", () => {
 		}
 	})
 
-	it.skip("getRelationIcon(...) [/relation/id/icon]", async () => {
+	it("getRelationIcon(...) [/relation/id/icon]", async () => {
 		try {
 			const response = await miscellandeousAPI.getRelationIcon("DOWN", "UnRel", "71866D57-18A7-48D5-AC96-8BFCCB7F5FD3")
 			// console.dir(response.data)
@@ -81,7 +81,7 @@ describe("resource...", () => {
 		}
 	})
 
-	it.skip("getRelationSpecifierIcon( [/relation/specifier/icon]", async () => {
+	it("getRelationSpecifierIcon( [/relation/specifier/icon]", async () => {
 		try {
 			const response = await miscellandeousAPI.getRelationSpecifierIcon("LEFT", "71866D57-18A7-48D5-AC96-8BFCCB7F5FD3")
 			// console.dir(response.data)
@@ -91,10 +91,9 @@ describe("resource...", () => {
 		}
 	})
 
-	it.todo("getStaticImage(...) [/static/image/{key}]", async () => {
-		//  does not work due to BUG in API, check JIRA https://jira.ortelius.se/browse/IPB-424
+	it("getStaticImage(...) [/static/image/{key}]", async () => {
 		try {
-			const response = await miscellandeousAPI.getStaticImage("71866D57-18A7-48D5-AC96-8BFCCB7F5FD3", "")
+			const response = await miscellandeousAPI.getStaticImage("ic-appbuilder.svg", "")
 			// console.dir(response.data)
 
 			expect(response.status).equals(200)

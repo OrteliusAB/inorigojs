@@ -9,7 +9,7 @@ const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const favoriteAPI: FavoriteAPI = inorigoAPI.getFavoriteAPI()
 const knowledgesetAPI: KnowledgeSetAPI = inorigoAPI.getKnowledgesetAPI()
 
-describe.skip("resource...", () => {
+describe("favorite...", () => {
 	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 	})
