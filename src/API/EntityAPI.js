@@ -274,8 +274,8 @@ export class EntityAPI {
 	 * @param {array} entityJSONArray - Array of entity DTOs
 	 * @return {object} - Response
 	 */
-	updateEntity(entityJSON) {
-		return axios.put(`${this.parentAPI.BASE_URL_API}entity`, entityJSON, this.parentAPI.DEFAULTCONFIG)
+	updateEntity(entityJSONArray) {
+		return axios.put(`${this.parentAPI.BASE_URL_API}entity`, entityJSONArray, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -565,7 +565,7 @@ export class EntityAPI {
 	 * @return {object} - Response
 	 */
 	getPresentations(entityArray) {
-		return axios.post(`${this.parentAPI.BASE_URL_API}entity/presentations/`, entityArray, this.parentAPI.DEFAULTCONFIG)
+		return axios.post(`${this.parentAPI.BASE_URL_API}entity/presentations/`, JSON.stringify(entityArray), this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**

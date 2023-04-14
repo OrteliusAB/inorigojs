@@ -88,11 +88,11 @@ export class CoreAPI {
 	/**
 	 * Retrieves possible known values for an Inorigo attribute
 	 * @param {string} attributeKey - The attribute key (required). May be a uuid or a fixed attribute name
-	 * @param {string} definitionID - Inorigo ID of an explicit definition where the attribute is defined or inherrited
-	 * @param {string} definitionType - Inorigo Type of a definition (applicable when the attributeKey is a fixed attribute)
-	 * @param {string} entityType - Inorigo Type of an entity (applicable when the attributeKey is a fixed attribute)
-	 * @param {boolean} presentations - Add presentations to the output (applicable only when the attribute refer an entity)
-	 * @param {boolean} icons - Add icon URLs to the output (applicable only when the attribute refer an entity)
+	 * @param {string=} definitionID - Inorigo ID of an explicit definition where the attribute is defined or inherrited
+	 * @param {string=} definitionType - Inorigo Type of a definition (applicable when the attributeKey is a fixed attribute)
+	 * @param {string=} entityType - Inorigo Type of an entity (applicable when the attributeKey is a fixed attribute)
+	 * @param {boolean=} presentations - Add presentations to the output (applicable only when the attribute refer an entity)
+	 * @param {boolean=} icons - Add icon URLs to the output (applicable only when the attribute refer an entity)
 	 * @return {object} - Response
 	 */
 	getPossibleAttributeValues(attributeKey, definitionID, definitionType, entityType, presentations, icons) {
@@ -157,7 +157,7 @@ export class CoreAPI {
 
 	/**
 	 * Retrieves attributes, relations and references for a Config Request object
-	 * @param {object} request - Inorigo Config Request
+	 * @param {object} request - Inorigo Config Request as an object literal
 	 * @return {object} - Response
 	 */
 	getEntityConfigByRequest(request) {

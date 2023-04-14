@@ -70,155 +70,173 @@ describe("core...", () => {
 		}
 	})
 
-	it.todo("getTranslation(...) [/core/translate]", async () => {
-		// what do I send in payload/Request body
-		//  check with JC one what to send in the payload
+	it("getTranslation(...) [/core/translate]", async () => {
+		const response = await coreAPI.getTranslation("CONFIRM_DELETE_HEAD")
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getAttributeDefinition( [/core/attribute/definition]", async () => {
-		try {
-			const response = await coreAPI.getAttributeDefinition(
-				"6630E548-8E42-1206-8B2B-AF6300EEE420",
-				"C2ED6335-C1A0-C115-FD2C-AF6300EB2477",
-				"AsDefinition",
-				"AsInstance"
-			)
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await coreAPI.getAttributeDefinition(
+			"6630E548-8E42-1206-8B2B-AF6300EEE420",
+			"C2ED6335-C1A0-C115-FD2C-AF6300EB2477",
+			"AsDefinition",
+			"AsInstance"
+		)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getPossibleAttributeValues(...) [/core/attribute/value/list]", async () => {
-		try {
-			const response = await coreAPI.getPossibleAttributeValues("6A9E4AEB-B873-0AE2-9ACC-AF6300F74001")
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await coreAPI.getPossibleAttributeValues("6A9E4AEB-B873-0AE2-9ACC-AF6300F74001")
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getPossibleAttributeValuesCount(...)[/core/attribute/value/count]", async () => {
-		try {
-			const response = await coreAPI.getPossibleAttributeValuesCount("", "", "AsInstance", "", true, true)
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await coreAPI.getPossibleAttributeValuesCount("6A9E4AEB-B873-0AE2-9ACC-AF6300F74001", "", "AsInstance", "", true, true)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getEntityTypeCount(...) [/core/count/entity/{entityType}]", async () => {
-		try {
-			const response = await coreAPI.getEntityTypeCount("UnResource")
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
+		const response = await coreAPI.getEntityTypeCount("UnResource")
+		// console.dir(response.data)
+		expect(response.status).equals(200)
+	})
+
+	it("getRelationSpecifierName(...) [/core/relation/specifier/name]", async () => {
+		const response = await coreAPI.getRelationSpecifierName("2B718A48-8516-44B6-BE89-5F33C39E300B", "Both")
+		expect(response.status).equal(200)
+	})
+
+	it("getEntityConfigByRequest(...) [/core/get/entity/config]", async () => {
+		const data = {
+			dataContextID: "64C3DCC8-DE9B-408C-3299-A38D008C8FC7",
+			includeDefinitions: true,
+			includeAttributes: false,
+			includeRelations: false,
+			includeReferences: false,
+			includeDisabledAttributes: false,
+			includeSystemAttributes: false,
+			includeDisabledReferences: false,
+			targetDataType: "string",
+			targetID: {
+				uuid: "8F7827E8-D3C4-A158-5BA0-A54F009EB2EF",
+				type: "CoProduct"
+			}
 		}
+		const response = await coreAPI.getEntityConfigByRequest(data)
+		expect(response.status).equal(200)
 	})
 
-	it.todo("getRelationSpecifierName(...) [/core/relation/specifier/name]", async () => {
-		//  check with JC one what to send in the payload
-	})
-
-	it.todo("getEntityConfigByRequest(...) [/core/get/entity/config]", async () => {
-		//  check with JC one what to send in the payload
-	})
-
-	it.todo("getEntityConfigTreeByRequest(...) [/core/get/entity/config/tree]", async () => {
-		//  check with JC one what to send in the payload
-	})
-
-	it.todo("getCriterionOptions(...) [/core/criterion/options/list]", async () => {
-		//  check with JC one what to send in the payload
-		try {
-			const response = await coreAPI.getCriterionOptions({}, "", true, true, 1, 10)
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
+	it("getEntityConfigTreeByRequest(...) [/core/get/entity/config/tree]", async () => {
+		const data = {
+			dataContextID: "64C3DCC8-DE9B-408C-3299-A38D008C8FC7",
+			includeDefinitions: false,
+			includeAttributes: false,
+			includeRelations: false,
+			includeReferences: true,
+			includeDisabledAttributes: false,
+			includeSystemAttributes: false,
+			includeDisabledReferences: false,
+			targetDataType: "string",
+			targetID: {
+				uuid: "E569EA6D-6B88-140E-AAE4-A49E00C056DE",
+				type: "CoConceptType"
+			}
 		}
+		const response = await coreAPI.getEntityConfigTreeByRequest(data)
+		expect(response.status).equal(200)
 	})
 
-	it.todo("getCriterionOptionsCount(...) [/core/criterion/options/count]", async () => {
-		//  check with JC one what to send in the payload
-		try {
-			const response = await coreAPI.getCriterionOptionsCount("")
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
+	it("getCriterionOptions(...) [/core/criterion/options/list]", async () => {
+		const data = {
+			criterion: {
+				kind: "Attribute",
+				qualifier: "EQ",
+				key: "8d7e52be-dbd1-862c-4a17-a3a1006cd626",
+				name: "Person",
+				definitionID: {
+					uuid: "05d9cc9b-086d-5cf5-11bd-a3a1006c2bea",
+					type: "AsDefinition"
+				},
+				dataType: "CoProduct"
+			},
+			filter: "",
+			presentations: true,
+			icons: true,
+			page: 1,
+			pageSize: 100
 		}
+
+		const response = await coreAPI.getCriterionOptions(data, "", true, true, 1, 10)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
+	})
+
+	it("getCriterionOptionsCount(...) [/core/criterion/options/count]", async () => {
+		const data = {
+			criterion: {
+				kind: "Attribute",
+				qualifier: "EQ",
+				key: "8d7e52be-dbd1-862c-4a17-a3a1006cd626",
+				name: "Person",
+				definitionID: {
+					uuid: "05d9cc9b-086d-5cf5-11bd-a3a1006c2bea",
+					type: "AsDefinition"
+				},
+				dataType: "CoProduct"
+			},
+			filter: "",
+			presentations: true,
+			icons: true,
+			page: 1,
+			pageSize: 100
+		}
+		const response = await coreAPI.getCriterionOptionsCount(data)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getEntityIconUrl(...) [/core/icon/url/{type}/{uuid}]", async () => {
 		// UnResource:03B72771-D791-4B7F-A186-BD0634CC41A3
-		try {
-			const response = await coreAPI.getEntityIconUrl("UnResource", "03B72771-D791-4B7F-A186-BD0634CC41A3")
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await coreAPI.getEntityIconUrl("UnResource", "03B72771-D791-4B7F-A186-BD0634CC41A3")
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getTypeIconUrl(...) [/core/type/icon/{type}]", async () => {
-		try {
-			const response = await coreAPI.getTypeIconUrl("UnResource", 24)
-			// console.dir(response)
-			expect(response).toBeTruthy
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await coreAPI.getTypeIconUrl("UnResource", 24)
+		// console.dir(response)
+		expect(response).toBeTruthy
 	})
+
 	it("getCategoryIconUrl(...) [/core/type/icon/{category}]", async () => {
-		try {
-			const response = await coreAPI.getCategoryIconUrl("Relation", 24)
-			// console.dir(response)
-			expect(response).toBeTruthy
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await coreAPI.getCategoryIconUrl("Relation", 24)
+		// console.dir(response)
+		expect(response).toBeTruthy
 	})
 	it("getInorigoDataTypes(...) [/core/datatypes]", async () => {
-		try {
-			const response = await coreAPI.getInorigoDataTypes(true)
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await coreAPI.getInorigoDataTypes(true)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 	it("getExpressionFunctions() [/core/expression/functions]", async () => {
-		try {
-			const response = await coreAPI.getExpressionFunctions()
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await coreAPI.getExpressionFunctions()
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getAttributeReferenceName(...) [/core/attribute/reference/name/{attributeID}]", async () => {
-		try {
-			const response = await coreAPI.getAttributeReferenceName("A17F8D36-A4DC-ABC6-3E37-AC1500CFA5F6", "2162F09C-AE7E-A11D-5CCE-AC1C00C66701", true)
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await coreAPI.getAttributeReferenceName("A17F8D36-A4DC-ABC6-3E37-AC1500CFA5F6", "2162F09C-AE7E-A11D-5CCE-AC1C00C66701", true)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getHardcodes() NEW FUNCTION [/core/hardcodes]", async () => {
-		try {
-			const response = await coreAPI.getHardcodes()
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await coreAPI.getHardcodes()
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 })

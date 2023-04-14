@@ -57,7 +57,7 @@ export class ModuleAPI {
 	/**
 	 * Submits a request that an external module is to be added to the system.
 	 * Note that the module is not enabled until the request is approved by a system administrator
-	 * @param {{ name: string, description: string, externalAddress: string, iconData: string, mimeType: string, integrations: [{string}], dataTypes: [{string}], variants: [{string}] }} requestBody - Request Payload
+	 * @param {{ name: string, description: string, externalAddress: string, iconData: string, mimeType: string, integrations: string[], dataTypes: string[], variants: string[] }} requestBody - Request Payload
 	 * @returns {object} - Response
 	 */
 	registerModule(requestBody) {

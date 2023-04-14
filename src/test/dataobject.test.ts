@@ -104,31 +104,23 @@ describe("Dataobjects...", () => {
 	})
 
 	it("registerDataVariant(...) [/dataobject/variant]", async () => {
-		try {
-			const responseCreate = await dataObjectAPI.registerDataVariant("VITEST-VARIANT-C", "vitest register variant test case", "", "application/json")
-			console.dir(responseCreate.data)
-			expect(responseCreate.status).equals(200)
+		const responseCreate = await dataObjectAPI.registerDataVariant("VITEST-VARIANT-C", "vitest register variant test case", "", "application/json")
+		// console.dir(responseCreate.data)
+		expect(responseCreate.status).equals(200)
 
-			const responseDelete = await dataObjectAPI.deleteDataVariant(responseCreate.data.id)
-			console.dir(responseDelete.data)
-			expect(responseDelete.status).equals(200)
-		} catch (error) {
-			console.dir(error)
-		}
+		const responseDelete = await dataObjectAPI.deleteDataVariant(responseCreate.data.id)
+		// console.dir(responseDelete.data)
+		expect(responseDelete.status).equals(200)
 	})
 
 	it("deleteDataVariant(id) [/dataobject/variant/{id}]", async () => {
-		try {
-			const responseCreate = await dataObjectAPI.registerDataVariant("VITEST-VARIANT-D", "vitest delete variant test case", "", "application/json")
-			console.dir(responseCreate.data)
-			expect(responseCreate.status).equals(200)
+		const responseCreate = await dataObjectAPI.registerDataVariant("VITEST-VARIANT-D", "vitest delete variant test case", "", "application/json")
+		// console.dir(responseCreate.data)
+		expect(responseCreate.status).equals(200)
 
-			const responseDelete = await dataObjectAPI.deleteDataVariant(responseCreate.data.id)
-			console.dir(responseDelete.data)
-			expect(responseDelete.status).equals(200)
-		} catch (error) {
-			console.dir(error)
-		}
+		const responseDelete = await dataObjectAPI.deleteDataVariant(responseCreate.data.id)
+		// console.dir(responseDelete.data)
+		expect(responseDelete.status).equals(200)
 	})
 
 	it("getDataVariantName(id) [/dataobject/{id}/variant/name]", async () => {

@@ -29,10 +29,9 @@ export class KnowledgeSetAPI {
 	 * @param {number} page - What page do you want to retrieve?
 	 * @param {number} pagesize - How many rows should be in one page?
 	 * @param {object} parameters - Extra parameters for the knowledge set provided as an object literal
-	 * @param {boolean} allowCache - Allow cached data?
 	 * @return {object} - Response
 	 */
-	getResult(uuid, isDistinct, page, pagesize, parameters, allowCache) {
+	getResult(uuid, isDistinct, page, pagesize, parameters) {
 		const uriParams = {
 			metadata: true,
 			distinct: isDistinct,
@@ -40,8 +39,32 @@ export class KnowledgeSetAPI {
 			pagesize
 		}
 		return axios.post(
-			`${this.parentAPI.BASE_URL_API}knowledgeset/${uuid}${allowCache ? "/cache/read" : ""}${this.parentAPI._buildURIParams(uriParams)}`,
+			`${this.parentAPI.BASE_URL_API}knowledgeset/${uuid}${this.parentAPI._buildURIParams(uriParams)}`,
 			parameters !== undefined && parameters !== null ? { parameters } : {},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
+	 * Executes a given knowledge set and retrieves the response in a flat format.
+	 * @param {string} uuid - UUID of the knowledge set
+	 * @param {boolean=} metadata - Optional boolean parameter. If true, the response will include metadata about the Knowledge Set
+	 * @param {number=} page - What page do you want to retrieve?
+	 * @param {number=} pagesize - How many rows should be in one page?
+	 * @param {boolean=} compactpaths - Compact Paths
+	 * @param {boolean=} replaceidbypresentation - Optional parameter. Replace all ids by presentations?
+	 * @return {object} - Response
+	 */
+	getCachedResult(uuid, metadata = false, page, pagesize, compactpaths, replaceidbypresentation) {
+		const uriParams = {
+			metadata,
+			page,
+			pagesize,
+			compactpaths,
+			replaceidbypresentation
+		}
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}knowledgeset/${uuid}/cache/read${this.parentAPI._buildURIParams(uriParams)}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
 	}

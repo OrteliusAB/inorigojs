@@ -28,13 +28,9 @@ describe("Knowledgeset testsuit", () => {
 	})
 
 	it("getResult(...) [/knowledgeset/{id}]", async () => {
-		try {
-			const response = await knowledgesetAPI.getResult("7e3af419-7188-8220-c75c-ab1800838602", false, 1, 30, null, false)
-			// console.log(response.data.dataSets[0].rows)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await knowledgesetAPI.getResult("7e3af419-7188-8220-c75c-ab1800838602", false, 1, 30, null)
+		// console.log(response.data.dataSets[0].rows)
+		expect(response.status).equals(200)
 	})
 
 	it("getResultAsObjects(...) [/knowledgeset/objects/{id}]", async () => {
@@ -44,22 +40,18 @@ describe("Knowledgeset testsuit", () => {
 	})
 
 	it("getTreeResult(...) [/knowledgeset/tree/{id}]", async () => {
-		try {
-			const response = await knowledgesetAPI.getTreeResult(
-				"27a238ab-4a7c-c2fe-055a-af6d00e19431",
-				false,
-				true,
-				{ parameters: [{ name: "PARA", value: "France" }] },
-				false,
-				true
-			)
-			// console.dir(response.data)
-			// console.dir(response.data.result)
+		const response = await knowledgesetAPI.getTreeResult(
+			"27a238ab-4a7c-c2fe-055a-af6d00e19431",
+			false,
+			true,
+			{ parameters: [{ name: "PARA", value: "France" }] },
+			false,
+			true
+		)
+		// console.dir(response.data)
+		// console.dir(response.data.result)
 
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		expect(response.status).equals(200)
 	})
 
 	it("exportToFile(...) [/knowledgeset/file/{id}]", async () => {
@@ -105,14 +97,11 @@ describe("Knowledgeset testsuit", () => {
 		}
 	}, 50000)
 
-	it.only("getResult(...)  [/knowledgeset/{id}/cache/read]", async () => {
-		try {
-			const response = await knowledgesetAPI.getResult("7e3af419-7188-8220-c75c-ab1800838602", false, 1, 30, null, true)
-			// console.log(response.data.dataSets[0].rows)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+	it("getCachedResult(...)  [/knowledgeset/{id}/cache/read]", async () => {
+		const response = await knowledgesetAPI.getCachedResult("7e3af419-7188-8220-c75c-ab1800838602", false, 1, 30, false, true)
+		// console.log(response.data.dataSets[0].rows)
+		// console.log(response)
+		expect(response.status).equals(200)
 	})
 
 	it("searchResult(...) [/knowledgeset/{id}/search/text]", async () => {

@@ -25,65 +25,46 @@ describe("entity...", () => {
 	})
 
 	it("generateUUID(count) [/entity/generateid]", async () => {
-		try {
-			const response = await entityAPI.generateEntity("AsInstance", 1, "578A446C-E919-2353-DDB9-AF6300F5695F")
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await entityAPI.generateEntity("AsInstance", 1, "578A446C-E919-2353-DDB9-AF6300F5695F")
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getEntity(...) [/entity/{type}/{id}]", async () => {
-		try {
-			const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true, false)
-			// const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true, false)
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true, false)
+		// const response = await entityAPI.getEntity("AsInstance", "6265F793-D396-12D4-C2C1-AF6300F6BC6D", true, true, false)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
+
 	it("getInstances(...) [/entity/{type}/{id}/instances]", async () => {
-		try {
-			const response = await entityAPI.getInstances("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F", ["Name"], 1, 10)
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await entityAPI.getInstances("AsDefinition", "578A446C-E919-2353-DDB9-AF6300F5695F", ["Name"], 1, 10)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("partners(...) [/entity/{type}/{id}/partners]", async () => {
-		try {
-			const response = await entityAPI.partners(
-				"AsDefinition",
-				"37F28315-525E-04C5-A84B-ABF0011DC8BA",
-				undefined,
-				"",
-				false,
-				false,
-				undefined,
-				1,
-				10,
-				true,
-				true
-			)
-			// console.dir(response.data.entities)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await entityAPI.partners(
+			"AsDefinition",
+			"37F28315-525E-04C5-A84B-ABF0011DC8BA",
+			undefined,
+			"",
+			false,
+			false,
+			undefined,
+			1,
+			10,
+			true,
+			true
+		)
+		// console.dir(response.data.entities)
+		expect(response.status).equals(200)
 	})
 
 	it("getModelPartners(...) [/entity/{type}/{id}/model/partners]", async () => {
-		try {
-			const response = await entityAPI.getModelPartners("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await entityAPI.getModelPartners("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("query(...) [/entity/query]", async () => {
@@ -177,82 +158,64 @@ describe("entity...", () => {
 			]
 		}
 
-		try {
-			const response = await entityAPI.query(query, true, 1, 10)
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await entityAPI.query(query, true, 1, 10)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("search(...) [/entity/search]", async () => {
-		try {
-			const options = {
-				dataTypes: ["AsInstance"],
-				definitionType: "Company",
-				definitionID: "578A446C-E919-2353-DDB9-AF6300F5695F",
-				extendedMetadata: true,
-				includeIcons: true,
-				caseSensitive: true,
-				fullScan: true,
-				positionRelevant: true,
-				contextSizeRelevant: true,
-				maxErrors: 0
-			}
-
-			const response = await entityAPI.search("Boeing", options)
-			// console.dir(response)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
+		const options = {
+			dataTypes: ["AsInstance"]
 		}
+
+		// const options = {
+		// 	dataTypes: ["AsInstance"],
+		// 	definitionType: "Company",
+		// 	definitionID: "578A446C-E919-2353-DDB9-AF6300F5695F",
+		// 	extendedMetadata: true,
+		// 	includeIcons: true,
+		// 	caseSensitive: true,
+		// 	fullScan: true,
+		// 	positionRelevant: true,
+		// 	contextSizeRelevant: true,
+		// 	maxErrors: 0
+		// }
+
+		const response = await entityAPI.search("Boeing", options)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getDefinitions(...) [/entity/{type}/{id}/definitions]", async () => {
-		try {
-			const response = await entityAPI.getDefinitions("AsInstance", "7092ECD0-6319-4DFC-E770-AF6300F6BC6B", false, ["presentation"], 1, 10)
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await entityAPI.getDefinitions("AsInstance", "7092ECD0-6319-4DFC-E770-AF6300F6BC6B", false, ["presentation"], 1, 10)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getSuperClasses(...) [/entity/{type}/{id}/superclasses]", async () => {
 		// Allowed values for parameter info: Attributes, Values, Presentation, Icons
-		try {
-			const response = await entityAPI.getSuperClasses("AsDefinition", "C6886D83-4444-1B1E-7EEE-AC1C0097925F", true, undefined, 1, 10, true, true)
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await entityAPI.getSuperClasses("AsDefinition", "C6886D83-4444-1B1E-7EEE-AC1C0097925F", true, [""], 1, 10, true, true)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getSubClasses(...) [/entity/{type}/{id}/subclasses]", async () => {
 		// Allowed values for parameter info: Attributes, Values, Presentation, Icons
-		try {
-			const response = await entityAPI.getSubClasses("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA", true, undefined, 1, 10, true, true)
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await entityAPI.getSubClasses("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA", true, [""], 1, 10, true, true)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
-	it.todo("getReferents(...) [/entity/{type}/{id}/referents]", async () => {
-		// check with Joakim C/Måns what data to send in call
+	it("getReferents(...) [/entity/{type}/{id}/referents]", async () => {
+		const response = await entityAPI.getReferents("AsInstance", "04BB94F2-21EF-719B-943A-A54E00944F56", 1, 10)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
 	})
 
 	it("getRelations(...) [/entity/{type}/{id}/relations]", async () => {
-		try {
-			const response = await entityAPI.getRelations("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA")
-			// console.dir(response.data.relations)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		const response = await entityAPI.getRelations("AsDefinition", "37F28315-525E-04C5-A84B-ABF0011DC8BA", undefined, "", 1, 1)
+		// console.dir(response.data.relations)
+		expect(response.status).equals(200)
 	})
 
 	it("updateEntity(...) [/entity]", async () => {
@@ -291,7 +254,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it("createEntity(...) [/entity]", async () => {
+	it.only("createEntity(...) [/entity]", async () => {
 		const entityTypes = new InorigoEnums().entityTypes()
 		const data: object[] = []
 		const payload = new Entity()
@@ -306,18 +269,14 @@ describe("entity...", () => {
 			.print()
 
 		data.push(payload)
-		try {
-			const response = await entityAPI.createEntity(JSON.stringify(data))
-			// console.dir(response.data)
-			// console.dir(response.data.ids[0])
+		const response = await entityAPI.createEntity(JSON.stringify(data))
+		// console.dir(response.data)
+		// console.dir(response.data.ids[0])
 
-			expect(response.status).equals(200)
-			const responseDelete = await entityAPI.deleteEntity(entityTypes.ASSOCIATION, response.data.ids[0])
-			// console.dir(responseDelete)
-			expect(responseDelete.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		expect(response.status).equals(200)
+		const responseDelete = await entityAPI.deleteEntity(entityTypes.ASSOCIATION, response.data.ids[0])
+		// console.dir(responseDelete)
+		expect(responseDelete.status).equals(200)
 	})
 
 	it.todo("transaction() [/entity/commit/transaction]", async () => {
@@ -337,20 +296,16 @@ describe("entity...", () => {
 				"83C626C4-68B8-541E-0C64-AF6300EF0AF4": 51
 			})
 			.print()
-
+		// console.dir(payload)
 		data.push(payload)
-		try {
-			const response = await entityAPI.createEntity(JSON.stringify(data))
-			// console.dir(response.data)
-			// console.dir(response.data.ids[0])
+		const response = await entityAPI.createEntity(data)
+		// console.dir(response.data)
+		// console.dir(response.data.ids[0])
 
-			expect(response.status).equals(200)
-			const responseDelete = await entityAPI.deleteEntity(entityTypes.ASSOCIATION, response.data.ids[0])
-			// console.dir(responseDelete)
-			expect(responseDelete.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		expect(response.status).equals(200)
+		const responseDelete = await entityAPI.deleteEntity(entityTypes.ASSOCIATION, response.data.ids[0])
+		// console.dir(responseDelete)
+		expect(responseDelete.status).equals(200)
 	})
 
 	it("getSimplifiedInstances(...) [/entity/{type}/{id}/instances]", async () => {
@@ -501,13 +456,13 @@ describe("entity...", () => {
 			}
 		]
 
-		try {
-			const response = await entityAPI.getPresentations(JSON.stringify(payload))
-			// console.dir(response.data)
-			expect(response.status).equals(200)
-		} catch (error) {
-			console.warn(error)
-		}
+		// try {
+		const response = await entityAPI.getPresentations(payload)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
+		// } catch (error) {
+		// 	console.warn(error)
+		// }
 	})
 
 	it("getGranted(...) [/entity/granted/{type}]", async () => {
@@ -516,7 +471,7 @@ describe("entity...", () => {
 		expect(response.status).equals(200)
 	})
 
-	it.skip("generateEntity(...) [/entity/{type}/generate]", async () => {
+	it("generateEntity(...) [/entity/{type}/generate]", async () => {
 		const response = await entityAPI.generateEntity("AsInstance", 1, "578A446C-E919-2353-DDB9-AF6300F5695F")
 		// console.log(response.data)
 		expect(response.status).equals(200)

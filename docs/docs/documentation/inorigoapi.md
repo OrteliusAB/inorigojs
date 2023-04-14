@@ -75,7 +75,7 @@ Function | Description
 getMetaData(uuid)   |   Retrieves meta data about a given knowledgeset. 
 getResult(uuid, isDistinct, page, pagesize, parameters)   |   Retrieves a knowledgeset in table format.
 searchResult(uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns)   |   Retrieves a knowledgeset in table format where every row matches a given free text search
-getCachedResult: (uuid, page, pagesize, compactPaths)   |   Retrieves a (cached) knowledgeset in table format
+getCachedResult: (uuid, metaData, page, pagesize, compactPaths, replaceIdByPresentation)   |   Retrieves a (cached) knowledgeset in table format
 getTreeResult(uuid, metaData, compactLeafs, parameters, allowCache)   |   Retrieves a knowledgeset in tree format.
 searchTreeResult(uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns)   |   Retrieves a knowledgeset in tree format where every node matches a given free text search
 getAvailable()   |   Retrieves a list of all available knowledgesets.

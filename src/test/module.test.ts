@@ -93,7 +93,7 @@ describe("Module...", () => {
 	})
 
 	it("deleteModule(...) [/module/{id}]", async () => {
-		const requestBody: object = {
+		const requestBody = {
 			name: "VITEST_DELETE_MODULE",
 			description: "VITEST Delete Module",
 			externalAddress: "http://test",
@@ -113,7 +113,7 @@ describe("Module...", () => {
 	})
 
 	it("registerModule(...) [/module]", async () => {
-		const requestBody: object = {
+		const requestBody = {
 			name: "VITEST_REGISTER_MODULE",
 			description: "VITEST Register Module",
 			externalAddress: "http://test.nu",
