@@ -168,19 +168,6 @@ describe("entity...", () => {
 			dataTypes: ["AsInstance"]
 		}
 
-		// const options = {
-		// 	dataTypes: ["AsInstance"],
-		// 	definitionType: "Company",
-		// 	definitionID: "578A446C-E919-2353-DDB9-AF6300F5695F",
-		// 	extendedMetadata: true,
-		// 	includeIcons: true,
-		// 	caseSensitive: true,
-		// 	fullScan: true,
-		// 	positionRelevant: true,
-		// 	contextSizeRelevant: true,
-		// 	maxErrors: 0
-		// }
-
 		const response = await entityAPI.search("Boeing", options)
 		// console.dir(response.data)
 		expect(response.status).equals(200)
@@ -254,7 +241,7 @@ describe("entity...", () => {
 		}
 	})
 
-	it.only("createEntity(...) [/entity]", async () => {
+	it("createEntity(...) [/entity]", async () => {
 		const entityTypes = new InorigoEnums().entityTypes()
 		const data: object[] = []
 		const payload = new Entity()
