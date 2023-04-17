@@ -234,7 +234,7 @@ describe("core...", () => {
 		expect(response.status).equals(200)
 	})
 
-	it("getHardcodes() NEW FUNCTION [/core/hardcodes]", async () => {
+	it("getHardcodes() [/core/hardcodes]", async () => {
 		const response = await coreAPI.getHardcodes()
 		// console.dir(response.data)
 		expect(response.status).equals(200)

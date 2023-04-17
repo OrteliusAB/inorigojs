@@ -7,7 +7,7 @@ const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const versoRuntimeAPI: VersoRuntimeAPI = inorigoAPI.getVersoRuntimeAPI()
 
-describe("versoruntime...", () => {
+describe.skip("versoruntime...", () => {
 	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 	})

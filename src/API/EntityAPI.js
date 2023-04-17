@@ -275,7 +275,7 @@ export class EntityAPI {
 	 * @return {object} - Response
 	 */
 	updateEntity(entityJSONArray) {
-		return axios.put(`${this.parentAPI.BASE_URL_API}entity`, entityJSONArray, this.parentAPI.DEFAULTCONFIG)
+		return axios.put(`${this.parentAPI.BASE_URL_API}entity`, JSON.stringify(entityJSONArray), this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -284,7 +284,7 @@ export class EntityAPI {
 	 * @return {object} - Response
 	 */
 	createEntity(entityJSONArray) {
-		return axios.post(`${this.parentAPI.BASE_URL_API}entity`, entityJSONArray, this.parentAPI.DEFAULTCONFIG)
+		return axios.post(`${this.parentAPI.BASE_URL_API}entity`, JSON.stringify(entityJSONArray), this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**

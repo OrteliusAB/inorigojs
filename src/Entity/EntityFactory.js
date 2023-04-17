@@ -103,7 +103,7 @@ export class EntityFactory {
 	/**
 	 * Creates a new transaction object.
 	 * @param {boolean} ignoreWarnings - Should warnings from Inorigo be ignored?
-	 * @return {EntityFactory} - this
+	 * @return {object} - this
 	 */
 	createNewTransaction(ignoreWarnings) {
 		const transaction = {
@@ -115,9 +115,9 @@ export class EntityFactory {
 
 	/**
 	 * Adds a create operation to the transaction.
-	 * @param {string} transaction - The transaction object
+	 * @param {object} transaction - The transaction object
 	 * @param {string} data - Entity to be added
-	 * @return {EntityFactory} - this
+	 * @return {object} - transaction
 	 */
 	addCreateToTransaction(transaction, data) {
 		const action = {
@@ -130,9 +130,9 @@ export class EntityFactory {
 
 	/**
 	 * Adds a delete operation to the transaction.
-	 * @param {string} transaction - The transaction object
+	 * @param {object} transaction - The transaction object
 	 * @param {string} data - Entity to be deleted
-	 * @return {EntityFactory} - this
+	 * @return {object} - transaction
 	 */
 	addDeleteToTransaction(transaction, data) {
 		const action = {
@@ -145,9 +145,9 @@ export class EntityFactory {
 
 	/**
 	 * Adds an update operation to the transaction.
-	 * @param {string} transaction - The transaction object
+	 * @param {object} transaction - The transaction object
 	 * @param {string} data - Entity to be updated
-	 * @return {EntityFactory} - this
+	 * @return {object} - transaction
 	 */
 	addUpdateToTransaction(transaction, data) {
 		const action = {

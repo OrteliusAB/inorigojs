@@ -4,6 +4,7 @@ import { EntityAPI } from "../API/EntityAPI"
 import { Utilities } from "../test-utils/utilities"
 import { Entity } from "../Entity/Entity"
 import { InorigoEnums } from "../Utils/Enums"
+import { EntityFactory } from "../Entity/EntityFactory"
 
 const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
@@ -221,7 +222,7 @@ describe("entity...", () => {
 
 		data.push(payload)
 		try {
-			const response = await entityAPI.createEntity(JSON.stringify(data))
+			const response = await entityAPI.createEntity(data)
 			// console.dir(response.data)
 			// console.dir(response.data.ids[0])
 
@@ -229,7 +230,7 @@ describe("entity...", () => {
 			const updatePayload = new Entity(entityTypes.ASSOCIATION, response.data.ids[0]).setValues({ "DEF8268D-1CDD-3F61-932D-AF6300EEF587": 45 }).print()
 			const updateData: object[] = []
 			updateData.push(updatePayload)
-			const responseUpdate = await entityAPI.updateEntity(JSON.stringify(updateData))
+			const responseUpdate = await entityAPI.updateEntity(updateData)
 			// console.log(responseUpdate)
 			expect(responseUpdate.status).equals(200)
 
@@ -256,7 +257,7 @@ describe("entity...", () => {
 			.print()
 
 		data.push(payload)
-		const response = await entityAPI.createEntity(JSON.stringify(data))
+		const response = await entityAPI.createEntity(data)
 		// console.dir(response.data)
 		// console.dir(response.data.ids[0])
 
@@ -266,8 +267,38 @@ describe("entity...", () => {
 		expect(responseDelete.status).equals(200)
 	})
 
-	it.todo("transaction() [/entity/commit/transaction]", async () => {
-		// expect(list.status).equals(200)
+	it("transaction() [/entity/commit/transaction]", async () => {
+		const entityTypes = new InorigoEnums().entityTypes()
+		const entityOne = new Entity(entityTypes.ASSOCIATION)
+			.setDefinition(entityTypes.ASSOCIATION_DEFINITION, "C2ED6335-C1A0-C115-FD2C-AF6300EB2477")
+			.setValues({
+				"4F7B6B18-B8B9-D7F7-479E-AF6300EEDC08": "VITEST transaction autotest",
+				"6630E548-8E42-1206-8B2B-AF6300EEE420": "2000-01-01",
+				"DEF8268D-1CDD-3F61-932D-AF6300EEF587": 4
+			})
+			.print()
+
+		const entityTwo = new Entity()
+			.setUUID("4565C26F-539C-FC14-A9E6-AF6300F4E4B5")
+			.setType(entityTypes.ASSOCIATION)
+			.setValues({
+				"DEF8268D-1CDD-3F61-932D-AF6300EEF587": 43
+			})
+			.print()
+
+		const entityFactor = new EntityFactory()
+		let transaction = entityFactor.createNewTransaction(false)
+		transaction = entityFactor.addCreateToTransaction(transaction, entityOne)
+		transaction = entityFactor.addUpdateToTransaction(transaction, entityTwo)
+
+		const response = await entityAPI.transaction(transaction)
+		// console.dir(response.data)
+		expect(response.status).equals(200)
+
+		// Delete the created Person
+		const responseDelete = await entityAPI.deleteEntity(entityTypes.ASSOCIATION, response.data.createdEntities[0].id)
+		// console.dir(responseDelete)
+		expect(responseDelete.status).equals(200)
 	})
 
 	it("deleteEntity(...) [/entity/{type}/{id}]", async () => {

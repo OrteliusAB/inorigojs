@@ -101,7 +101,7 @@ describe("Theme suit", () => {
 
 	it("applyTheme(...) [/theme/apply]", async () => {
 		const svg =
-			"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 32 32\"><g fill=\"none\" fill-rule=\"evenodd\"><path fill=\"#F7F7F7\" d=\"M4 2h24a2 2 0 0 1 2 2v24a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2v24h24V4H4z\"/><rect width=\"12\" height=\"2\" x=\"10\" y=\"13\" fill=\"#80B7C4\" rx=\"1\"/><rect width=\"12\" height=\"2\" x=\"10\" y=\"17\" fill=\"#80B7C4\" rx=\"1\"/></g></svg>"
+			'<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><g fill="none" fill-rule="evenodd"><path fill="#F7F7F7" d="M4 2h24a2 2 0 0 1 2 2v24a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2v24h24V4H4z"/><rect width="12" height="2" x="10" y="13" fill="#80B7C4" rx="1"/><rect width="12" height="2" x="10" y="17" fill="#80B7C4" rx="1"/></g></svg>'
 
 		const response = await themeAPI.applyTheme("#f7f7f7", "#80b7c4", "#ccdde2", svg)
 		// console.log(response)
