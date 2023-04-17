@@ -7,7 +7,7 @@ const utilities: Utilities = new Utilities()
 const inorigoAPI: InorigoAPI = utilities.getInorigoAPI()
 const shortcutAPI: ShortcutAPI = inorigoAPI.getShortcutAPI()
 
-describe.skip("shortcut...", () => {
+describe("shortcut...", () => {
 	it("assert utilities class, verify config read", () => {
 		assert.exists(utilities)
 	})
