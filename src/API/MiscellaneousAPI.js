@@ -32,7 +32,7 @@ export class MiscellaneousAPI {
 
 	/**
 	 * Register an activity to the user activity log
-	 * @param {{ activityID: number, activity: string, eventType: string, userID: string, targetID: { id: "string", dataType: string }, details: string }} requestBody - Request Payload
+	 * @param {{ activityID: number, activity: string, eventType: string, userID: string, targetID: { id: string, dataType: string }, details: string }} requestBody - Request Payload
 	 * @returns {object} - Response
 	 */
 	registerActivity(requestBody) {
