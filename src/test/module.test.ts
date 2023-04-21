@@ -59,39 +59,6 @@ describe("Module...", () => {
 		expect(response.status).equals(200)
 	})
 
-	// does not work, get http status 401 for delete
-	it.todo("registerDependency(...) [/module/dependency]", async () => {
-		const payload = {
-			requesterID: "0a2af80e-4528-4688-8031-55c114cbfba7",
-			resourceDataType: "UnResource",
-			resourceID: "F754A777-A73B-4B91-8FA4-673D2C6045EC"
-		}
-		const responseRegister = await moduleAPI.registerDependency(payload)
-
-		expect(responseRegister.status).equals(204)
-
-		const responseDelete = await moduleAPI.deleteDependency(payload)
-		expect(responseDelete.status).equals(204)
-	})
-
-	it.todo("deleteDependency(...) [/module/dependency]", async () => {
-		const payload = {
-			requesterID: "0a2af80e-4528-4688-8031-55c114cbfba7",
-			resourceDataType: "UnResource",
-			resourceID: "F754A777-A73B-4B91-8FA4-673D2C6045EC"
-		}
-		const responseRegister = await moduleAPI.registerDependency(payload)
-
-		expect(responseRegister.status).equals(204)
-
-		try {
-			const responseDelete = await moduleAPI.deleteDependency(payload)
-			expect(responseDelete.status).equals(204)
-		} catch (error) {
-			console.warn(error)
-		}
-	})
-
 	it("deleteModule(...) [/module/{id}]", async () => {
 		const requestBody = {
 			name: "VITEST_DELETE_MODULE",

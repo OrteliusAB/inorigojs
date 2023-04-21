@@ -133,7 +133,10 @@ export class VersoRuntimeAPI {
 	 * @return {object} - Response
 	 */
 	getScript(vrid) {
-		return axios.get(`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/script`, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "text/javascript"
+		return axios.get(`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/script`, customConfig)
 	}
 
 	/**
@@ -145,13 +148,16 @@ export class VersoRuntimeAPI {
 	 * @return {object} - Response
 	 */
 	getTooltip(vrid, componentID, row, column) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "text/html"
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/cell/tooltip${this.parentAPI._buildURIParams({
 				componentID,
 				row,
 				column
 			})}`,
-			this.parentAPI.DEFAULTCONFIG
+			customConfig
 		)
 	}
 
@@ -331,9 +337,9 @@ export class VersoRuntimeAPI {
 		)
 	}
 
-	setCommandVisible(vrid, command, where) {
+	setCommandVisible(vrid, command, where, visible) {
 		return axios.post(
-			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/command/visible/${this.parentAPI._buildURIParams({
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/command/visible/${visible}${this.parentAPI._buildURIParams({
 				command,
 				where
 			})}`,

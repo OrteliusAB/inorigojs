@@ -17,7 +17,8 @@
 		"test": "vitest",
 		"test:ui": "vitest --ui",
 		"coverage": "vitest run --coverage",
-		"build:types": "tsc --declaration --emitDeclarationOnly --outDir ./bundle/types/"
+		"build:types": "tsc --declaration --emitDeclarationOnly --outDir ./bundle/types/",
+		"cypress:open": "cypress open"
 	},
 	"repository": {
 		"type": "git",
@@ -56,6 +57,7 @@
 		"@vitest/ui": "^0.25.2",
 		"babel-jest": "^26.6.1",
 		"babel-plugin-transform-class-properties": "^6.24.1",
+		"cypress": "^12.5.1",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^6.15.0",
 		"eslint-plugin-jest": "^24.1.0",
