@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://www.ortelius.com/wp-content/uploads/2020/05/Ortelius-logo-black.png
+heroImage: /inorigo_big_black.png
 tagline: An Inorigo Utility
 actionText: Get Started →
 actionLink: /getting-started/
