@@ -82,15 +82,6 @@ export class MatrixAPI {
 	}
 
 	/**
-	 * Get Data for one Matrix Row
-	 * @param {object} requestBody - Request body: application/json
-	 * @returns
-	 */
-	getDataForRow(requestBody) {
-		return axios.post(`${this.baseURL}matrix/data/for/row`, requestBody, this.parentAPI.DEFAULTCONFIG)
-	}
-
-	/**
 	 * Get Meta for a filter
 	 * @param {{dataType: string, sourceID: {uuid: string, type: string}, operator: string, parameters: Array<{id: string, dataType: string, name: string}>}} requestBody Request body: application/json
 	 * @returns

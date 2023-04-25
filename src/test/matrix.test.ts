@@ -57,12 +57,6 @@ describe("matrix...", () => {
 		expect(response.status).equals(200)
 	})
 
-	it.todo("getDataForRow(...) [/matrix/data/for/row]", async () => {
-		// REMOVE THIS, DOES NOT SEEM TO EXIST ANY LONGER
-		// const list = await KSAPI.countRows(uuid, isDistinct)
-		// expect(list.status).equals(200)
-	})
-
 	it.todo("getMetaForFilter(...) [/matrix/meta/for/filter]", async () => {
 		// const list = await KSAPI.countRows(uuid, isDistinct)
 		// expect(list.status).equals(200)
