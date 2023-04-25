@@ -4,8 +4,8 @@ import https from "https"
 
 const options = {
 	authorization: {
-		username: "Selenium",
-		password: "123"
+		username: "",
+		password: ""
 	},
 	customHttpsAgent: new https.Agent({
 		rejectUnauthorized: false
@@ -19,8 +19,8 @@ describe("template spec", () => {
 	let id
 	it("login and start application", () => {
 		cy.visit("https://selenium2.ortelius.se/inorigo/ui/application/04b207a5-842f-3b26-54c9-af6900c86ad9")
-		cy.get("input[id='username']").type("Selenium")
-		cy.get("input[id='password']").type("123")
+		cy.get("input[id='username']").type("")
+		cy.get("input[id='password']").type("")
 		cy.get("input[id='Submit1']").click()
 
 		cy.get("[id=b332cf85-f55a-5974-622f-aeb4009defbc]")
