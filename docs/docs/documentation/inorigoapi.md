@@ -214,10 +214,8 @@ The following functions are supported:
 Function | Description
 --- | ---
 registerModule(requestBody) |   Submits a request that an external module is to be added to the system
-registerDependency(requestBody) |   Register that a requester is depnding on some resource
 getModule(enabled)  |   List the available modules
 deleteModule(uuid)  |   Delete operation that marks a module for removal. Note that the module is not removed until a system administrator appproves the request
-deleteDependency(requestBody)   |   Remove a registered dependency from the specified requester
 
 ## Favorite
 The Favorite API allows you to execute operations in the Inorigo favorite web services:

@@ -14,17 +14,6 @@ export class ModuleAPI {
 	}
 
 	/**
-	 * Remove a registered dependency from the specified requester
-	 * @param {{ requesterID: string, resourceDataType: string, resourceID: string }} requestBody - Request Payload
-	 * @returns
-	 */
-	deleteDependency(requestBody) {
-		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
-		customConfig.data = requestBody
-		return axios.delete(`${this.parentAPI.BASE_URL_API}module/dependency`, customConfig)
-	}
-
-	/**
 	 * Delete operation that marks a module for removal. Note that the module is not removed until a system administrator appproves the request
 	 * @param {string} uuid
 	 * @returns {object} - Response
@@ -43,15 +32,6 @@ export class ModuleAPI {
 			enabled
 		}
 		return axios.get(`${this.parentAPI.BASE_URL_API}module${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
-	}
-
-	/**
-	 * Register that a requester is depnding on some resource
-	 * @param {{ requesterID: string, resourceDataType: string, resourceID: string }} requestBody - Request Payload
-	 * @returns {object} - Response
-	 */
-	registerDependency(requestBody) {
-		return axios.post(`${this.parentAPI.BASE_URL_API}module/dependency`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
