@@ -4,8 +4,8 @@ import https from "https"
 
 const options = {
 	authorization: {
-		username: "Selenium",
-		password: "123"
+		username: "",
+		password: ""
 	},
 	customHttpsAgent: new https.Agent({
 		rejectUnauthorized: false
@@ -19,8 +19,8 @@ describe("template spec", () => {
 	let id
 	it("login and start application", () => {
 		cy.visit("https://selenium2.ortelius.se/inorigo/ui/application/04b207a5-842f-3b26-54c9-af6900c86ad9")
-		cy.get("input[id='username']").type("Selenium")
-		cy.get("input[id='password']").type("123")
+		cy.get("input[id='username']").type("")
+		cy.get("input[id='password']").type("")
 		cy.get("input[id='Submit1']").click()
 
 		cy.get("[id=b332cf85-f55a-5974-622f-aeb4009defbc]")
@@ -66,16 +66,31 @@ describe("template spec", () => {
 		expect(response.status).equals(200)
 	})
 
-	// it("getMetaForFilter(...) [/matrix/meta/for/filter]", async () => {
-	// 	const payload = {
-	// 		applicationRuntimeID: id,
-	// 		applicationComponentID: "D2A9A29A-8EE4-A00A-59A1-AEB4006CD5B8",
-	// 		applicationSelection: "All"
-	// 	}
-	// 	const response = await matrixAPI.getMetaForFilter(payload)
-	// 	cy.log(JSON.stringify(response.data))
-	// 	expect(response.status).equals(200)
-	// })
+	it("getMetaForFilter(...) [/matrix/meta/for/filter]", async () => {
+		const payload = {
+			kind: "FilterQuery",
+			id: "6e29d6be-85d0-1a63-d680-a3b500df3adb",
+			name: "Countries",
+			dataType: "GeGeopArea",
+			dataContextID: "64c3dcc8-de9b-408c-3299-a38d008c8fc7",
+			operator: "AND",
+			criteria: [
+				{
+					kind: "Definition",
+					qualifier: "KIND_OF",
+					dataType: "GeGeopType",
+					value: {
+						kind: "GlobalID",
+						uuid: "7fa79d62-33fa-4fd0-b2a5-91e868e27636",
+						type: "GeGeopType"
+					}
+				}
+			]
+		}
+		const response = await matrixAPI.getMetaForFilter(payload)
+		// cy.log(JSON.stringify(response.data))
+		expect(response.status).equals(200)
+	})
 
 	it("attributeOptionsCount(requestBody) [/matrix/attribute/options/count]", async () => {
 		const payload = {
@@ -113,7 +128,7 @@ describe("template spec", () => {
 			collateralEntities: []
 		}
 		const response = await matrixAPI.attributeOptionsCount(payload)
-		cy.log(JSON.stringify(response.data))
+		// cy.log(JSON.stringify(response.data))
 		expect(response.status).equals(200)
 	})
 
@@ -269,7 +284,64 @@ describe("template spec", () => {
 			collateralEntities: []
 		}
 		const response = await matrixAPI.commit(payload)
-		cy.log(JSON.stringify(response.data))
+		// cy.log(JSON.stringify(response.data))
+		expect(response.status).equals(200)
+	})
+
+	it("attributeParseValues(requestBody) [/matrix/attribute/parse/values]", async () => {
+		const payload = {
+			applicationRuntimeID: id,
+			applicationComponentID: "6859b04b-a871-61bf-5277-af4e00dfc442",
+			attribute: {
+				attrData: {
+					metaID: "20e9e041-a6e7-4c24-bf4d-e63483bc77f4",
+					key: "2be5e9d0-d59c-d32b-4929-af4e00debd94",
+					seq: 10,
+					name: "Name",
+					dataType: "String",
+					enabled: true,
+					readOnly: false,
+					definitionID: {
+						uuid: "85db5050-9f78-cae0-3d3e-af4e00dad29b",
+						type: "AsDefinition"
+					},
+					ownerID: {
+						uuid: "85db5050-9f78-cae0-3d3e-af4e00dad29b",
+						type: "AsDefinition"
+					},
+					visible: true,
+					editable: true,
+					multiplicity: "1",
+					limited: false
+				},
+				metaID: "20e9e041-a6e7-4c24-bf4d-e63483bc77f4",
+				name: "Name",
+				key: "2be5e9d0-d59c-d32b-4929-af4e00debd94",
+				dataType: "String",
+				seq: 10,
+				editable: true,
+				enabled: true,
+				multiplicity: "1",
+				readOnly: false,
+				visible: true,
+				parentID: "20e9e041-a6e7-4c24-bf4d-e63483bc77f4",
+				ownerID: {
+					uuid: "85db5050-9f78-cae0-3d3e-af4e00dad29b",
+					type: "AsDefinition"
+				},
+				definitionID: {
+					uuid: "85db5050-9f78-cae0-3d3e-af4e00dad29b",
+					type: "AsDefinition"
+				},
+				limited: false,
+				formMeta: null
+			},
+			texts: ["Data"],
+			resources: null,
+			collateralEntities: []
+		}
+		const response = await matrixAPI.attributeParseValues(payload)
+		// cy.log(JSON.stringify(response.data))
 		expect(response.status).equals(200)
 	})
 })
