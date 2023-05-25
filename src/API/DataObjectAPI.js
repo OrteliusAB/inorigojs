@@ -161,4 +161,15 @@ export class DataObjectAPI {
 	deleteDataVariant(id) {
 		return axios.delete(`${this.parentAPI.BASE_URL_API}dataobject/variant/${id}`, this.parentAPI.DEFAULTCONFIG)
 	}
+
+	/**
+	 * Get data object variant name for object specified by the supplied ID
+	 * @param {string} id - DataObject ID
+	 * @returns {object} - Response
+	 */
+	getDataVariantName(id) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers["Accept"] = "text/plain"
+		return axios.get(`${this.parentAPI.BASE_URL_API}dataobject/${id}/variant/name`, customConfig)
+	}
 }

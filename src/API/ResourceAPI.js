@@ -65,32 +65,40 @@ export class ResourceAPI {
 	 * Get the data of the resource
 	 * @param {string} key - The id or name of the resource.
 	 * @param {boolean} attachment - Optional parameter used to set the disposition of the response to attachement (file). Default is false.
-	 * @returns {object}
+	 * @returns {object} - Response
 	 */
 	getResourceData(key, attachment = false) {
-		return axios.get(`${this.parentAPI.BASE_URL_API}resource/data/${key}${this.parentAPI._buildURIParams({ attachment })}`, this.parentAPI.DEFAULTCONFIG)
+		const encodedKey = encodeURIComponent(key)
+		return axios.get(
+			`${this.parentAPI.BASE_URL_API}resource/data/${encodedKey}${this.parentAPI._buildURIParams({ attachment })}`,
+			this.parentAPI.DEFAULTCONFIG
+		)
 	}
 
 	/**
 	 * Is image to be inverted on dark backgrounds?
 	 * @param {string} key - The id or name of the resource.
-	 * @returns {boolean} - true | false
+	 * @returns {object} - Response
 	 */
 	getInvertOnDark(key) {
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = "text/plain"
-		return axios.get(`${this.parentAPI.BASE_URL_API}resource/invert/on/dark/${key}`, customConfig)
+		const encodedKey = encodeURIComponent(key)
+		return axios.get(`${this.parentAPI.BASE_URL_API}resource/invert/on/dark/${encodedKey}`, customConfig)
 	}
 
 	/**
 	 * set image to be inverted on dark backgrounds or not
 	 * @param {string} key
 	 * @param {boolean} invert
-	 * @returns {boolean} - true | false
+	 * @returns {object} - Response
 	 */
 	setInvertOnDark(key, invert) {
 		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
 		customConfig.headers["Accept"] = "text/plain"
-		return axios.post(`${this.parentAPI.BASE_URL_API}resource/invert/on/dark/${key}?invert=${invert}`, {}, customConfig)
+		const encodedKey = encodeURIComponent(key)
+		return axios.post(`${this.parentAPI.BASE_URL_API}resource/invert/on/dark/${encodedKey}?invert=${invert}`, {}, customConfig)
 	}
 }

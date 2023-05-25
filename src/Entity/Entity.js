@@ -5,8 +5,8 @@
 export class Entity {
 	/**
 	 * The constructor can optionally take a type and a UUID.
-	 * @param {string} type - Inorigo type
-	 * @param {string} uuid - Inorigo compatible UUID
+	 * @param {string=} type - Inorigo type
+	 * @param {string=} uuid - Inorigo compatible UUID
 	 */
 	constructor(type, uuid) {
 		this.state = {

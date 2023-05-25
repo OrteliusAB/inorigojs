@@ -9,4 +9,5 @@
 </div>
 
 # Contribute
+
 Are you missing something? Consider contributing your time to the project! You can of course also post suggestions, bug reports or general questions to us here on Github.

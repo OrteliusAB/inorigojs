@@ -254,7 +254,7 @@ export class InorigoAPI {
 			returnString +
 			Object.keys(tempObj)
 				.map(key => {
-					if (!tempObj[key]) {
+					if (tempObj[key] === null || tempObj[key] === "") {
 						return null
 					} else if (Array.isArray(tempObj[key])) {
 						let uriShard = ""
