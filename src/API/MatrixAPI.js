@@ -150,4 +150,14 @@ export class MatrixAPI {
 	attributeRecipe(requestBody) {
 		return axios.post(`${this.baseURL}matrix/attribute/recipe`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
+
+	/** Download a resource (link) */
+	downloadResource(resourceId) {
+		return axios.get(`${this.baseURL}matrix/resource/download/${resourceId}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/** Get the bytes of a resource */
+	getResource(resourceId) {
+		return axios.get(`${this.baseURL}matrix/resource/get/${resourceId}`, this.parentAPI.DEFAULTCONFIG)
+	}
 }
