@@ -26,13 +26,13 @@ export class MiscellaneousAPI {
 	 * @param {{ target: string, commit: boolean, dataContextID: string, arguments: [{}]} } requestBody - Request Payload
 	 * @returns {object} - Response
 	 */
-	excecute(requestBody) {
-		return axios.post(`${this.parentAPI.BASE_URL_API}excecute`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	execute(requestBody) {
+		return axios.post(`${this.parentAPI.BASE_URL_API}execute`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
 	 * Register an activity to the user activity log
-	 * @param {{ activityID: number, activity: string, eventType: string, userID: string, targetID: { id: "string", dataType: string }, details: string }} requestBody - Request Payload
+	 * @param {{ activityID: number, activity: string, eventType: string, userID: string, targetID: { id: string, dataType: string }, details: string }} requestBody - Request Payload
 	 * @returns {object} - Response
 	 */
 	registerActivity(requestBody) {
@@ -47,11 +47,16 @@ export class MiscellaneousAPI {
 	 * @returns {object} - Response
 	 */
 	getDynamicImage(key, contextID, filter) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "image/*"
+		customConfig.headers["Content-Type"] = ""
+
 		const uriParams = {
 			contextID,
 			filter
 		}
-		return axios.get(`${this.parentAPI.BASE_URL_API}dynamic/image/${key}${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		return axios.get(`${this.parentAPI.BASE_URL_API}dynamic/image/${key}${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
 
 	/**
@@ -60,10 +65,15 @@ export class MiscellaneousAPI {
 	 * @returns {object} - Response
 	 */
 	getRelationDirectionIcon(direction) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "image/*"
+		customConfig.headers["Content-Type"] = ""
+
 		const uriParams = {
 			direction
 		}
-		return axios.get(`${this.parentAPI.BASE_URL_API}dynamic/image${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		return axios.get(`${this.parentAPI.BASE_URL_API}relation/direction/icon${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
 
 	/**
@@ -74,11 +84,53 @@ export class MiscellaneousAPI {
 	 * @returns {object} - Response
 	 */
 	getRelationIcon(direction, relationType, relationID) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "image/*"
+		customConfig.headers["Content-Type"] = ""
+
 		const uriParams = {
 			direction,
 			relationType,
 			relationID
 		}
-		return axios.get(`${this.parentAPI.BASE_URL_API}dynamic/id/icon${this.parentAPI._buildURIParams(uriParams)}`, this.parentAPI.DEFAULTCONFIG)
+		return axios.get(`${this.parentAPI.BASE_URL_API}relation/id/icon${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
+	}
+
+	/**
+	 * Get the icon for a relation specifier
+	 * @param {string} direction - Relation direction
+	 * @param {string} specifier - Relation specifier (ID or name of an UnRel)
+	 * @returns {object}
+	 */
+	getRelationSpecifierIcon(direction, specifier) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "image/*"
+		customConfig.headers["Content-Type"] = ""
+
+		const uriParams = {
+			direction,
+			specifier
+		}
+		return axios.get(`${this.parentAPI.BASE_URL_API}relation/specifier/icon${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
+	}
+
+	/**
+	 * Get a static image
+	 * @param {string} key - Key (image name)
+	 * @param {string} filter - Optional filter name
+	 * @returns {object}
+	 */
+	getStaticImage(key, filter) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "image/*"
+		customConfig.headers["Content-Type"] = ""
+
+		const uriParams = {
+			filter
+		}
+		return axios.get(`${this.parentAPI.BASE_URL_API}static/image/${key}${this.parentAPI._buildURIParams(uriParams)}`, customConfig)
 	}
 }

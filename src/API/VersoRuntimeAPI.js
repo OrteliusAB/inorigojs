@@ -133,7 +133,10 @@ export class VersoRuntimeAPI {
 	 * @return {object} - Response
 	 */
 	getScript(vrid) {
-		return axios.get(`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/script`, this.parentAPI.DEFAULTCONFIG)
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "text/javascript"
+		return axios.get(`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/script`, customConfig)
 	}
 
 	/**
@@ -145,13 +148,16 @@ export class VersoRuntimeAPI {
 	 * @return {object} - Response
 	 */
 	getTooltip(vrid, componentID, row, column) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "text/html"
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/cell/tooltip${this.parentAPI._buildURIParams({
 				componentID,
 				row,
 				column
 			})}`,
-			this.parentAPI.DEFAULTCONFIG
+			customConfig
 		)
 	}
 
@@ -290,5 +296,75 @@ export class VersoRuntimeAPI {
 			{},
 			this.parentAPI.DEFAULTCONFIG
 		)
+	}
+
+	/**
+	 * Get a list of predefined commands and their states and details
+	 * @param {string} vrid -  The application runtime id
+	 * @returns {object} - Response
+	 */
+	getCommands(vrid) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/commands`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 *
+	 * @param {string} vrid - The application runtime id
+	 * @param {boolean} enabled - Enabled ?
+	 * @param {string} command - The command
+	 * @param {string} where - The component
+	 * @returns {object}
+	 */
+	setCommandEnabled(vrid, enabled, command, where) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/command/enabled/${enabled}${this.parentAPI._buildURIParams({
+				command,
+				where
+			})}`,
+			{},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	executeCommand(vrid, command, where) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/command/execute${this.parentAPI._buildURIParams({
+				command,
+				where
+			})}`,
+			{},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	setCommandVisible(vrid, command, where, visible) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/component/command/visible/${visible}${this.parentAPI._buildURIParams({
+				command,
+				where
+			})}`,
+			{},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
+	 * Execute one of the predefined commands, by ID
+	 * @param {string} vrid - The application id
+	 * @param {string} command - The command ID to perform
+	 * @returns {object} - Response
+	 */
+	executePredefinedCommand(vrid, command) {
+		return axios.post(`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/exec/command/${command}`, {}, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Export component
+	 * @param {string} vrid - The application runtime id
+	 * @param {string} component - component
+	 * @returns {object} - Response
+	 */
+	exportComponent(vrid, component) {
+		return axios.get(`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/export/${component}`, this.parentAPI.DEFAULTCONFIG)
 	}
 }

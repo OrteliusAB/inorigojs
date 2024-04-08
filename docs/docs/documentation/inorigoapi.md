@@ -75,7 +75,7 @@ Function | Description
 getMetaData(uuid)   |   Retrieves meta data about a given knowledgeset. 
 getResult(uuid, isDistinct, page, pagesize, parameters)   |   Retrieves a knowledgeset in table format.
 searchResult(uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns)   |   Retrieves a knowledgeset in table format where every row matches a given free text search
-getCachedResult: (uuid, page, pagesize, compactPaths)   |   Retrieves a (cached) knowledgeset in table format
+getCachedResult: (uuid, metaData, page, pagesize, compactPaths, replaceIdByPresentation)   |   Retrieves a (cached) knowledgeset in table format
 getTreeResult(uuid, metaData, compactLeafs, parameters, allowCache)   |   Retrieves a knowledgeset in tree format.
 searchTreeResult(uuid, text, fuzzy, metaData, compactLeafs, allowCache, searchIDs, includedColumns, excludedColumns)   |   Retrieves a knowledgeset in tree format where every node matches a given free text search
 getAvailable()   |   Retrieves a list of all available knowledgesets.
@@ -214,10 +214,8 @@ The following functions are supported:
 Function | Description
 --- | ---
 registerModule(requestBody) |   Submits a request that an external module is to be added to the system
-registerDependency(requestBody) |   Register that a requester is depnding on some resource
 getModule(enabled)  |   List the available modules
 deleteModule(uuid)  |   Delete operation that marks a module for removal. Note that the module is not removed until a system administrator appproves the request
-deleteDependency(requestBody)   |   Remove a registered dependency from the specified requester
 
 ## Favorite
 The Favorite API allows you to execute operations in the Inorigo favorite web services:

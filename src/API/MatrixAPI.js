@@ -16,17 +16,17 @@ export class MatrixAPI {
 
 	/**
 	 * Get Meta and Data for an Application Component
-	 * @param {string} applicationid - Application ID
-	 * @param {string} componentid - Component ID
+	 * @param {string} runtimeid - Runtime ID (uuid)
+	 * @param {string} componentid - Component ID (uuid)
 	 * @param {string} selection - Selection. (optional, default = All) options: "All", "Selected", "Implicit", "Explicit"
 	 * @returns
 	 */
-	getMetaAndDataForApplicationComponent(applicationid, componentid, selection) {
+	getMetaAndDataForApplicationComponent(runtimeid, componentid, selection) {
 		const uriParams = {
 			selection
 		}
 		return axios.get(
-			`${this.baseURL}matrix/meta/and/data/for/application/component/${applicationid}/${componentid}${this.parentAPI._buildURIParams(uriParams)}`,
+			`${this.baseURL}matrix/meta/and/data/for/application/component/${runtimeid}/${componentid}${this.parentAPI._buildURIParams(uriParams)}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
 	}
@@ -50,7 +50,7 @@ export class MatrixAPI {
 
 	/**
 	 * Get Meta for an Application Component
-	 * @param {string} applicationid - Application or Runtime ID
+	 * @param {string} runtimeid - Application or Runtime ID
 	 * @param {string} componentid - Component ID
 	 * @returns
 	 */
@@ -79,15 +79,6 @@ export class MatrixAPI {
 	 */
 	getDataForRequest(requestBody) {
 		return axios.post(`${this.baseURL}matrix/data/for/request`, requestBody, this.parentAPI.DEFAULTCONFIG)
-	}
-
-	/**
-	 * Get Data for one Matrix Row
-	 * @param {object} requestBody - Request body: application/json
-	 * @returns
-	 */
-	getDataForRow(requestBody) {
-		return axios.post(`${this.baseURL}matrix/data/for/row`, requestBody, this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -142,5 +133,31 @@ export class MatrixAPI {
 	 */
 	attributeParseValues(requestBody) {
 		return axios.post(`${this.baseURL}matrix/attribute/parse/values`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Validate a resource
+	 * @param {object} requestBody Request body: application/json
+	 */
+	resourceValidate(requestBody) {
+		return axios.post(`${this.baseURL}matrix/resource/validate`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/**
+	 * Get meta data for attribute recipe
+	 * @param {object} requestBody Request body: application/json
+	 */
+	attributeRecipe(requestBody) {
+		return axios.post(`${this.baseURL}matrix/attribute/recipe`, requestBody, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/** Download a resource (link) */
+	downloadResource(resourceId) {
+		return axios.get(`${this.baseURL}matrix/resource/download/${resourceId}`, this.parentAPI.DEFAULTCONFIG)
+	}
+
+	/** Get the bytes of a resource */
+	getResource(resourceId) {
+		return axios.get(`${this.baseURL}matrix/resource/get/${resourceId}`, this.parentAPI.DEFAULTCONFIG)
 	}
 }

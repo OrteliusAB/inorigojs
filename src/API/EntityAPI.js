@@ -31,15 +31,17 @@ export class EntityAPI {
 	 * Retrieves an entity from Inorigo
 	 * @param {string} entityType - Type of entity
 	 * @param {string} uuid - ID of entity
-	 * @param {string} includePresentations - Include presentations of nested data?
-	 * @param {string} includeIcons - Include icons of nested data?
+	 * @param {boolean} includePresentations - Include presentations?
+	 * @param {boolean} includeIcons - Include icons of nested data?
+	 * @param {boolean} includePresentationsSubObject - Include presentations of sub object?
 	 * @return {object} - Response
 	 */
-	getEntity(entityType, uuid, includePresentations, includeIcons) {
+	getEntity(entityType, uuid, includePresentations, includeIcons, includePresentationsSubObject) {
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}${this.parentAPI._buildURIParams({
 				presentations: includePresentations ? "true" : undefined,
-				includeIcons: includeIcons ? "true" : undefined
+				includeIcons: includeIcons ? "true" : undefined,
+				info: includePresentationsSubObject ? "true" : undefined
 			})}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
@@ -49,7 +51,7 @@ export class EntityAPI {
 	 * Retrieves all instances of a given definition entity
 	 * @param {string} entityType - Type of defining entity
 	 * @param {string} uuid - ID of defining entity
-	 * @param {string} informationType - What type of information to include in the response.
+	 * @param {[string]} informationType - What type of information to include in the response.
 	 * @param {number} page - What page to retrieve
 	 * @param {number} pagesize - How large should the page size be?
 	 * @return {object} - Response
@@ -69,25 +71,29 @@ export class EntityAPI {
 	 * Find all partnering entities
 	 * @param {string} entityType - Type of origin entity
 	 * @param {string} uuid - ID of origin entity
-	 * @param {string} relationUuid - ID of the relation type to be evaluated
+	 * @param {string} relation - ID or name (i.e classifies) of the relation
 	 * @param {string} direction - Direction of the relation
-	 * @param {string} isRecursive - Is the lookup recursive? I.e. is it deep.
-	 * @param {string} isLeafsOnly - Retrieve only the leafs?
-	 * @param {string} informationType - What type of information to include in the response.
+	 * @param {boolean} isRecursive - Is the lookup recursive? I.e. is it deep.
+	 * @param {boolean} isLeafsOnly - Retrieve only the leafs?
+	 * @param {[string]} info - What type of information to include in the response.
 	 * @param {number} page - What page to retrieve
 	 * @param {number} pagesize - How large should the page size be?
+	 * @param {boolean} [icons] - Add Icons (optional)
+	 * @param {boolean} [presentations] - Add Presentations (optional)
 	 * @return {object} - Response
 	 */
-	partners(entityType, uuid, relationUuid, direction, isRecursive, isLeafsOnly, informationType, page, pagesize) {
+	partners(entityType, uuid, relation = "classifies", direction, isRecursive, isLeafsOnly, informationType, page, pagesize, icons, presentations) {
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/partners${this.parentAPI._buildURIParams({
-				relation: relationUuid,
+				relation,
 				direction,
 				recursive: isRecursive,
 				leafsonly: isLeafsOnly,
 				info: informationType,
 				page,
-				pagesize
+				pagesize,
+				icons,
+				presentations
 			})}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
@@ -149,8 +155,8 @@ export class EntityAPI {
 	 * Find all defining entities
 	 * @param {string} entityType - Type of origin entity
 	 * @param {string} uuid - ID of origin entity
-	 * @param {string} isDeep - Is the search deep?
-	 * @param {string} informationType - What type of information to include in the response.
+	 * @param {boolean} isDeep - Is the search deep?
+	 * @param {[string]} informationType - What type of information to include in the response.
 	 * @param {number} page - What page to retrieve
 	 * @param {number} pagesize - How large should the page size be?
 	 * @return {object} - Response
@@ -171,19 +177,24 @@ export class EntityAPI {
 	 * Find all super class entities
 	 * @param {string} entityType - Type of origin entity
 	 * @param {string} uuid - ID of origin entity
-	 * @param {string} isDeep - Is the search deep?
-	 * @param {string} informationType - What type of information to include in the response.
+	 * @param {boolean} isDeep - Is the search deep?
+	 * @param {[string]} informationType - What type of information to include in the response.
 	 * @param {number} page - What page to retrieve
 	 * @param {number} pagesize - How large should the page size be?
+	 * @param {boolean=} icons - Add icon to response
+	 * @param {boolean} [addPresentations] - Add presentations to response
+	 *
 	 * @return {object} - Response
 	 */
-	getSuperClasses(entityType, uuid, isDeep, informationType, page, pagesize) {
+	getSuperClasses(entityType, uuid, isDeep, informationType, page, pagesize, addIcons, addPresentations) {
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/superclasses?deep=${this.parentAPI._buildURIParams({
 				deep: isDeep,
 				info: informationType,
 				page,
-				pagesize
+				pagesize,
+				icons: addIcons,
+				presentations: addPresentations
 			})}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
@@ -193,19 +204,23 @@ export class EntityAPI {
 	 * Find all sub class entities
 	 * @param {string} entityType - Type of origin entity
 	 * @param {string} uuid - ID of origin entity
-	 * @param {string} isDeep - Is the search deep?
-	 * @param {string} informationType - What type of information to include in the response.
+	 * @param {boolean} isDeep - Is the search deep?
+	 * @param {[string]} informationType - What type of information to include in the response.
 	 * @param {number} page - What page to retrieve
 	 * @param {number} pagesize - How large should the page size be?
+	 * @param {boolean} [addIcons] - Add icon to response
+	 * @param {boolean} [addPresentations] - Add presentations to response
 	 * @return {object} - Response
 	 */
-	getSubClasses(entityType, uuid, isDeep, informationType, page, pagesize) {
+	getSubClasses(entityType, uuid, isDeep, informationType, page, pagesize, addIcons, addPresentations) {
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/subclasses${this.parentAPI._buildURIParams({
 				deep: isDeep,
 				info: informationType,
 				page,
-				pagesize
+				pagesize,
+				icons: addIcons,
+				presentations: addPresentations
 			})}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
@@ -233,16 +248,19 @@ export class EntityAPI {
 	 * Find all relations of an entity
 	 * @param {string} entityType - Type of origin entity
 	 * @param {string} uuid - ID of origin entity
-	 * @param {string} relationUuid - ID of the relation type
+	 * @param {string} specifier - The type of relations to fetch, as an id or name (i.e classifies)
 	 * @param {string} direction - direction of the search
 	 * @param {number} page - What page to retrieve
 	 * @param {number} pagesize - How large should the page size be?
+	 * @param {boolean} [icon] - Add Icons? (optional)
+	 * @param {boolean} [presentations] - Add Presentations? (optional)
+	 *
 	 * @return {object} - Response
 	 */
-	getRelations(entityType, uuid, relationUuid, direction, page, pagesize) {
+	getRelations(entityType, uuid, specifier = "classifies", direction, page, pagesize) {
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/relations${this.parentAPI._buildURIParams({
-				specifier: relationUuid,
+				specifier,
 				direction,
 				page,
 				pagesize
@@ -253,11 +271,11 @@ export class EntityAPI {
 
 	/**
 	 * Updates an entity
-	 * @param {object} entityJSON - Entity DTO
+	 * @param {array} entityJSONArray - Array of entity DTOs
 	 * @return {object} - Response
 	 */
-	updateEntity(entityJSON) {
-		return axios.put(`${this.parentAPI.BASE_URL_API}entity`, entityJSON, this.parentAPI.DEFAULTCONFIG)
+	updateEntity(entityJSONArray) {
+		return axios.put(`${this.parentAPI.BASE_URL_API}entity`, JSON.stringify(entityJSONArray), this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -266,7 +284,7 @@ export class EntityAPI {
 	 * @return {object} - Response
 	 */
 	createEntity(entityJSONArray) {
-		return axios.post(`${this.parentAPI.BASE_URL_API}entity`, entityJSONArray, this.parentAPI.DEFAULTCONFIG)
+		return axios.post(`${this.parentAPI.BASE_URL_API}entity`, JSON.stringify(entityJSONArray), this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -329,7 +347,7 @@ export class EntityAPI {
 			simplifiedResult.type = entityType
 			simplifiedResult.uuid = uuid
 			simplifiedResult.presentation = result.data.presentation
-			Promise.resolve(simplifiedResult)
+			return Promise.resolve(simplifiedResult)
 		})
 	}
 
@@ -337,13 +355,14 @@ export class EntityAPI {
 	 * Retrieves all graph dependencies of a given entity
 	 * @param {string} entityType - Type of entity
 	 * @param {string} uuid - ID of entity
-	 * @param {string} dependants - Include dependants?
-	 * @param {string} dependencies - Include dependencies?
-	 * @param {string} values - Include values?
-	 * @param {string} references - Include references?
-	 * @param {string} relations - Include relations?
-	 * @param {string} instances - Include instances?
-	 * @param {string} presentations - Include presentations?
+	 * @param {boolean} dependants - Include dependants?
+	 * @param {boolean} dependencies - Include dependencies?
+	 * @param {boolean} values - Include values?
+	 * @param {boolean} references - Include references?
+	 * @param {boolean} relations - Include relations?
+	 * @param {boolean} instances - Include instances?
+	 * @param {boolean} presentations - Include presentations?
+	 * @param {boolean} icons - Include instances?
 	 * @return {object} - Response
 	 */
 	getGraphDependencies(
@@ -355,7 +374,8 @@ export class EntityAPI {
 		references = true,
 		relations = true,
 		instances = true,
-		presentations = true
+		presentations = true,
+		icons = true
 	) {
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/dependencies/graph${this.parentAPI._buildURIParams({
@@ -365,7 +385,8 @@ export class EntityAPI {
 				references,
 				relations,
 				instances,
-				presentations
+				presentations,
+				icons
 			})}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
@@ -423,13 +444,14 @@ export class EntityAPI {
 	 * Retrieves all dependency edges of a given entity
 	 * @param {string} entityType - Type of entity
 	 * @param {string} uuid - ID of entity
-	 * @param {string} dependants - Include dependants?
-	 * @param {string} dependencies - Include dependencies?
-	 * @param {string} values - Include values?
-	 * @param {string} references - Include references?
-	 * @param {string} relations - Include relations?
-	 * @param {string} instances - Include instances?
-	 * @param {string} presentations - Include presentations?
+	 * @param {boolean} dependants - Include dependants?
+	 * @param {boolean} dependencies - Include dependencies?
+	 * @param {boolean} values - Include values?
+	 * @param {boolean} references - Include references?
+	 * @param {boolean} relations - Include relations?
+	 * @param {boolean} instances - Include instances?
+	 * @param {boolean} presentations - Include presentations?
+	 * @param {boolean} icons - Include icons?
 	 * @return {object} - Response
 	 */
 	getDependencyEdges(
@@ -440,8 +462,9 @@ export class EntityAPI {
 		values = true,
 		references = true,
 		relations = true,
-		instances = true,
-		presentations = true
+		instances = false,
+		presentations = true,
+		icons = true
 	) {
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/dependencies/edges${this.parentAPI._buildURIParams({
@@ -451,7 +474,8 @@ export class EntityAPI {
 				references,
 				relations,
 				instances,
-				presentations
+				presentations,
+				icons
 			})}`,
 			this.parentAPI.DEFAULTCONFIG
 		)
@@ -498,12 +522,15 @@ export class EntityAPI {
 	 * @return {object} - Response
 	 */
 	getEntityIcon(entityType, uuid, size, contextID) {
+		const customConfig = { ...this.parentAPI.DEFAULTCONFIG }
+		customConfig.headers = { ...this.parentAPI.DEFAULTCONFIG.headers }
+		customConfig.headers["Accept"] = "*/*"
 		return axios.get(
 			`${this.parentAPI.BASE_URL_API}entity/${entityType}/${uuid}/icon${this.parentAPI._buildURIParams({
 				size,
 				contextID
 			})}`,
-			this.parentAPI.DEFAULTCONFIG
+			customConfig
 		)
 	}
 
@@ -538,7 +565,7 @@ export class EntityAPI {
 	 * @return {object} - Response
 	 */
 	getPresentations(entityArray) {
-		return axios.post(`${this.parentAPI.BASE_URL_API}entity/presentations/`, entityArray, this.parentAPI.DEFAULTCONFIG)
+		return axios.post(`${this.parentAPI.BASE_URL_API}entity/presentations/`, JSON.stringify(entityArray), this.parentAPI.DEFAULTCONFIG)
 	}
 
 	/**
@@ -553,7 +580,6 @@ export class EntityAPI {
 	 */
 	getGranted(type, entityId, variant, actions, userId, contextID) {
 		const uriParams = {
-			type,
 			entityId,
 			variant,
 			actions,

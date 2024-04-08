@@ -1,0 +1,11 @@
+{
+	"environment": {
+		"INORIGO_BASE_URL": "https://selenium2.ortelius.se/inorigo/",
+		"INORIGO_USER": "",
+		"INORIGO_PWD": ""
+	},
+	"ssl": {
+		"INTERMEDIATE_CERT": "sectigo-ca.cer",
+		"ROOT_CERT": "sectigo-root.cer"
+	}
+}
