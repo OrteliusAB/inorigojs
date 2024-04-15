@@ -88,6 +88,22 @@ export class VersoRuntimeAPI {
 	}
 
 	/**
+	 * Selects all entities in a given filterbox.
+	 * @param {string} vrid - Runtime ID
+	 * @param {string} where - Component name (Usually p(x))
+	 * @return {object} - Response
+	 */
+	selectAll(vrid, where) {
+		return axios.post(
+			`${this.parentAPI.BASE_URL_API}application/runtime/${vrid}/select/all${this.parentAPI._buildURIParams({
+				where
+			})}`,
+			{},
+			this.parentAPI.DEFAULTCONFIG
+		)
+	}
+
+	/**
 	 * Counts all entities in a given filterbox.
 	 * @param {string} vrid - Runtime ID
 	 * @param {string} where - Component name (Usually p(x))
